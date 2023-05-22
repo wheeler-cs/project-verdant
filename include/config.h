@@ -45,7 +45,7 @@
 #endif
 
 // Uncomment to fix some identified minor bugs
-//#define BUGFIX
+#define BUGFIX
 
 // Various undefined behavior bugs may or may not prevent compilation with
 // newer compilers. So always fix them when using a modern compiler.
@@ -54,5 +54,8 @@
 #define UBFIX
 #endif
 #endif
+
+// Uncomment to implement ROM that removes unneeded things (vanilla compatible)
+#define EMER_REDUCED
 
 #endif // GUARD_CONFIG_H
