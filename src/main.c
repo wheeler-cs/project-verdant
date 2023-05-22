@@ -407,10 +407,14 @@ static void IntrDummy(void)
 
 static void WaitForVBlank(void)
 {
+    #ifdef EMER_REDUCED
+    asm("swi 0x5");
+    #else
     gMain.intrCheck &= ~INTR_FLAG_VBLANK;
 
     while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
         ;
+    #endif
 }
 
 void SetTrainerHillVBlankCounter(u32 *counter)
