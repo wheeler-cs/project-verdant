@@ -921,7 +921,9 @@ void GetBattleAnimBg1Data(struct BattleAnimBgData *out)
         out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
+        #ifndef EMER_REDUCED
         out->unused = 0;
+        #endif
     }
     else
     {
@@ -930,7 +932,9 @@ void GetBattleAnimBg1Data(struct BattleAnimBgData *out)
         out->paletteId = BG_ANIM_PAL_1;
         out->bgId = 1;
         out->tilesOffset = 0x200;
+        #ifndef EMER_REDUCED
         out->unused = 0;
+        #endif
     }
 }
 
@@ -943,7 +947,9 @@ void GetBattleAnimBgData(struct BattleAnimBgData *out, u32 bgId)
         out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
+        #ifndef EMER_REDUCED
         out->unused = 0;
+        #endif
     }
     else if (bgId == 1)
     {
@@ -956,7 +962,9 @@ void GetBattleAnimBgData(struct BattleAnimBgData *out, u32 bgId)
         out->paletteId = BG_ANIM_PAL_2;
         out->bgId = 2;
         out->tilesOffset = 0x300;
+        #ifndef EMER_REDUCED
         out->unused = 0;
+        #endif
     }
 }
 
@@ -969,21 +977,27 @@ void GetBgDataForTransform(struct BattleAnimBgData *out, u8 battlerId)
         out->paletteId = BG_ANIM_PAL_CONTEST;
         out->bgId = 1;
         out->tilesOffset = 0;
+        #ifndef EMER_REDUCED
         out->unused = 0;
+        #endif
     }
     else if (GetBattlerSpriteBGPriorityRank(gBattleAnimAttacker) == 1)
     {
         out->paletteId = BG_ANIM_PAL_1;
         out->bgId = 1;
         out->tilesOffset = 0x200;
+        #ifndef EMER_REDUCED
         out->unused = 0;
+        #endif
     }
     else
     {
         out->paletteId = BG_ANIM_PAL_2;
         out->bgId = 2;
         out->tilesOffset = 0x300;
+        #ifndef EMER_REDUCED
         out->unused = 0;
+        #endif
     }
 }
 

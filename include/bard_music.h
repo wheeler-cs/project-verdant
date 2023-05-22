@@ -1,6 +1,14 @@
 #ifndef GUARD_BARD_MUSIC_H
 #define GUARD_BARD_MUSIC_H
 
+#ifdef EMER_REDUCED
+struct BardSound
+{
+    u8 songLengthId;
+    s8 songLengthOffset;
+    s16 volume;
+};
+#else
 struct BardSound
 {
     /*0x00*/ u8 songLengthId;
@@ -9,6 +17,7 @@ struct BardSound
     /*0x04*/ s16 volume;
     /*0x06*/ u16 unused2;
 };
+#endif
 
 struct BardPhoneme
 {

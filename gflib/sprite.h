@@ -119,7 +119,10 @@ union AffineAnimCmd
     struct AffineAnimFrameCmd frame;
     struct AffineAnimLoopCmd loop;
     struct AffineAnimJumpCmd jump;
+
+    #ifndef EMER_REDUCED
     struct AffineAnimEndCmdAlt end; // unused in code
+    #endif
 };
 
 #define AFFINEANIMCMDTYPE_LOOP 0x7FFD
@@ -134,8 +137,11 @@ union AffineAnimCmd
     {.jump = {.type = AFFINEANIMCMDTYPE_JUMP, .target = _target}}
 #define AFFINEANIMCMD_END \
     {.type = AFFINEANIMCMDTYPE_END}
+
+#ifndef EMER_REDUCED
 #define AFFINEANIMCMD_END_ALT(_val) \
     {.end = {.type = AFFINEANIMCMDTYPE_END, .val = _val}}
+#endif
 
 struct AffineAnimState
 {

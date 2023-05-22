@@ -711,21 +711,30 @@ const union AffineAnimCmd gThinRingExpandingAffineAnimCmds1[] =
 {
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 30),
+
+    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
+    #endif
 };
 
 const union AffineAnimCmd gThinRingExpandingAffineAnimCmds2[] =
 {
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
     AFFINEANIMCMD_FRAME(0x20, 0x20, 0, 15),
+
+    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
+    #endif
 };
 
 const union AffineAnimCmd gHyperVoiceRingAffineAnimCmds[] =
 {
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
     AFFINEANIMCMD_FRAME(0xB, 0xB, 0, 45),
+
+    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
+    #endif
 };
 
 const union AffineAnimCmd *const gThinRingExpandingAffineAnimTable[] =
@@ -754,7 +763,10 @@ const union AffineAnimCmd gThinRingShrinkingAffineAnimCmds[] =
 {
     AFFINEANIMCMD_FRAME(0x200, 0x200, 0, 0),
     AFFINEANIMCMD_FRAME(0xFFF0, 0xFFF0, 0, 30),
+
+    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
+    #endif
 };
 
 const union AffineAnimCmd *const gThinRingShrinkingAffineAnimTable[] =
@@ -1194,13 +1206,19 @@ const union AffineAnimCmd gPerishSongMusicNoteAffineAnimCmds1[] =
 const union AffineAnimCmd gPerishSongMusicNoteAffineAnimCmds2[] =
 {
     AFFINEANIMCMD_FRAME(0x0, 0x0, -8, 16),
+
+    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
+    #endif
 };
 
 const union AffineAnimCmd gPerishSongMusicNoteAffineAnimCmds3[] =
 {
     AFFINEANIMCMD_FRAME(0x0, 0x0, 8, 16),
+
+    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
+    #endif
 };
 
 const union AffineAnimCmd *const gPerishSongMusicNoteAffineAnimTable[] =

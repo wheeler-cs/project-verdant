@@ -76,6 +76,7 @@ void ResetBgControlStructs(void)
     }
 }
 
+#ifndef EMER_REDUCED
 void Unused_ResetBgControlStruct(u8 bg)
 {
     if (!IsInvalidBg(bg))
@@ -83,6 +84,7 @@ void Unused_ResetBgControlStruct(u8 bg)
         sGpuBgConfigs.configs[bg] = sZeroedBgControlStruct;
     }
 }
+#endif
 
 enum
 {
@@ -415,6 +417,7 @@ u16 LoadBgTilemap(u8 bg, const void *src, u16 size, u16 destOffset)
     return cursor;
 }
 
+#ifndef EMER_REDUCED
 u16 Unused_LoadBgPalette(u8 bg, const void *src, u16 size, u16 destOffset)
 {
     s8 cursor;
@@ -438,6 +441,7 @@ u16 Unused_LoadBgPalette(u8 bg, const void *src, u16 size, u16 destOffset)
 
     return (u8)cursor;
 }
+#endif
 
 bool8 IsDma3ManagerBusyWithBgCopy(void)
 {
@@ -776,6 +780,7 @@ void SetBgAffine(u8 bg, s32 srcCenterX, s32 srcCenterY, s16 dispCenterX, s16 dis
     SetBgAffineInternal(bg, srcCenterX, srcCenterY, dispCenterX, dispCenterY, scaleX, scaleY, rotationAngle);
 }
 
+#ifndef EMER_REDUCED
 u8 Unused_AdjustBgMosaic(u8 val, u8 mode)
 {
     u16 mosaic = GetGpuReg(REG_OFFSET_MOSAIC);
@@ -846,6 +851,7 @@ u8 Unused_AdjustBgMosaic(u8 val, u8 mode)
 
     return mosaic;
 }
+#endif
 
 void SetBgTilemapBuffer(u8 bg, void *tilemap)
 {

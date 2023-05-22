@@ -81,6 +81,16 @@ const struct BardSound gBardSounds_Voices[][6] = {
         NULL_BARD_SOUND,
         NULL_BARD_SOUND,
     },
+    #ifdef EMER_REDUCED
+    {
+        { .songLengthId = 27, .songLengthOffset = 0x5},
+        { .songLengthId = 51 },
+        { .songLengthId = 51 },
+        NULL_BARD_SOUND,
+        NULL_BARD_SOUND,
+        NULL_BARD_SOUND,
+    },
+    #else
     {
         { .songLengthId = 27, .songLengthOffset = 0x5, .unused = 0x8 },
         { .songLengthId = 51 },
@@ -89,6 +99,7 @@ const struct BardSound gBardSounds_Voices[][6] = {
         NULL_BARD_SOUND,
         NULL_BARD_SOUND,
     },
+    #endif
     {
         { .songLengthId = 6 },
         { .songLengthId = 6 },

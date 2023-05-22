@@ -2,6 +2,7 @@
 #include "io_reg.h"
 #include "gba/io_reg.h"
 
+#ifndef EMER_REDUCED
 static const u32 sUnused[] = {
     0,
     0,
@@ -20,6 +21,7 @@ static const u32 sUnused[] = {
     (1 << 25) | (1 << 8),
     (1 << 27) | (1 << 10),
 };
+#endif
 
 const u16 gOverworldBackgroundLayerFlags[] = {
     BLDCNT_TGT2_BG0,

@@ -362,7 +362,10 @@ static const union AffineAnimCmd sAffineAnim_LusterPurgeCircle[] =
 {
     AFFINEANIMCMD_FRAME(0x20, 0x20, 0, 0),
     AFFINEANIMCMD_FRAME(0x4, 0x4, 0, 120),
+
+    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
+    #endif
 };
 
 static const union AffineAnimCmd *const sAffineAnims_LusterPurgeCircle[] =

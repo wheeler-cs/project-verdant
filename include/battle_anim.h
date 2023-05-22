@@ -21,9 +21,14 @@ struct BattleAnimBgData
     u8 *bgTiles;
     u16 *bgTilemap;
     u8 paletteId;
+
     u8 bgId;
     u16 tilesOffset;
+    #ifdef EMER_REDUCED
+    u8 filler;  // Keeps 32-bit alignment
+    #else
     u16 unused;
+    #endif
 };
 
 struct BattleAnimBackground
