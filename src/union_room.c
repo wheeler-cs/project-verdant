@@ -2773,7 +2773,9 @@ static void Task_RunUnionRoom(u8 taskId)
     case UR_STATE_WAIT_FOR_RESPONSE_TO_REQUEST:
         if (!gReceivedRemoteLinkPlayers)
         {
+            #ifndef EMER_REDUCED
             StringCopy(gStringVar4, sText_TrainerBattleBusy); // Redundant, will be copied again in next state
+            #endif
             uroom->state = UR_STATE_TRAINER_APPEARS_BUSY;
         }
         else

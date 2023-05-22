@@ -2476,6 +2476,7 @@ static bool8 DecideStop_Bias_Reel1_Bet2or3(u8 sym1, u8 sym2)
     // Check the next 4 turns
     for (i = 1; i <= MAX_EXTRA_TURNS; i++)
     {
+        #ifndef EMER_REDUCED
         bool8 cherry7BiasCopy = cherry7Bias; // redundant
         if (cherry7BiasCopy || !AreCherriesOnScreen_Reel1(i))
         {
@@ -2498,6 +2499,30 @@ static bool8 DecideStop_Bias_Reel1_Bet2or3(u8 sym1, u8 sym2)
                 return TRUE;
             }
         }
+        #else
+        // Remove the cherry7BiasCopy variable and just use the original
+        if (cherry7Bias || !AreCherriesOnScreen_Reel1(i))
+        {
+            if (EitherSymbolAtPos_Reel1(1 - i, sym1, sym2))
+            {
+                if (i == 1 && (cherry7Bias || !AreCherriesOnScreen_Reel1(3)))
+                {
+                    sSlotMachine->winnerRows[0] = 3;
+                    sSlotMachine->reelExtraTurns[0] = 3;
+                    return TRUE;
+                }
+                if (i <= 3 && (cherry7Bias || !AreCherriesOnScreen_Reel1(i + 1)))
+                {
+                    sSlotMachine->winnerRows[0] = 2;
+                    sSlotMachine->reelExtraTurns[0] = i + 1;
+                    return TRUE;
+                }
+                sSlotMachine->winnerRows[0] = 1;
+                sSlotMachine->reelExtraTurns[0] = i;
+                return TRUE;
+            }
+        }
+        #endif
     }
     return FALSE;
 }

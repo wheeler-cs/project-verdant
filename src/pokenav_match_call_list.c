@@ -278,6 +278,7 @@ int GetNumberRegistered(void)
     return state->numRegistered;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static int GetNumSpecialTrainers(void)
 {
@@ -302,6 +303,7 @@ static int GetNormalTrainerHeaderId(int index)
 
     return state->matchCallEntries[index].headerId;
 }
+#endif
 
 struct PokenavMatchCallEntry *GetMatchCallList(void)
 {
@@ -468,6 +470,7 @@ int GetIndexDeltaOfNextCheckPageUp(int index)
     return 0;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static bool32 HasRematchEntry(void)
 {
@@ -491,6 +494,7 @@ static bool32 HasRematchEntry(void)
 
     return FALSE;
 }
+#endif
 
 static bool32 ShouldDoNearbyMessage(void)
 {

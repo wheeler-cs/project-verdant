@@ -1098,7 +1098,9 @@ static bool8 InitMonAnimStage(void)
         CalculateMonAnimMovement();
         pokeblockFeed->animData[ANIMDATA_TIME] = pokeblockFeed->maxAnimStageTime;
         CalculateMonAnimMovementEnd();
+        #ifndef EMER_REDUCED
         pokeblockFeed->animData[ANIMDATA_TIME] = pokeblockFeed->maxAnimStageTime; // Redundant
+        #endif
         return FALSE;
     }
 }

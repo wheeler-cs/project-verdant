@@ -2512,7 +2512,9 @@ static void RemoveItemMessageWindow(u8 windowType)
     {
         ClearDialogWindowAndFrameToTransparent(*windowId, FALSE);
         // This ClearWindowTilemap call is redundant, since ClearDialogWindowAndFrameToTransparent already calls it.
+        #ifndef EMER_REDUCED
         ClearWindowTilemap(*windowId);
+        #endif
         RemoveWindow(*windowId);
         ScheduleBgCopyTilemapToVram(1);
         *windowId = WINDOW_NONE;

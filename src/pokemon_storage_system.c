@@ -5496,9 +5496,11 @@ static void InitBoxTitle(u8 boxId)
     // the incoming wallpaper title's palette, but as they now
     // share a palette tag, all colors (and fields in some cases)
     // this is redundant along with the use of boxTitleAltPalOffset
+    #ifndef EMER_REDUCED
     tagIndex = IndexOfSpritePaletteTag(PALTAG_BOX_TITLE);
     sStorage->boxTitleAltPalOffset = OBJ_PLTT_ID(tagIndex) + 14;
     sStorage->wallpaperPalBits |= 0x10000 << tagIndex;
+    #endif
 
     StringCopyPadded(sStorage->boxTitleText, GetBoxNamePtr(boxId), 0, BOX_NAME_LENGTH);
     DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 0, 0, 2);

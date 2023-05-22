@@ -4349,8 +4349,10 @@ void SortContestants(bool8 useRanking)
             // This is redundant.
             // Perhaps GF switched from true insertion sort to in-place insertion sort, and forgot to
             // remove this check?
+            #ifndef EMER_REDUCED
             if (v3 == i)
                 gContestantTurnOrder[i] = i;
+            #endif
         }
 
         // Invert gContestantTurnOrder; above, it was a list of contestant IDs. Now it's a list of turn orderings.

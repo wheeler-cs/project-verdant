@@ -2622,7 +2622,11 @@ static u32 GetBerriesPicked(u8 playerId)
 
 static void TryUpdateRecords(void)
 {
+    #ifndef EMER_REDUCED
     u32 berriesPicked = Min(GetBerriesPicked(sGame->multiplayerId), MAX_BERRIES); // Min here is redundant
+    #else
+    u32 berriesPicked = GetBerriesPicked(sGame->multiplayerId);
+    #endif
     u32 score = Min(GetScore(sGame->multiplayerId), MAX_SCORE);
 
     if (gSaveBlock2Ptr->berryPick.bestScore < score)
@@ -2633,8 +2637,7 @@ static void TryUpdateRecords(void)
         gSaveBlock2Ptr->berryPick.berriesPickedInRow = sGame->maxBerriesPickedInRow;
 }
 
-// Enqueue the given state, and dequeue and return
-// the state that should be used next
+// Enqueue the given state, and dequeue and return the state that should be used next
 static u8 UpdatePickStateQueue(u8 pickState)
 {
     u8 i, nextState;
@@ -2646,8 +2649,8 @@ static u8 UpdatePickStateQueue(u8 pickState)
     return nextState;
 }
 
-// The player may extend their Dodrio's heads while they wait for
-// other players to respond to the "Play again?" prompt
+// The player may extend their Dodrio's heads while they wait for other players to respond to the
+// "Play again?" prompt
 static void HandleWaitPlayAgainInput(void)
 {
     if (sGame->inputDelay[sGame->multiplayerId] == 0)
