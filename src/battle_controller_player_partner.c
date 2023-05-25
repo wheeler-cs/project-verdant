@@ -64,10 +64,14 @@ static void PlayerPartnerHandleTwoReturnValues(void);
 static void PlayerPartnerHandleChosenMonReturnValue(void);
 static void PlayerPartnerHandleOneReturnValue(void);
 static void PlayerPartnerHandleOneReturnValue_Duplicate(void);
+
+#ifndef EMER_REDUCED
 static void PlayerPartnerHandleClearUnkVar(void);
 static void PlayerPartnerHandleSetUnkVar(void);
 static void PlayerPartnerHandleClearUnkFlag(void);
 static void PlayerPartnerHandleToggleUnkFlag(void);
+#endif
+
 static void PlayerPartnerHandleHitAnimation(void);
 static void PlayerPartnerHandleCantSwitch(void);
 static void PlayerPartnerHandlePlaySE(void);
@@ -101,6 +105,64 @@ static void PlayerPartnerDoMoveAnimation(void);
 static void Task_StartSendOutAnim(u8 taskId);
 static void EndDrawPartyStatusSummary(void);
 
+#ifdef EMER_REDUCED
+static void (*const sPlayerPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = PlayerPartnerHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = PlayerPartnerHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = PlayerPartnerHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = PlayerPartnerHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = PlayerPartnerHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = PlayerPartnerHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = PlayerPartnerHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = PlayerPartnerHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = PlayerPartnerHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = PlayerPartnerHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = PlayerPartnerHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = PlayerPartnerHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = PlayerPartnerHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = PlayerPartnerHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = PlayerPartnerHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = PlayerPartnerHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = PlayerPartnerHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = PlayerPartnerHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = PlayerPartnerHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = PlayerPartnerHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = PlayerPartnerHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = PlayerPartnerHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = PlayerPartnerHandleChoosePokemon,
+    [CONTROLLER_23]                       = PlayerPartnerHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = PlayerPartnerHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = PlayerPartnerHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = PlayerPartnerHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = PlayerPartnerHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = PlayerPartnerHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = PlayerPartnerHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = PlayerPartnerHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = PlayerPartnerHandlePlayBGM,
+    [CONTROLLER_32]                       = PlayerPartnerHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = PlayerPartnerHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = PlayerPartnerHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = PlayerPartnerHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = PlayerPartnerHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = PlayerPartnerHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = PlayerPartnerHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = PlayerPartnerHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = PlayerPartnerHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = PlayerPartnerHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = PlayerPartnerHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = PlayerPartnerHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = PlayerPartnerHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = PlayerPartnerHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = PlayerPartnerHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = PlayerPartnerHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = PlayerPartnerHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = PlayerPartnerHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = PlayerPartnerHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = PlayerPartnerHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = PlayerPartnerCmdEnd
+};
+#else
 static void (*const sPlayerPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = PlayerPartnerHandleGetMonData,
@@ -161,8 +223,10 @@ static void (*const sPlayerPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_ENDLINKBATTLE]            = PlayerPartnerHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = PlayerPartnerCmdEnd
 };
+#endif
 
 // unknown unused data
+#ifndef EMER_REDUCED
 static const u8 sUnused[] =
 {
     0x83, 0x4d, 0xf3, 0x5f, 0x6f, 0x4f, 0xeb, 0x3e,
@@ -170,6 +234,7 @@ static const u8 sUnused[] =
     0xc5, 0x2c, 0x15, 0x7f, 0xb5, 0x56, 0x9d, 0x53,
     0x3b, 0x43, 0xda, 0x36, 0x79, 0x2a, 0x0e, 0x53,
 };
+#endif
 
 static void PlayerPartnerDummy(void)
 {
@@ -1687,6 +1752,7 @@ static void PlayerPartnerHandleOneReturnValue_Duplicate(void)
     PlayerPartnerBufferExecCompleted();
 }
 
+#ifndef EMER_REDUCED
 static void PlayerPartnerHandleClearUnkVar(void)
 {
     gUnusedControllerStruct.unk = 0;
@@ -1710,6 +1776,7 @@ static void PlayerPartnerHandleToggleUnkFlag(void)
     gUnusedControllerStruct.flag ^= 1;
     PlayerPartnerBufferExecCompleted();
 }
+#endif
 
 static void PlayerPartnerHandleHitAnimation(void)
 {

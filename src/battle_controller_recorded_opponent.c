@@ -66,10 +66,14 @@ static void RecordedOpponentHandleTwoReturnValues(void);
 static void RecordedOpponentHandleChosenMonReturnValue(void);
 static void RecordedOpponentHandleOneReturnValue(void);
 static void RecordedOpponentHandleOneReturnValue_Duplicate(void);
+
+#ifndef EMER_REDUCED
 static void RecordedOpponentHandleClearUnkVar(void);
 static void RecordedOpponentHandleSetUnkVar(void);
 static void RecordedOpponentHandleClearUnkFlag(void);
 static void RecordedOpponentHandleToggleUnkFlag(void);
+#endif
+
 static void RecordedOpponentHandleHitAnimation(void);
 static void RecordedOpponentHandleCantSwitch(void);
 static void RecordedOpponentHandlePlaySE(void);
@@ -99,6 +103,64 @@ static void Task_StartSendOutAnim(u8 taskId);
 static void SpriteCB_FreeOpponentSprite(struct Sprite *sprite);
 static void EndDrawPartyStatusSummary(void);
 
+#ifdef EMER_REDUCED
+static void (*const sRecordedOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = RecordedOpponentHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = RecordedOpponentHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = RecordedOpponentHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = RecordedOpponentHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = RecordedOpponentHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = RecordedOpponentHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = RecordedOpponentHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = RecordedOpponentHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = RecordedOpponentHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = RecordedOpponentHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = RecordedOpponentHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = RecordedOpponentHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = RecordedOpponentHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = RecordedOpponentHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = RecordedOpponentHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = RecordedOpponentHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = RecordedOpponentHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = RecordedOpponentHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = RecordedOpponentHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = RecordedOpponentHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = RecordedOpponentHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = RecordedOpponentHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = RecordedOpponentHandleChoosePokemon,
+    [CONTROLLER_23]                       = RecordedOpponentHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = RecordedOpponentHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = RecordedOpponentHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = RecordedOpponentHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = RecordedOpponentHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = RecordedOpponentHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = RecordedOpponentHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = RecordedOpponentHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = RecordedOpponentHandlePlayBGM,
+    [CONTROLLER_32]                       = RecordedOpponentHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = RecordedOpponentHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = RecordedOpponentHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = RecordedOpponentHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = RecordedOpponentHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = RecordedOpponentHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = RecordedOpponentHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = RecordedOpponentHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = RecordedOpponentHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = RecordedOpponentHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = RecordedOpponentHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = RecordedOpponentHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = RecordedOpponentHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = RecordedOpponentHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = RecordedOpponentHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = RecordedOpponentHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = RecordedOpponentHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = RecordedOpponentHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = RecordedOpponentHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = RecordedOpponentHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = RecordedOpponentCmdEnd
+};
+#else
 static void (*const sRecordedOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = RecordedOpponentHandleGetMonData,
@@ -159,6 +221,7 @@ static void (*const sRecordedOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void
     [CONTROLLER_ENDLINKBATTLE]            = RecordedOpponentHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = RecordedOpponentCmdEnd
 };
+#endif
 
 static void RecordedOpponentDummy(void)
 {
@@ -1541,6 +1604,7 @@ static void RecordedOpponentHandleOneReturnValue_Duplicate(void)
     RecordedOpponentBufferExecCompleted();
 }
 
+#ifndef EMER_REDUCED
 static void RecordedOpponentHandleClearUnkVar(void)
 {
     gUnusedControllerStruct.unk = 0;
@@ -1564,6 +1628,7 @@ static void RecordedOpponentHandleToggleUnkFlag(void)
     gUnusedControllerStruct.flag ^= 1;
     RecordedOpponentBufferExecCompleted();
 }
+#endif
 
 static void RecordedOpponentHandleHitAnimation(void)
 {

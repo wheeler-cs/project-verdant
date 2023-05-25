@@ -79,7 +79,9 @@ void SpecialStatusesClear(void);
 
 extern struct MultiPartnerMenuPokemon gMultiPartnerParty[MULTI_PARTY_SIZE];
 
+#ifndef EMER_REDUCED
 extern const struct SpriteTemplate gUnusedBattleInitSprite;
+#endif
 extern const struct OamData gOamData_BattleSpriteOpponentSide;
 extern const struct OamData gOamData_BattleSpritePlayerSide;
 extern const u8 gTypeEffectiveness[336];

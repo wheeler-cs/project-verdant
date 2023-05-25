@@ -62,10 +62,14 @@ static void RecordedPlayerHandleTwoReturnValues(void);
 static void RecordedPlayerHandleChosenMonReturnValue(void);
 static void RecordedPlayerHandleOneReturnValue(void);
 static void RecordedPlayerHandleOneReturnValue_Duplicate(void);
+
+#ifndef EMER_REDUCED
 static void RecordedPlayerHandleClearUnkVar(void);
 static void RecordedPlayerHandleSetUnkVar(void);
 static void RecordedPlayerHandleClearUnkFlag(void);
 static void RecordedPlayerHandleToggleUnkFlag(void);
+#endif
+
 static void RecordedPlayerHandleHitAnimation(void);
 static void RecordedPlayerHandleCantSwitch(void);
 static void RecordedPlayerHandlePlaySE(void);
@@ -94,6 +98,64 @@ static void RecordedPlayerDoMoveAnimation(void);
 static void Task_StartSendOutAnim(u8 taskId);
 static void EndDrawPartyStatusSummary(void);
 
+#ifdef EMER_REDUCED
+static void (*const sRecordedPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = RecordedPlayerHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = RecordedPlayerHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = RecordedPlayerHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = RecordedPlayerHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = RecordedPlayerHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = RecordedPlayerHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = RecordedPlayerHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = RecordedPlayerHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = RecordedPlayerHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = RecordedPlayerHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = RecordedPlayerHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = RecordedPlayerHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = RecordedPlayerHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = RecordedPlayerHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = RecordedPlayerHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = RecordedPlayerHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = RecordedPlayerHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = RecordedPlayerHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = RecordedPlayerHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = RecordedPlayerHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = RecordedPlayerHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = RecordedPlayerHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = RecordedPlayerHandleChoosePokemon,
+    [CONTROLLER_23]                       = RecordedPlayerHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = RecordedPlayerHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = RecordedPlayerHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = RecordedPlayerHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = RecordedPlayerHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = RecordedPlayerHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = RecordedPlayerHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = RecordedPlayerHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = RecordedPlayerHandlePlayBGM,
+    [CONTROLLER_32]                       = RecordedPlayerHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = RecordedPlayerHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = RecordedPlayerHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = RecordedPlayerHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = RecordedPlayerHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = RecordedPlayerHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = RecordedPlayerHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = RecordedPlayerHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = RecordedPlayerHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = RecordedPlayerHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = RecordedPlayerHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = RecordedPlayerHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = RecordedPlayerHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = RecordedPlayerHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = RecordedPlayerHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = RecordedPlayerHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = RecordedPlayerHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = RecordedPlayerHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = RecordedPlayerHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = RecordedPlayerHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = RecordedPlayerCmdEnd
+};
+#else
 static void (*const sRecordedPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = RecordedPlayerHandleGetMonData,
@@ -154,6 +216,7 @@ static void (*const sRecordedPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) 
     [CONTROLLER_ENDLINKBATTLE]            = RecordedPlayerHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = RecordedPlayerCmdEnd
 };
+#endif
 
 static void RecordedPlayerDummy(void)
 {
@@ -1568,6 +1631,7 @@ static void RecordedPlayerHandleOneReturnValue_Duplicate(void)
     RecordedPlayerBufferExecCompleted();
 }
 
+#ifndef EMER_REDUCED
 static void RecordedPlayerHandleClearUnkVar(void)
 {
     gUnusedControllerStruct.unk = 0;
@@ -1591,6 +1655,7 @@ static void RecordedPlayerHandleToggleUnkFlag(void)
     gUnusedControllerStruct.flag ^= 1;
     RecordedPlayerBufferExecCompleted();
 }
+#endif
 
 static void RecordedPlayerHandleHitAnimation(void)
 {

@@ -72,10 +72,14 @@ static void PlayerHandleTwoReturnValues(void);
 static void PlayerHandleChosenMonReturnValue(void);
 static void PlayerHandleOneReturnValue(void);
 static void PlayerHandleOneReturnValue_Duplicate(void);
+
+#ifndef EMER_REDUCED
 static void PlayerHandleClearUnkVar(void);
 static void PlayerHandleSetUnkVar(void);
 static void PlayerHandleClearUnkFlag(void);
 static void PlayerHandleToggleUnkFlag(void);
+#endif
+
 static void PlayerHandleHitAnimation(void);
 static void PlayerHandleCantSwitch(void);
 static void PlayerHandlePlaySE(void);
@@ -120,6 +124,64 @@ static void PlayerDoMoveAnimation(void);
 static void Task_StartSendOutAnim(u8);
 static void EndDrawPartyStatusSummary(void);
 
+#ifdef EMER_REDUCED
+static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = PlayerHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = PlayerHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = PlayerHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = PlayerHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = PlayerHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = PlayerHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = PlayerHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = PlayerHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = PlayerHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = PlayerHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = PlayerHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = PlayerHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = PlayerHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = PlayerHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = PlayerHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = PlayerHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = PlayerHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = PlayerHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = PlayerHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = PlayerHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = PlayerHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = PlayerHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = PlayerHandleChoosePokemon,
+    [CONTROLLER_23]                       = PlayerHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = PlayerHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = PlayerHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = PlayerHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = PlayerHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = PlayerHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = PlayerHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = PlayerHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = PlayerHandlePlayBGM,
+    [CONTROLLER_32]                       = PlayerHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = PlayerHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = PlayerHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = PlayerHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = PlayerHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = PlayerHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = PlayerHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = PlayerHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = PlayerHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = PlayerHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = PlayerHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = PlayerHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = PlayerHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = PlayerHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = PlayerHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = PlayerHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = PlayerHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = PlayerHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = PlayerHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = PlayerHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = PlayerCmdEnd
+};
+#else
 static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = PlayerHandleGetMonData,
@@ -180,11 +242,14 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_ENDLINKBATTLE]            = PlayerHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = PlayerCmdEnd
 };
+#endif
 
 static const u8 sTargetIdentities[MAX_BATTLERS_COUNT] = {B_POSITION_PLAYER_LEFT, B_POSITION_PLAYER_RIGHT, B_POSITION_OPPONENT_RIGHT, B_POSITION_OPPONENT_LEFT};
 
 // unknown unused data
+#ifndef EMER_REDUCED
 static const u8 sUnused[] = {0x48, 0x48, 0x20, 0x5a, 0x50, 0x50, 0x50, 0x58};
+#endif
 
 void BattleControllerDummy(void)
 {
@@ -2850,6 +2915,7 @@ static void PlayerHandleOneReturnValue_Duplicate(void)
     PlayerBufferExecCompleted();
 }
 
+#ifndef EMER_REDUCED
 static void PlayerHandleClearUnkVar(void)
 {
     gUnusedControllerStruct.unk = 0;
@@ -2873,6 +2939,7 @@ static void PlayerHandleToggleUnkFlag(void)
     gUnusedControllerStruct.flag ^= 1;
     PlayerBufferExecCompleted();
 }
+#endif
 
 static void PlayerHandleHitAnimation(void)
 {

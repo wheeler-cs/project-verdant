@@ -100,6 +100,64 @@ static void SetWallyMonData(u8 monId);
 static void WallyDoMoveAnimation(void);
 static void Task_StartSendOutAnim(u8 taskId);
 
+#ifdef EMER_REDUCED
+static void (*const sWallyBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = WallyHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = WallyHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = WallyHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = WallyHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = WallyHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = WallyHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = WallyHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = WallyHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = WallyHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = WallyHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = WallyHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = WallyHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = WallyHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = WallyHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = WallyHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = WallyHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = WallyHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = WallyHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = WallyHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = WallyHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = WallyHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = WallyHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = WallyHandleChoosePokemon,
+    [CONTROLLER_23]                       = WallyHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = WallyHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = WallyHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = WallyHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = WallyHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = WallyHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = WallyHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = WallyHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = WallyHandlePlayBGM,
+    [CONTROLLER_32]                       = WallyHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = WallyHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = WallyHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = WallyHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = WallyHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = WallyHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = WallyHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = WallyHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = WallyHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = WallyHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = WallyHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = WallyHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = WallyHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = WallyHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = WallyHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = WallyHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = WallyHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = WallyHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = WallyHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = WallyHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = WallyCmdEnd
+};
+#else
 static void (*const sWallyBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = WallyHandleGetMonData,
@@ -160,6 +218,7 @@ static void (*const sWallyBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_ENDLINKBATTLE]            = WallyHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = WallyCmdEnd
 };
+#endif
 
 static void SpriteCB_Null7(void)
 {

@@ -71,10 +71,14 @@ static void OpponentHandleTwoReturnValues(void);
 static void OpponentHandleChosenMonReturnValue(void);
 static void OpponentHandleOneReturnValue(void);
 static void OpponentHandleOneReturnValue_Duplicate(void);
+
+#ifndef EMER_REDUCED
 static void OpponentHandleClearUnkVar(void);
 static void OpponentHandleSetUnkVar(void);
 static void OpponentHandleClearUnkFlag(void);
 static void OpponentHandleToggleUnkFlag(void);
+#endif
+
 static void OpponentHandleHitAnimation(void);
 static void OpponentHandleCantSwitch(void);
 static void OpponentHandlePlaySE(void);
@@ -104,6 +108,64 @@ static void SpriteCB_FreeOpponentSprite(struct Sprite *sprite);
 static void Task_StartSendOutAnim(u8 taskId);
 static void EndDrawPartyStatusSummary(void);
 
+#ifdef EMER_REDUCED
+static void (*const sOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = OpponentHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = OpponentHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = OpponentHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = OpponentHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = OpponentHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = OpponentHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = OpponentHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = OpponentHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = OpponentHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = OpponentHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = OpponentHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = OpponentHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = OpponentHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = OpponentHandleBallThrow,
+    [CONTROLLER_PAUSE]                    = OpponentHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = OpponentHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = OpponentHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = OpponentHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = OpponentHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = OpponentHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = OpponentHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = OpponentHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = OpponentHandleChoosePokemon,
+    [CONTROLLER_23]                       = OpponentHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = OpponentHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = OpponentHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = OpponentHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = OpponentHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = OpponentHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = OpponentHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = OpponentHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = OpponentHandlePlayBGM,
+    [CONTROLLER_32]                       = OpponentHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = OpponentHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = OpponentHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = OpponentHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = OpponentHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = OpponentHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = OpponentHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = OpponentHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = OpponentHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = OpponentHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = OpponentHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = OpponentHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = OpponentHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = OpponentHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = OpponentHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = OpponentHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = OpponentHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = OpponentHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = OpponentHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = OpponentHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = OpponentCmdEnd
+};
+#else
 static void (*const sOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = OpponentHandleGetMonData,
@@ -164,9 +226,12 @@ static void (*const sOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_ENDLINKBATTLE]            = OpponentHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = OpponentCmdEnd
 };
+#endif
 
 // unknown unused data
+#ifndef EMER_REDUCED
 static const u8 sUnused[] = {0xB0, 0xB0, 0xC8, 0x98, 0x28, 0x28, 0x28, 0x20};
+#endif
 
 static void OpponentDummy(void)
 {
@@ -1769,6 +1834,7 @@ static void OpponentHandleOneReturnValue_Duplicate(void)
     OpponentBufferExecCompleted();
 }
 
+#ifndef EMER_REDUCED
 static void OpponentHandleClearUnkVar(void)
 {
     gUnusedControllerStruct.unk = 0;
@@ -1792,6 +1858,7 @@ static void OpponentHandleToggleUnkFlag(void)
     gUnusedControllerStruct.flag ^= 1;
     OpponentBufferExecCompleted();
 }
+#endif
 
 static void OpponentHandleHitAnimation(void)
 {

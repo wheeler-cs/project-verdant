@@ -66,10 +66,14 @@ static void LinkPartnerHandleTwoReturnValues(void);
 static void LinkPartnerHandleChosenMonReturnValue(void);
 static void LinkPartnerHandleOneReturnValue(void);
 static void LinkPartnerHandleOneReturnValue_Duplicate(void);
+
+#ifndef EMER_REDUCED
 static void LinkPartnerHandleClearUnkVar(void);
 static void LinkPartnerHandleSetUnkVar(void);
 static void LinkPartnerHandleClearUnkFlag(void);
 static void LinkPartnerHandleToggleUnkFlag(void);
+#endif
+
 static void LinkPartnerHandleHitAnimation(void);
 static void LinkPartnerHandleCantSwitch(void);
 static void LinkPartnerHandlePlaySE(void);
@@ -98,6 +102,7 @@ static void LinkPartnerDoMoveAnimation(void);
 static void Task_StartSendOutAnim(u8 taskId);
 static void EndDrawPartyStatusSummary(void);
 
+#ifndef EMER_REDUCED
 static void (*const sLinkPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = LinkPartnerHandleGetMonData,
@@ -158,6 +163,64 @@ static void (*const sLinkPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_ENDLINKBATTLE]            = LinkPartnerHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = LinkPartnerCmdEnd
 };
+#else
+static void (*const sLinkPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = LinkPartnerHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = LinkPartnerHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = LinkPartnerHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = LinkPartnerHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = LinkPartnerHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = LinkPartnerHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = LinkPartnerHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = LinkPartnerHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = LinkPartnerHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = LinkPartnerHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = LinkPartnerHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = LinkPartnerHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = LinkPartnerHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = LinkPartnerHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = LinkPartnerHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = LinkPartnerHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = LinkPartnerHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = LinkPartnerHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = LinkPartnerHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = LinkPartnerHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = LinkPartnerHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = LinkPartnerHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = LinkPartnerHandleChoosePokemon,
+    [CONTROLLER_23]                       = LinkPartnerHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = LinkPartnerHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = LinkPartnerHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = LinkPartnerHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = LinkPartnerHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = LinkPartnerHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = LinkPartnerHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = LinkPartnerHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = LinkPartnerHandlePlayBGM,
+    [CONTROLLER_32]                       = LinkPartnerHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = LinkPartnerHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = LinkPartnerHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = LinkPartnerHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = LinkPartnerHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = LinkPartnerHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = LinkPartnerHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = LinkPartnerHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = LinkPartnerHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = LinkPartnerHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = LinkPartnerHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = LinkPartnerHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = LinkPartnerHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = LinkPartnerHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = LinkPartnerHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = LinkPartnerHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = LinkPartnerHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = LinkPartnerHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = LinkPartnerHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = LinkPartnerHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = LinkPartnerCmdEnd
+};
+#endif
 
 static void SpriteCB_Null2(void)
 {
@@ -1437,6 +1500,7 @@ static void LinkPartnerHandleOneReturnValue_Duplicate(void)
     LinkPartnerBufferExecCompleted();
 }
 
+#ifndef EMER_REDUCED
 static void LinkPartnerHandleClearUnkVar(void)
 {
     gUnusedControllerStruct.unk = 0;
@@ -1460,6 +1524,7 @@ static void LinkPartnerHandleToggleUnkFlag(void)
     gUnusedControllerStruct.flag ^= 1;
     LinkPartnerBufferExecCompleted();
 }
+#endif
 
 static void LinkPartnerHandleHitAnimation(void)
 {

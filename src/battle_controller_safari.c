@@ -86,6 +86,64 @@ static void SafariBufferRunCommand(void);
 static void SafariBufferExecCompleted(void);
 static void CompleteWhenChosePokeblock(void);
 
+#ifdef EMER_REDUCED
+static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = SafariHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = SafariHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = SafariHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = SafariHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = SafariHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = SafariHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = SafariHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = SafariHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = SafariHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = SafariHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = SafariHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = SafariHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = SafariHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = SafariHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = SafariHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = SafariHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = SafariHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = SafariHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = SafariHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = SafariHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = SafariHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = SafariHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = SafariHandleChoosePokemon,
+    [CONTROLLER_23]                       = SafariHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = SafariHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = SafariHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = SafariHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = SafariHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = SafariHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = SafariHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = SafariHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = SafariHandlePlayBGM,
+    [CONTROLLER_32]                       = SafariHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = SafariHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = SafariHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = SafariHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = SafariHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = SafariHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = SafariHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = SafariHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = SafariHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = SafariHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = SafariHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = SafariHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = SafariHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = SafariHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = SafariHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = SafariHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = SafariHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = SafariHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = SafariHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = SafariHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = SafariCmdEnd
+};
+#else
 static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = SafariHandleGetMonData,
@@ -146,6 +204,7 @@ static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_ENDLINKBATTLE]            = SafariHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = SafariCmdEnd
 };
+#endif
 
 static void SpriteCB_Null4(void)
 {

@@ -691,6 +691,7 @@ static const struct BattleBackground sBattleTerrainTable[] =
     },
 };
 
+#ifndef EMER_REDUCED
 static void CB2_UnusedBattleInit(void);
 
 static void UnusedBattleInit(void)
@@ -708,6 +709,7 @@ static void CB2_UnusedBattleInit(void)
     AnimateSprites();
     BuildOamBuffer();
 }
+#endif
 
 void BattleInitBgsAndWindows(void)
 {

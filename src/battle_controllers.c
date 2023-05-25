@@ -15,8 +15,12 @@
 
 static EWRAM_DATA u8 sLinkSendTaskId = 0;
 static EWRAM_DATA u8 sLinkReceiveTaskId = 0;
+
+#ifndef EMER_REDUCED
 static EWRAM_DATA u8 sUnused = 0; // Debug? Never read
 EWRAM_DATA struct UnusedControllerStruct gUnusedControllerStruct = {}; // Debug? Unused code that writes to it, never read
+#endif
+
 static EWRAM_DATA u8 sBattleBuffersTransferData[0x100] = {};
 
 static void CreateTasksForSendRecvLinkBuffers(void);
@@ -686,7 +690,9 @@ static void CreateTasksForSendRecvLinkBuffers(void)
     gTasks[sLinkReceiveTaskId].data[14] = 0;
     gTasks[sLinkReceiveTaskId].data[15] = 0;
 
+    #ifndef EMER_REDUCED
     sUnused = 0;
+    #endif
 }
 
 enum
@@ -1348,6 +1354,7 @@ void BtlController_EmitOneReturnValue_Duplicate(u8 bufferId, u16 ret)
     PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 4);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void BtlController_EmitClearUnkVar(u8 bufferId)
 {
@@ -1385,6 +1392,7 @@ static void BtlController_EmitToggleUnkFlag(u8 bufferId)
     sBattleBuffersTransferData[3] = CONTROLLER_TOGGLEUNKFLAG;
     PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 4);
 }
+#endif
 
 void BtlController_EmitHitAnimation(u8 bufferId)
 {

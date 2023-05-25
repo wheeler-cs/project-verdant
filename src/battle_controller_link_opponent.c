@@ -66,10 +66,14 @@ static void LinkOpponentHandleTwoReturnValues(void);
 static void LinkOpponentHandleChosenMonReturnValue(void);
 static void LinkOpponentHandleOneReturnValue(void);
 static void LinkOpponentHandleOneReturnValue_Duplicate(void);
+
+#ifndef EMER_REDUCED
 static void LinkOpponentHandleClearUnkVar(void);
 static void LinkOpponentHandleSetUnkVar(void);
 static void LinkOpponentHandleClearUnkFlag(void);
 static void LinkOpponentHandleToggleUnkFlag(void);
+#endif
+
 static void LinkOpponentHandleHitAnimation(void);
 static void LinkOpponentHandleCantSwitch(void);
 static void LinkOpponentHandlePlaySE(void);
@@ -99,6 +103,64 @@ static void Task_StartSendOutAnim(u8 taskId);
 static void SpriteCB_FreeOpponentSprite(struct Sprite *sprite);
 static void EndDrawPartyStatusSummary(void);
 
+#ifdef EMER_REDUCED
+static void (*const sLinkOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
+{
+    [CONTROLLER_GETMONDATA]               = LinkOpponentHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = LinkOpponentHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = LinkOpponentHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = LinkOpponentHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = LinkOpponentHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = LinkOpponentHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = LinkOpponentHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = LinkOpponentHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = LinkOpponentHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = LinkOpponentHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = LinkOpponentHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = LinkOpponentHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = LinkOpponentHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = LinkOpponentHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = LinkOpponentHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = LinkOpponentHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = LinkOpponentHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = LinkOpponentHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = LinkOpponentHandleChooseAction,
+    [CONTROLLER_YESNOBOX]                 = LinkOpponentHandleYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = LinkOpponentHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = LinkOpponentHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = LinkOpponentHandleChoosePokemon,
+    [CONTROLLER_23]                       = LinkOpponentHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = LinkOpponentHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = LinkOpponentHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = LinkOpponentHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = LinkOpponentHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = LinkOpponentHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = LinkOpponentHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = LinkOpponentHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = LinkOpponentHandlePlayBGM,
+    [CONTROLLER_32]                       = LinkOpponentHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = LinkOpponentHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = LinkOpponentHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = LinkOpponentHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = LinkOpponentHandleOneReturnValue_Duplicate,
+    [CONTROLLER_HITANIMATION]             = LinkOpponentHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = LinkOpponentHandleCantSwitch,
+    [CONTROLLER_PLAYSE]                   = LinkOpponentHandlePlaySE,
+    [CONTROLLER_PLAYFANFAREORBGM]         = LinkOpponentHandlePlayFanfareOrBGM,
+    [CONTROLLER_FAINTINGCRY]              = LinkOpponentHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = LinkOpponentHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = LinkOpponentHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = LinkOpponentHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = LinkOpponentHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = LinkOpponentHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = LinkOpponentHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = LinkOpponentHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = LinkOpponentHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = LinkOpponentHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = LinkOpponentHandleEndLinkBattle,
+    [CONTROLLER_TERMINATOR_NOP]           = LinkOpponentCmdEnd
+};
+#else
 static void (*const sLinkOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
     [CONTROLLER_GETMONDATA]               = LinkOpponentHandleGetMonData,
@@ -159,6 +221,7 @@ static void (*const sLinkOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_ENDLINKBATTLE]            = LinkOpponentHandleEndLinkBattle,
     [CONTROLLER_TERMINATOR_NOP]           = LinkOpponentCmdEnd
 };
+#endif
 
 static void LinkOpponentDummy(void)
 {
@@ -1598,6 +1661,7 @@ static void LinkOpponentHandleOneReturnValue_Duplicate(void)
     LinkOpponentBufferExecCompleted();
 }
 
+#ifndef EMER_REDUCED
 static void LinkOpponentHandleClearUnkVar(void)
 {
     gUnusedControllerStruct.unk = 0;
@@ -1621,6 +1685,7 @@ static void LinkOpponentHandleToggleUnkFlag(void)
     gUnusedControllerStruct.flag ^= 1;
     LinkOpponentBufferExecCompleted();
 }
+#endif
 
 static void LinkOpponentHandleHitAnimation(void)
 {
