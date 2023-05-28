@@ -108,6 +108,7 @@ static const union AnimCmd *const sAnims_CirclingSparkle[] =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sCirclingSparkleSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SPARKLE_4,
@@ -118,6 +119,7 @@ static const struct SpriteTemplate sCirclingSparkleSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimCirclingSparkle,
 };
+#endif
 
 const struct SpriteTemplate gShakeMonOrTerrainSpriteTemplate =
 {
@@ -734,6 +736,7 @@ void AnimTask_InvertScreenColor(u8 taskId)
 }
 
 // Unused
+#ifndef EMER_REDUCED
 #define tTimer         data[0]
 #define tLength        data[1]
 #define tFlagsScenery  data[2]
@@ -794,6 +797,7 @@ void AnimTask_TintPalettes(u8 taskId)
 #undef tColorR
 #undef tColorG
 #undef tColorB
+#endif
 
 static void AnimShakeMonOrBattleTerrain(struct Sprite *sprite)
 {

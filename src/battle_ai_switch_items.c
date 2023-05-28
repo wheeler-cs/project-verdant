@@ -93,8 +93,10 @@ static bool8 ShouldSwitchIfWonderGuard(void)
         if (i == gBattlerPartyIndexes[gActiveBattler])
             continue;
 
+        #ifndef EMER_REDUCED
         GetMonData(&party[i], MON_DATA_SPECIES); // Unused return value.
         GetMonData(&party[i], MON_DATA_ABILITY_NUM); // Unused return value.
+        #endif
 
         for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < MAX_MON_MOVES; j++)
         {
@@ -380,6 +382,21 @@ static bool8 FindMonWithFlagsAndSuperEffective(u8 flags, u8 moduloPercent)
         u16 species;
         u8 monAbility;
 
+        #ifdef EMER_REDUCED
+        species = GetMonData (&party[i], MON_DATA_SPECIES_OR_EGG);
+        if (GetMonData (&party[i], MON_DATA_HP) == 0)
+            continue;
+        if ((species == SPECIES_NONE) || (species == SPECIES_EGG))
+            continue;
+        if (i == gBattlerPartyIndexes[battlerIn1])
+            continue;
+        if (i == gBattlerPartyIndexes[battlerIn2])
+            continue;
+        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+            continue;
+        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+            continue;
+        #else
         if (GetMonData(&party[i], MON_DATA_HP) == 0)
             continue;
         if (GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_NONE)
@@ -396,6 +413,8 @@ static bool8 FindMonWithFlagsAndSuperEffective(u8 flags, u8 moduloPercent)
             continue;
 
         species = GetMonData(&party[i], MON_DATA_SPECIES);
+        #endif
+
         if (GetMonData(&party[i], MON_DATA_ABILITY_NUM) != 0)
             monAbility = gSpeciesInfo[species].abilities[1];
         else
@@ -604,6 +623,30 @@ void AI_TrySwitchOrUseItem(void)
 
 static void ModulateByTypeEffectiveness(u8 atkType, u8 defType1, u8 defType2, u8 *var)
 {
+    #ifdef EMER_REDUCED
+    s32 i;
+    for (i = 0; TYPE_EFFECT_ATK_TYPE(i) != TYPE_ENDTABLE; i += 3)
+    {
+        if (TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
+            continue;
+        else if (TYPE_EFFECT_ATK_TYPE(i) == atkType)
+        {
+            // Check both types because they're different
+            if (defType1 != defType2)
+            {
+                if ((TYPE_EFFECT_DEF_TYPE(i) == defType1) || 
+                    (TYPE_EFFECT_DEF_TYPE(i) == defType2))
+                    *var = (*var * TYPE_EFFECT_MULTIPLIER(i)) / TYPE_MUL_NORMAL;
+            }
+            // Check only one type because mon is mono type
+            else
+            {
+                if (TYPE_EFFECT_DEF_TYPE(i) == defType1)
+                    *var = (*var * TYPE_EFFECT_MULTIPLIER(i)) / TYPE_MUL_NORMAL;
+            }
+        }
+    }
+    #else
     s32 i = 0;
 
     while (TYPE_EFFECT_ATK_TYPE(i) != TYPE_ENDTABLE)
@@ -624,6 +667,7 @@ static void ModulateByTypeEffectiveness(u8 atkType, u8 defType1, u8 defType2, u8
         }
         i += 3;
     }
+    #endif
 }
 
 u8 GetMostSuitableMonToSwitchInto(void)

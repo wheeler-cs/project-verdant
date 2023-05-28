@@ -40,6 +40,7 @@ static const union AnimCmd *const sAnims_FlickeringOrb[] =
     sAnim_FlickeringOrb
 };
 
+#ifndef EMER_REDUCED
 // Unused
 static const struct SpriteTemplate sFlickeringOrbSpriteTemplate =
 {
@@ -63,6 +64,7 @@ static const struct SpriteTemplate sFlickeringOrbFlippedSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimTranslateLinearAndFlicker_Flipped,
 };
+#endif
 
 static const union AnimCmd sAnim_WeatherBallNormal[] =
 {
@@ -124,6 +126,7 @@ const struct SpriteTemplate gSpinningSparkleSpriteTemplate =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sFlickeringFootSpriteTemplate =
 {
     .tileTag = ANIM_TAG_MONSTER_FOOT,
@@ -134,6 +137,7 @@ static const struct SpriteTemplate sFlickeringFootSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimTranslateLinearAndFlicker,
 };
+#endif
 
 static const union AnimCmd sAnim_FlickeringImpact_0[] =
 {
@@ -161,6 +165,7 @@ static const union AnimCmd *const sAnims_FlickeringImpact[] =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sFlickeringImpactSpriteTemplate =
 {
     .tileTag = ANIM_TAG_IMPACT,
@@ -171,6 +176,7 @@ static const struct SpriteTemplate sFlickeringImpactSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimTranslateLinearAndFlicker,
 };
+#endif
 
 static const union AnimCmd sAnim_FlickeringShrinkOrb[] =
 {
@@ -196,6 +202,7 @@ static const union AffineAnimCmd *const sAffineAnims_FlickeringShrinkOrb[] =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sFlickeringShrinkOrbSpriteTemplate =
 {
     .tileTag = ANIM_TAG_ORB,
@@ -206,6 +213,7 @@ static const struct SpriteTemplate sFlickeringShrinkOrbSpriteTemplate =
     .affineAnims = sAffineAnims_FlickeringShrinkOrb,
     .callback = AnimTranslateLinearAndFlicker_Flipped,
 };
+#endif
 
 static const struct Subsprite sFrozenIceCubeSubsprites[] =
 {
@@ -271,6 +279,7 @@ static const struct SpriteTemplate sFlashingCircleImpactSpriteTemplate =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static u8 Task_FlashingCircleImpacts(u8 battlerId, bool8 red)
 {
     u8 battlerSpriteId = gBattlerSpriteIds[battlerId];
@@ -310,6 +319,7 @@ static u8 Task_FlashingCircleImpacts(u8 battlerId, bool8 red)
     gSprites[spriteId].data[7] = 1;
     return taskId;
 }
+#endif
 
 static void Task_UpdateFlashingCircleImpacts(u8 taskId)
 {
