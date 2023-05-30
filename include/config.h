@@ -55,7 +55,10 @@
 #endif
 #endif
 
-// Uncomment to implement ROM that removes unneeded things (vanilla compatible)
+// Uncomment to remove unneeded things (vanilla compatible)
 #define EMER_REDUCED
+
+// Uncomment to implement quality of life improvements (vanilla compatible)
+#define EMER_QOL
 
 #endif // GUARD_CONFIG_H

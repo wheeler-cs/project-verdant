@@ -289,6 +289,16 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
+    // Implement the ability to press B to highlight "RUN" in Safari Zone battles
+    #ifdef EMER_QOL
+    else if (JOY_NEW (B_BUTTON))
+    {
+        PlaySE (SE_SELECT);
+        ActionSelectionDestroyCursorAt (gActionSelectionCursor[gActiveBattler]);
+        gActionSelectionCursor[gActiveBattler] = B_ACTION_RUN;
+        ActionSelectionCreateCursorAt (gActionSelectionCursor[gActiveBattler], 0);
+    }
+    #endif
 }
 
 static void CompleteOnBattlerSpriteCallbackDummy(void)

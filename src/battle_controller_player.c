@@ -386,6 +386,19 @@ static void HandleInputChooseAction(void)
             PlaySE(SE_SELECT);
             BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_CANCEL_PARTNER, 0);
             PlayerBufferExecCompleted();
+            // Implement the ability to press B to highlight "RUN" in wild battles
+            #ifdef EMER_QOL
+            else
+            {
+                if(!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+                {
+                    PlaySE (SE_SELECT);
+                    ActionSelectionDestroyCursorAt (gActionSelectionCursor[gActiveBattler]);
+                    gActionSelectionCursor[gActiveBattler] = B_ACTION_RUN;
+                    ActionSelectionCreateCursorAt (gActionSelectionCursor[gActiveBattler], 0);
+                }
+            }
+            #endif
         }
     }
     else if (JOY_NEW(START_BUTTON))
