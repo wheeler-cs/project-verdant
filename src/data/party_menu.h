@@ -967,6 +967,13 @@ static const union AnimCmd sSmallPokeballAnim_Blank4[] =
     ANIMCMD_END
 };
 
+#ifdef EMER_REDUCED
+static const union AnimCmd *const sSpriteAnimTable_MenuPokeballSmall[] =
+{
+    sSmallPokeballAnim_Closed,
+    sSmallPokeballAnim_Open
+};
+#else
 // The blanks below are never used. See SpriteCB_BounceConfirmCancelButton, where they were intended to be used
 static const union AnimCmd *const sSpriteAnimTable_MenuPokeballSmall[] =
 {
@@ -977,6 +984,7 @@ static const union AnimCmd *const sSpriteAnimTable_MenuPokeballSmall[] =
     sSmallPokeballAnim_Blank3,
     sSmallPokeballAnim_Blank4
 };
+#endif
 
 static const struct CompressedSpriteSheet sSpriteSheet_MenuPokeballSmall =
 {

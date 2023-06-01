@@ -4156,6 +4156,7 @@ static void PartyMenuStartSpriteAnim(u8 spriteId, u8 animNum)
 
 // Unused. Might explain the large blank section in gPartyMenuPokeballSmall_Gfx
 // At the very least this is how the unused anim cmds for sSpriteAnimTable_MenuPokeballSmall were meant to be accessed
+#ifndef EMER_REDUCED
 static void SpriteCB_BounceConfirmCancelButton(u8 spriteId, u8 spriteId2, u8 animNum)
 {
     if (animNum == 0)
@@ -4173,6 +4174,7 @@ static void SpriteCB_BounceConfirmCancelButton(u8 spriteId, u8 spriteId2, u8 ani
         gSprites[spriteId2].y2 = 4;
     }
 }
+#endif
 
 static void LoadPartyMenuPokeballGfx(void)
 {

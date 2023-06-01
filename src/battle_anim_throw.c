@@ -49,7 +49,9 @@ enum {
     SHINY_STAR_DIAGONAL,
 };
 
+#ifndef EMER_REDUCED
 static void AnimTask_UnusedLevelUpHealthBox_Step(u8);
+#endif
 static void AnimTask_FlashHealthboxOnLevelUp_Step(u8);
 static void AnimTask_ThrowBall_Step(u8);
 static void SpriteCB_Ball_Throw(struct Sprite *);
@@ -416,6 +418,7 @@ static const union AnimCmd *const sAnims_SafariRock[] = {
 };
 
 // Unused, leftover from FRLG
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sSafariRockSpriteTemplate =
 {
     .tileTag = ANIM_TAG_ROCKS,
@@ -426,6 +429,7 @@ static const struct SpriteTemplate sSafariRockSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_PokeBlock_Throw,
 };
+#endif
 
 extern const struct SpriteTemplate gWishStarSpriteTemplate;
 extern const struct SpriteTemplate gMiniTwinklingStarSpriteTemplate;
@@ -433,6 +437,7 @@ extern const struct SpriteTemplate gMiniTwinklingStarSpriteTemplate;
 // This is an unused function, but it seems likely that it was
 // intended to be an additional effect during the level-up animation.
 // It is an upward blue gradient effect on the mon's healthbox.
+#ifndef EMER_REDUCED
 void AnimTask_UnusedLevelUpHealthBox(u8 taskId)
 {
     struct BattleAnimBgData animBgData;
@@ -540,6 +545,7 @@ static void AnimTask_UnusedLevelUpHealthBox_Step(u8 taskId)
         break;
     }
 }
+#endif
 
 static void LoadHealthboxPalsForLevelUp(u8 *paletteId1, u8 *paletteId2, u8 battler)
 {
