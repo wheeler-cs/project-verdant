@@ -370,6 +370,7 @@ static void HandleInputChooseAction(void)
     }
     else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
+        // If battle is a double battle, left mon has already chosen move, and player is not battling with an AI ally
         if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
          && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT
          && !(gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)])
@@ -386,20 +387,18 @@ static void HandleInputChooseAction(void)
             PlaySE(SE_SELECT);
             BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_CANCEL_PARTNER, 0);
             PlayerBufferExecCompleted();
-            // Implement the ability to press B to highlight "RUN" in wild battles
-            #ifdef EMER_QOL
-            else
-            {
-                if(!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
-                {
-                    PlaySE (SE_SELECT);
-                    ActionSelectionDestroyCursorAt (gActionSelectionCursor[gActiveBattler]);
-                    gActionSelectionCursor[gActiveBattler] = B_ACTION_RUN;
-                    ActionSelectionCreateCursorAt (gActionSelectionCursor[gActiveBattler], 0);
-                }
-            }
-            #endif
         }
+        // Implement the ability to press B to highlight "RUN" in wild battles
+        #ifdef EMER_QOL
+        // If battle is not a trainer battle
+        else if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        {
+                PlaySE (SE_SELECT);
+                ActionSelectionDestroyCursorAt (gActionSelectionCursor[gActiveBattler]);
+                gActionSelectionCursor[gActiveBattler] = B_ACTION_RUN;
+                ActionSelectionCreateCursorAt (gActionSelectionCursor[gActiveBattler], 0);
+        }
+        #endif
     }
     else if (JOY_NEW(START_BUTTON))
     {

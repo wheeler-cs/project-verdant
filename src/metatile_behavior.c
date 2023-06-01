@@ -243,6 +243,7 @@ bool8 MetatileBehavior_IsEscalator(u8 metatileBehavior)
         return FALSE;
 }
 
+#ifndef EMER_REDUCED
 bool8 Unref_MetatileBehavior_IsUnused04(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_UNUSED_04)
@@ -250,6 +251,7 @@ bool8 Unref_MetatileBehavior_IsUnused04(u8 metatileBehavior)
     else
         return FALSE;
 }
+#endif
 
 bool8 MetatileBehavior_IsLadder(u8 metatileBehavior)
 {
@@ -366,6 +368,7 @@ bool8 MetatileBehavior_IsTrickHouseSlipperyFloor(u8 metatileBehavior)
         return FALSE;
 }
 
+#ifndef EMER_REDUCED
 bool8 Unref_MetatileBehavior_IsUnused05(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_UNUSED_05)
@@ -373,6 +376,7 @@ bool8 Unref_MetatileBehavior_IsUnused05(u8 metatileBehavior)
     else
         return FALSE;
 }
+#endif
 
 bool8 MetatileBehavior_IsWalkNorth(u8 metatileBehavior)
 {
@@ -912,6 +916,7 @@ bool8 MetatileBehavior_IsDeepOrOceanWater(u8 metatileBehavior)
         return FALSE;
 }
 
+#ifndef EMER_REDUCED
 bool8 Unref_MetatileBehavior_IsUnusedSootopolisWater(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_UNUSED_SOOTOPOLIS_DEEP_WATER
@@ -920,6 +925,7 @@ bool8 Unref_MetatileBehavior_IsUnusedSootopolisWater(u8 metatileBehavior)
     else
         return FALSE;
 }
+#endif
 
 bool8 MetatileBehavior_IsSurfableAndNotWaterfall(u8 metatileBehavior)
 {
@@ -1083,6 +1089,7 @@ bool8 MetatileBehavior_IsSkyPillarClosedDoor(u8 metatileBehavior)
         return FALSE;
 }
 
+#ifndef EMER_REDUCED
 bool8 MetatileBehavior_IsRoulette(u8 metatileBehavior) // unused
 {
     if (metatileBehavior == MB_ROULETTE)
@@ -1090,6 +1097,7 @@ bool8 MetatileBehavior_IsRoulette(u8 metatileBehavior) // unused
     else
         return FALSE;
 }
+#endif
 
 bool8 MetatileBehavior_IsPokeblockFeeder(u8 metatileBehavior)
 {

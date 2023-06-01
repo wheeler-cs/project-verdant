@@ -174,7 +174,10 @@ static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *, u
 static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *, u8, u16, u8);
 static u16 GetCenterScreenMetatileBehavior(void);
 
+#ifndef EMER_REDUCED
 static void *sUnusedOverworldCallback;
+#endif
+
 static u8 sPlayerLinkStates[MAX_LINK_PLAYERS];
 // This callback is called with a player's key code. It then returns an
 // adjusted key code, effectively intercepting the input before anything
@@ -1005,10 +1008,12 @@ void SetObjectEventLoadFlag(u8 flag)
 }
 
 // Unused, sObjectEventLoadFlag is read directly
+#ifndef EMER_REDUCED
 static u8 GetObjectEventLoadFlag(void)
 {
     return sObjectEventLoadFlag;
 }
+#endif
 
 static bool16 ShouldLegendaryMusicPlayAtLocation(struct WarpData *warp)
 {
@@ -1500,10 +1505,12 @@ void SetMainCallback1(MainCallback cb)
 }
 
 // This function is never called.
+#ifndef EMER_REDUCED
 void SetUnusedCallback(void *func)
 {
     sUnusedOverworldCallback = func;
 }
+#endif
 
 static bool8 RunFieldCallback(void)
 {
@@ -2662,10 +2669,12 @@ u32 GetCableClubPartnersReady(void)
 }
 
 // Unused
+#ifndef EMER_REDUCED
 static bool32 IsAnyPlayerExitingCableClub(void)
 {
     return IsAnyPlayerInLinkState(PLAYER_LINK_STATE_EXITING_ROOM);
 }
+#endif
 
 u16 SetInCableClubSeat(void)
 {
