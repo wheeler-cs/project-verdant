@@ -971,7 +971,9 @@ bool8 IsPlayerNotUsingAcroBikeOnBumpySlope(void)
 
 void GetOnOffBike(u8 transitionFlags)
 {
+    #ifndef EMER_REDUCED
     gUnusedBikeCameraAheadPanback = FALSE;
+    #endif
 
     if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
     {
@@ -1053,8 +1055,12 @@ void Bike_HandleBumpySlopeJump(void)
 
 bool32 IsRunningDisallowed(u8 metatile)
 {
+    #ifdef EMER_QOL
+        return (IsRunningDisallowedByMetatile (metatile));
+    #else
     if (!gMapHeader.allowRunning || IsRunningDisallowedByMetatile(metatile) == TRUE)
         return TRUE;
     else
         return FALSE;
+    #endif
 }

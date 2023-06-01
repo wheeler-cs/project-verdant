@@ -64,7 +64,9 @@ enum
 };
 
 // Exported RAM declarations
+#ifndef EMER_REDUCED
 extern bool8 gUnusedBikeCameraAheadPanback;
+#endif
 
 // Exported ROM declarations
 void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys);

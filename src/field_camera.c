@@ -12,7 +12,9 @@
 #include "sprite.h"
 #include "text.h"
 
+#ifndef EMER_REDUCED
 EWRAM_DATA bool8 gUnusedBikeCameraAheadPanback = FALSE;
+#endif
 
 struct FieldCameraOffset
 {
@@ -464,6 +466,10 @@ static void CameraPanningCB_PanAhead(void)
 {
     u8 var;
 
+    #ifdef EMER_REDUCED
+    // gUnusedBikeCameraAheadPanback is always FALSE, there is no way in vanilla for it to be TRUE
+    InstallCameraPanAheadCallback();
+    #else
     if (gUnusedBikeCameraAheadPanback == FALSE)
     {
         InstallCameraPanAheadCallback();
@@ -502,4 +508,5 @@ static void CameraPanningCB_PanAhead(void)
             sVerticalCameraPan -= 2;
         }
     }
+    #endif
 }
