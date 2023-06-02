@@ -9,8 +9,10 @@
 #include "util.h"
 #include "constants/rgb.h"
 
+#ifndef EMER_REDUCED
 static void AnimUnusedBagSteal(struct Sprite *);
 static void AnimUnusedBagSteal_Step(struct Sprite *);
+#endif
 static void AnimBite(struct Sprite *);
 static void AnimTearDrop(struct Sprite *);
 static void AnimClawSlash(struct Sprite *);
@@ -26,6 +28,7 @@ static void SetAllBattlersSpritePriority(u8);
 static void AnimTask_MetallicShine_Step(u8);
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sUnusedBagStealSpriteTemplate =
 {
     .tileTag = ANIM_TAG_TIED_BAG,
@@ -36,6 +39,7 @@ static const struct SpriteTemplate sUnusedBagStealSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedBagSteal,
 };
+#endif
 
 static const union AffineAnimCmd sAffineAnim_Bite_0[] =
 {
@@ -268,6 +272,7 @@ void AnimTask_InitAttackerFadeFromInvisible(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
+#ifndef EMER_REDUCED
 static void AnimUnusedBagSteal(struct Sprite *sprite)
 {
     sprite->data[1] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2);
@@ -310,6 +315,7 @@ static void AnimUnusedBagSteal_Step(struct Sprite *sprite)
     if (--sprite->data[0] == 0)
         DestroyAnimSprite(sprite);
 }
+#endif
 
 // Move sprite inward for Bite/Crunch and Clamp
 static void AnimBite(struct Sprite *sprite)

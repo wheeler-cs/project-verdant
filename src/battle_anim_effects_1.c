@@ -1127,6 +1127,7 @@ static const union AnimCmd *const sAnims_SlidingHit[] =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sSlidingHit1SpriteTemplate =
 {
     .tileTag = ANIM_TAG_HIT,
@@ -1149,6 +1150,7 @@ static const struct SpriteTemplate sSlidingHit2SpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimSlidingHit,
 };
+#endif
 
 static const union AffineAnimCmd sAffineAnim_FlickeringPunch_Normal[] = {
     AFFINEANIMCMD_FRAME(256, 256, 0, 0),
@@ -1202,6 +1204,7 @@ static const union AffineAnimCmd *const sAffineAnims_FlickeringPunch[] = {
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sFlickeringPunchSpriteTemplate =
 {
     .tileTag = ANIM_TAG_HANDS_AND_FEET,
@@ -1212,6 +1215,7 @@ static const struct SpriteTemplate sFlickeringPunchSpriteTemplate =
     .affineAnims = sAffineAnims_FlickeringPunch,
     .callback = AnimFlickeringPunch,
 };
+#endif
 
 const union AnimCmd gCuttingSliceAnimCmds[] =
 {
@@ -1324,6 +1328,7 @@ static const union AnimCmd *const sAnims_CirclingMusicNote[] =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sCirclingMusicNoteSpriteTemplate =
 {
     .tileTag = ANIM_TAG_MUSIC_NOTES,
@@ -1334,6 +1339,7 @@ static const struct SpriteTemplate sCirclingMusicNoteSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimCirclingMusicNote,
 };
+#endif
 
 const struct SpriteTemplate gProtectSpriteTemplate =
 {
@@ -1452,6 +1458,7 @@ static const union AnimCmd *const sAnims_BubbleBurst[] =
 };
 
 // Unused
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sBubbleBurstSpriteTemplate =
 {
     .tileTag = ANIM_TAG_BUBBLE_BURST,
@@ -1462,6 +1469,7 @@ static const struct SpriteTemplate sBubbleBurstSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimBubbleBurst,
 };
+#endif
 
 const union AnimCmd gSleepLetterZAnimCmds[] =
 {
@@ -1562,6 +1570,7 @@ const struct SpriteTemplate gBowMonSpriteTemplate =
 
 // Unused
 // Same as BowMon above but without backing up
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sTipMonSpriteTemplate =
 {
     .tileTag = 0,
@@ -1572,6 +1581,7 @@ static const struct SpriteTemplate sTipMonSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimTipMon,
 };
+#endif
 
 const union AnimCmd gSlashSliceAnimCmds1[] =
 {
@@ -3884,6 +3894,7 @@ static void AnimSlice_Step(struct Sprite *sprite)
     }
 }
 
+#ifndef EMER_REDUCED
 static void UnusedFlickerAnim(struct Sprite *sprite)
 {
     if (sprite->data[2] > 1)
@@ -3916,6 +3927,7 @@ static void UnusedFlickerAnim(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
     }
 }
+#endif
 
 static void AnimCirclingMusicNote(struct Sprite *sprite)
 {
@@ -4918,6 +4930,7 @@ void AnimTask_Conversion2AlphaBlend(u8 taskId)
 }
 
 // Unused
+#ifndef EMER_REDUCED
 static void AnimTask_HideBattlersHealthbox(u8 taskId)
 {
     u8 i;
@@ -4942,6 +4955,7 @@ static void AnimTask_ShowBattlersHealthbox(u8 taskId)
 
     DestroyAnimVisualTask(taskId);
 }
+#endif
 
 static void AnimMoon(struct Sprite *sprite)
 {
