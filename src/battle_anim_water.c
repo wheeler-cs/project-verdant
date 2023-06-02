@@ -54,8 +54,10 @@ static void AnimTask_WaterSport_Step(u8);
 static void CreateWaterSportDroplet(struct Task *);
 static void CreateWaterPulseRingBubbles(struct Sprite *, int, int);
 
+#ifndef EMER_REDUCED
 static const u8 sUnusedWater_Gfx[] = INCBIN_U8("graphics/battle_anims/unused/water_gfx.4bpp");
 static const u8 sUnusedWater[] = INCBIN_U8("graphics/battle_anims/unused/water.bin");
+#endif
 
 static const union AnimCmd sAnim_RainDrop[] =
 {
@@ -1544,7 +1546,9 @@ static void CreateWaterPulseRingBubbles(struct Sprite *sprite, int xDiff, int yD
     s16 combinedY;
     s16 i;
     s16 something;
+    #ifndef EMER_REDUCED
     s16 unusedVar = 1; //unusedVar is needed to match
+    #endif
     s16 randomSomethingY;
     s16 randomSomethingX;
     u8 spriteId;
@@ -1552,8 +1556,10 @@ static void CreateWaterPulseRingBubbles(struct Sprite *sprite, int xDiff, int yD
     something = sprite->data[0] / 2;
     combinedX = sprite->x + sprite->x2;
     combinedY = sprite->y + sprite->y2;
+    #ifndef EMER_REDUCED
     if (yDiff < 0)
         unusedVar *= -1; //Needed to match
+    #endif
     randomSomethingY = yDiff + (Random2() % 10) - 5;
     randomSomethingX = -xDiff + (Random2() % 10) - 5;
 
