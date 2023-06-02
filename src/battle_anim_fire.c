@@ -13,8 +13,10 @@ static void AnimFireSpread(struct Sprite *);
 static void AnimFirePlume(struct Sprite *);
 static void AnimLargeFlame(struct Sprite *);
 static void AnimLargeFlame_Step(struct Sprite *);
+#ifndef EMER_REDUCED
 static void AnimUnusedSmallEmber(struct Sprite *);
 static void AnimUnusedSmallEmber_Step(struct Sprite *);
+#endif
 static void AnimSunlight(struct Sprite *);
 static void AnimEmberFlare(struct Sprite *);
 static void AnimBurnFlame(struct Sprite *);
@@ -162,6 +164,7 @@ const struct SpriteTemplate gFirePlumeSpriteTemplate =
     .callback = AnimFirePlume,
 };
 
+#ifndef EMER_REDUCED
 // Unused
 static const struct SpriteTemplate sUnusedEmberFirePlumeSpriteTemplate =
 {
@@ -198,6 +201,7 @@ static const struct SpriteTemplate sUnusedSmallEmberSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedSmallEmber,
 };
+#endif
 
 static const union AffineAnimCmd sAffineAnim_SunlightRay[] =
 {
@@ -293,6 +297,7 @@ static const union AnimCmd *const sAnims_FireBlastCross[] =
     sAnim_FireBlastCross,
 };
 
+#ifndef EMER_REDUCED
 static const union AffineAnimCmd sAffineAnim_Unused_0[] =
 {
     AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
@@ -311,6 +316,7 @@ static const union AffineAnimCmd *const sAffineAnims_Unused[] =
     sAffineAnim_Unused_0,
     sAffineAnim_Unused_1,
 };
+#endif
 
 const struct SpriteTemplate gFireBlastCrossSpriteTemplate =
 {
@@ -549,6 +555,7 @@ static void AnimLargeFlame_Step(struct Sprite *sprite)
         DestroySpriteAndMatrix(sprite);
 }
 
+#ifndef EMER_REDUCED
 static void AnimUnusedSmallEmber(struct Sprite *sprite)
 {
     SetSpriteCoordsToAnimAttackerCoords(sprite);
@@ -599,6 +606,7 @@ static void AnimUnusedSmallEmber_Step(struct Sprite *sprite)
         DestroySpriteAndMatrix(sprite);
     }
 }
+#endif
 
 // Sunlight from Sunny Day / sunny weather
 static void AnimSunlight(struct Sprite *sprite)

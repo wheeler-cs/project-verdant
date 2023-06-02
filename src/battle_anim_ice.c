@@ -20,8 +20,10 @@ struct HailStruct {
     s32 unk3:4;
 };
 
+#ifndef EMER_REDUCED
 static void AnimUnusedIceCrystalThrow(struct Sprite *);
 static void AnimUnusedIceCrystalThrow_Step(struct Sprite *);
+#endif
 static void AnimIcePunchSwirlingParticle(struct Sprite *);
 static void AnimIceBeamParticle(struct Sprite *);
 static void AnimIceEffectParticle(struct Sprite *);
@@ -49,6 +51,7 @@ static void AnimTask_MistBallFog_Step(u8);
 static void AnimTask_Hail2(u8);
 static bool8 GenerateHailParticle(u8 hailStructId, u8 affineAnimNum, u8 taskId, u8 c);
 
+#ifndef EMER_REDUCED
 static const union AnimCmd sAnim_Unused[] =
 {
     ANIMCMD_FRAME(0, 5, .hFlip = TRUE),
@@ -72,6 +75,7 @@ static const struct SpriteTemplate sUnusedIceCrystalThrowSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedIceCrystalThrow,
 };
+#endif
 
 static const union AnimCmd sAnim_IceCrystalLargeChunk[] =
 {
@@ -110,11 +114,13 @@ static const union AnimCmd sAnim_SmallBubblePair[] =
     ANIMCMD_JUMP(0),
 };
 
+#ifndef EMER_REDUCED
 // Unused, contains just the top left corner of the large ice crystal
 static const union AnimCmd *const sAnims_IceCrystalLargeChunk[] =
 {
     sAnim_IceCrystalLargeChunk,
 };
+#endif
 
 static const union AnimCmd *const sAnims_IceCrystalLarge[] =
 {
@@ -523,6 +529,7 @@ const struct SpriteTemplate gIceBallImpactShardSpriteTemplate =
     .callback = InitIceBallParticle,
 };
 
+#ifndef EMER_REDUCED
 // Unused
 static void AnimUnusedIceCrystalThrow(struct Sprite *sprite)
 {
@@ -581,6 +588,7 @@ static void AnimUnusedIceCrystalThrow_Step(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
     }
 }
+#endif
 
 // Animates the swirling ice crystals in Ice Punch.
 // arg 0: initial position angle around circle (0-256)

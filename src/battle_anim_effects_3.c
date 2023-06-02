@@ -91,7 +91,9 @@ static void AnimMeteorMashStar(struct Sprite *);
 static void AnimMeteorMashStar_Step(struct Sprite *sprite);
 static void AnimBlockX(struct Sprite *);
 static void AnimBlockX_Step(struct Sprite *);
+#ifndef EMER_REDUCED
 static void AnimUnusedItemBagSteal(struct Sprite *);
+#endif
 static void AnimKnockOffStrike(struct Sprite *);
 static void AnimKnockOffStrike_Step(struct Sprite *sprite);
 static void AnimRecycle(struct Sprite *);
@@ -718,7 +720,9 @@ const struct SpriteTemplate gSweetScentPetalSpriteTemplate =
     .callback = AnimSweetScentPetal,
 };
 
+#ifndef EMER_REDUCED
 static const u16 sUnusedPalette[] = INCBIN_U16("graphics/battle_anims/unused/unknown.gbapal");
+#endif
 
 const union AnimCmd gPainSplitAnimCmds[] =
 {
@@ -1071,6 +1075,7 @@ const struct SpriteTemplate gMeteorMashStarSpriteTemplate =
     .callback = AnimMeteorMashStar,
 };
 
+#ifndef EMER_REDUCED
 static const struct SpriteTemplate sUnusedStarBurstSpriteTemplate =
 {
     .tileTag = ANIM_TAG_GOLD_STARS,
@@ -1082,17 +1087,6 @@ static const struct SpriteTemplate sUnusedStarBurstSpriteTemplate =
     .callback = AnimParticleBurst,
 };
 
-const struct SpriteTemplate gBlockXSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_X_SIGN,
-    .paletteTag = ANIM_TAG_X_SIGN,
-    .oam = &gOamData_AffineOff_ObjNormal_64x64,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimBlockX,
-};
-
 static const struct SpriteTemplate sUnusedItemBagStealSpriteTemplate =
 {
     .tileTag = ANIM_TAG_ITEM_BAG,
@@ -1102,6 +1096,18 @@ static const struct SpriteTemplate sUnusedItemBagStealSpriteTemplate =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedItemBagSteal,
+};
+#endif
+
+const struct SpriteTemplate gBlockXSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_X_SIGN,
+    .paletteTag = ANIM_TAG_X_SIGN,
+    .oam = &gOamData_AffineOff_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimBlockX,
 };
 
 const union AnimCmd gKnockOffStrikeAnimCmds[] =
@@ -4758,8 +4764,10 @@ static void AnimMeteorMashStar_Step(struct Sprite *sprite)
 // arg 4: duration
 static void AnimMeteorMashStar(struct Sprite *sprite)
 {
+    #ifndef EMER_REDUCED
     s16 y = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2);          // unused local variable
     s16 x = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET); // unused local variable
+    #endif
 
     if (GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER || IsContest())
     {
@@ -5220,6 +5228,7 @@ void AnimTask_SnatchOpposingMonMove(u8 taskId)
     }
 }
 
+#ifndef EMER_REDUCED
 static void AnimUnusedItemBagSteal(struct Sprite *sprite)
 {
     switch (sprite->data[7])
@@ -5262,6 +5271,7 @@ static void AnimUnusedItemBagSteal(struct Sprite *sprite)
         break;
     }
 }
+#endif
 
 // Quickly moves the mon towards its partner and back.
 // No args.

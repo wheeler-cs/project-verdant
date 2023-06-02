@@ -124,6 +124,7 @@ const struct SpriteTemplate gLickSpriteTemplate =
     .callback = AnimLick,
 };
 
+#ifndef EMER_REDUCED
 static const union AffineAnimCmd sAffineAnim_Unused[] =
 {
     AFFINEANIMCMD_FRAME(0x200, 0x200, 0, 0),
@@ -135,6 +136,7 @@ static const union AffineAnimCmd *const sAffineAnims_Unused[] =
 {
     sAffineAnim_Unused,
 };
+#endif
 
 const struct SpriteTemplate gDestinyBondWhiteShadowSpriteTemplate =
 {
@@ -205,6 +207,7 @@ const struct SpriteTemplate gGrudgeFlameSpriteTemplate =
     .callback = AnimGrudgeFlame,
 };
 
+#ifndef EMER_REDUCED
 // Unused
 static const struct SpriteTemplate sMonMoveCircularSpriteTemplate =
 {
@@ -215,7 +218,8 @@ static const struct SpriteTemplate sMonMoveCircularSpriteTemplate =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimMonMoveCircular,
-};
+};a
+#endif
 
 static void AnimConfuseRayBallBounce(struct Sprite *sprite)
 {

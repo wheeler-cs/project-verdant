@@ -6,7 +6,9 @@
 #include "trig.h"
 #include "constants/rgb.h"
 
+#ifndef EMER_REDUCED
 static void AnimUnusedHumanoidFoot(struct Sprite *);
+#endif
 static void AnimSlideHandOrFootToTarget(struct Sprite *);
 static void AnimJumpKick(struct Sprite *);
 static void AnimBasicFistOrFoot(struct Sprite *);
@@ -39,6 +41,7 @@ static void AnimSpinningKickOrPunchFinish(struct Sprite *);
 
 extern struct SpriteTemplate gBasicHitSplatSpriteTemplate;
 
+#ifndef EMER_REDUCED
 // Unused
 static const struct SpriteTemplate sUnusedHumanoidFootSpriteTemplate =
 {
@@ -50,6 +53,7 @@ static const struct SpriteTemplate sUnusedHumanoidFootSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedHumanoidFoot,
 };
+#endif
 
 static const union AnimCmd sAnim_Fist[] =
 {
@@ -409,6 +413,7 @@ const struct SpriteTemplate gFocusPunchFistSpriteTemplate =
     .callback = AnimFocusPunchFist,
 };
 
+#ifndef EMER_REDUCED
 static void AnimUnusedHumanoidFoot(struct Sprite *sprite)
 {
     SetAnimSpriteInitialXOffset(sprite, gBattleAnimArgs[0]);
@@ -417,6 +422,7 @@ static void AnimUnusedHumanoidFoot(struct Sprite *sprite)
     sprite->callback = WaitAnimForDuration;
     StoreSpriteCallbackInData6(sprite, DestroyAnimSprite);
 }
+#endif
 
 static void AnimSlideHandOrFootToTarget(struct Sprite *sprite)
 {

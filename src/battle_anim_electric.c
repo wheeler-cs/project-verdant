@@ -7,9 +7,11 @@
 
 static void AnimLightning(struct Sprite *);
 static void AnimLightning_Step(struct Sprite *);
+#ifndef EMER_REDUCED
 static void AnimUnusedSpinningFist(struct Sprite *);
 static void AnimUnusedSpinningFist_Step(struct Sprite *);
 static void AnimUnusedCirclingShock(struct Sprite *);
+#endif
 static void AnimSparkElectricity(struct Sprite *);
 static void AnimZapCannonSpark(struct Sprite *);
 static void AnimZapCannonSpark_Step(struct Sprite *);
@@ -63,6 +65,7 @@ const struct SpriteTemplate gLightningSpriteTemplate =
     .callback = AnimLightning,
 };
 
+#ifndef EMER_REDUCED
 static const union AffineAnimCmd sAffineAnim_UnusedSpinningFist[] =
 {
     AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
@@ -115,6 +118,7 @@ static const struct SpriteTemplate sUnusedCirclingShockSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedCirclingShock,
 };
+#endif
 
 const struct SpriteTemplate gSparkElectricitySpriteTemplate =
 {
@@ -473,6 +477,7 @@ static void AnimLightning_Step(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
 }
 
+#ifndef EMER_REDUCED
 static void AnimUnusedSpinningFist(struct Sprite *sprite)
 {
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
@@ -511,6 +516,7 @@ static void AnimUnusedCirclingShock(struct Sprite *sprite)
     StoreSpriteCallbackInData6(sprite, DestroySpriteAndMatrix);
     sprite->callback = TranslateSpriteInCircle;
 }
+#endif
 
 static void AnimSparkElectricity(struct Sprite *sprite)
 {

@@ -20,7 +20,11 @@ static void AnimFlyBallAttack_Step(struct Sprite *);
 static void AnimFallingFeather(struct Sprite *);
 static void AnimFallingFeather_Step(struct Sprite *);
 static void AnimWhirlwindLine_Step(struct Sprite *);
+#ifndef EMER_REDUCED
 static void AnimUnusedBubbleThrow(struct Sprite *);
+static void AnimUnusedFlashingLight(struct Sprite *);
+static void AnimUnusedFlashingLight_Step(struct Sprite *);
+#endif
 static void AnimWhirlwindLine(struct Sprite *);
 static void AnimBounceBallShrink(struct Sprite *);
 static void AnimBounceBallLand(struct Sprite *);
@@ -30,8 +34,6 @@ static void AnimDiveBall_Step2(struct Sprite *);
 static void AnimDiveWaterSplash(struct Sprite *);
 static void AnimSprayWaterDroplet(struct Sprite *);
 static void AnimSprayWaterDroplet_Step(struct Sprite *);
-static void AnimUnusedFlashingLight(struct Sprite *);
-static void AnimUnusedFlashingLight_Step(struct Sprite *);
 static void AnimSkyAttackBird(struct Sprite *);
 static void AnimSkyAttackBird_Step(struct Sprite *);
 static void AnimTask_AnimateGustTornadoPalette_Step(u8);
@@ -179,6 +181,7 @@ const struct SpriteTemplate gFallingFeatherSpriteTemplate =
     .callback = AnimFallingFeather,
 };
 
+#ifndef EMER_REDUCED
 // Unused
 static const struct SpriteTemplate sUnusedBubbleThrowSpriteTemplate =
 {
@@ -190,6 +193,7 @@ static const struct SpriteTemplate sUnusedBubbleThrowSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedBubbleThrow,
 };
+#endif
 
 static const union AnimCmd sAnim_WhirlwindLines[] =
 {
@@ -290,6 +294,7 @@ const struct SpriteTemplate gDiveBallSpriteTemplate =
     .callback = AnimDiveBall,
 };
 
+#ifndef EMER_REDUCED
 static const union AffineAnimCmd sAnim_Unused[] =
 {
     AFFINEANIMCMD_FRAME(0x100, 0x0, 0, 0),
@@ -303,6 +308,7 @@ static const union AffineAnimCmd *const sAnims_Unused[] =
 {
     sAnim_Unused,
 };
+#endif
 
 const struct SpriteTemplate gDiveWaterSplashSpriteTemplate =
 {
@@ -326,6 +332,7 @@ const struct SpriteTemplate gSprayWaterDropletSpriteTemplate =
     .callback = AnimSprayWaterDroplet,
 };
 
+#ifndef EMER_REDUCED
 // Unused
 static const struct SpriteTemplate sUnusedFlashingLightSpriteTemplate =
 {
@@ -337,6 +344,7 @@ static const struct SpriteTemplate sUnusedFlashingLightSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimUnusedFlashingLight,
 };
+#endif
 
 const struct SpriteTemplate gSkyAttackBirdSpriteTemplate =
 {
@@ -892,6 +900,7 @@ static void AnimFallingFeather_Step(struct Sprite *sprite)
     }
 }
 
+#ifndef EMER_REDUCED
 static void AnimUnusedBubbleThrow(struct Sprite *sprite)
 {
     sprite->oam.priority = GetBattlerSpriteBGPriority(gBattleAnimTarget);
@@ -899,6 +908,7 @@ static void AnimUnusedBubbleThrow(struct Sprite *sprite)
     sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y_PIC_OFFSET);
     sprite->callback = TranslateAnimSpriteToTargetMonLocation;
 }
+#endif
 
 static void AnimWhirlwindLine(struct Sprite * sprite)
 {
@@ -1158,6 +1168,7 @@ static void AnimSprayWaterDroplet_Step(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
 }
 
+#ifndef EMER_REDUCED
 static void AnimUnusedFlashingLight(struct Sprite *sprite)
 {
     sprite->data[6] = 0;
@@ -1183,6 +1194,7 @@ static void AnimUnusedFlashingLight_Step(struct Sprite *sprite)
         break;
     }
 }
+#endif
 
 static void AnimSkyAttackBird(struct Sprite *sprite)
 {
@@ -1220,6 +1232,7 @@ void AnimSkyAttackBird_Step(struct Sprite *sprite)
         DestroySpriteAndMatrix(sprite);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void AnimTask_SetAttackerVisibility(u8 taskId)
 {
@@ -1235,3 +1248,4 @@ static void AnimTask_SetAttackerVisibility(u8 taskId)
     }
     DestroyAnimVisualTask(taskId);
 }
+#endif
