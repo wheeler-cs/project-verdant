@@ -651,6 +651,7 @@ void BattleArena_DeductSkillPoints(u8 battler, u16 stringId)
     }
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void UpdateHPAtStart(u8 battler)
 {
@@ -660,6 +661,7 @@ static void UpdateHPAtStart(u8 battler)
     if (hpAtStart[BATTLE_OPPOSITE(battler)] > gBattleMons[BATTLE_OPPOSITE(battler)].hp)
         hpAtStart[BATTLE_OPPOSITE(battler)] = gBattleMons[BATTLE_OPPOSITE(battler)].hp;
 }
+#endif
 
 static void InitArenaChallenge(void)
 {

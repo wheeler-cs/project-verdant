@@ -406,12 +406,14 @@ static void HandleInputChooseAction(void)
     }
 }
 
+#ifndef EMER_REDUCED
 static void UnusedEndBounceEffect(void)
 {
     EndBounceEffect(gActiveBattler, BOUNCE_HEALTHBOX);
     EndBounceEffect(gActiveBattler, BOUNCE_MON);
     gBattlerControllerFuncs[gActiveBattler] = HandleInputChooseTarget;
 }
+#endif
 
 static void HandleInputChooseTarget(void)
 {
@@ -421,6 +423,14 @@ static void HandleInputChooseTarget(void)
 
     DoBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX, 15, 1);
 
+    #ifdef EMER_REDUCED
+    // A more readable version of the loop below
+    for (i = 0 ; i < gBattlersCount; i++)
+    {
+        if (i != gMultiUsePlayerCursor)
+            EndBounceEffect (i, BOUNCE_HEALTHBOX);
+    }
+    #else
     // what a weird loop
     i = 0;
     if (gBattlersCount != 0)
@@ -432,6 +442,7 @@ static void HandleInputChooseTarget(void)
             i++;
         } while (i < gBattlersCount);
     }
+    #endif
 
     if (JOY_HELD(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         gPlayerDpadHoldFrames++;
@@ -691,6 +702,7 @@ static void HandleInputChooseMove(void)
     }
 }
 
+#ifndef EMER_REDUCED
 static u32 HandleMoveInputUnused(void)
 {
     u32 var = 0;
@@ -740,6 +752,7 @@ static u32 HandleMoveInputUnused(void)
 
     return var;
 }
+#endif
 
 static void HandleMoveSwitching(void)
 {
@@ -1365,7 +1378,9 @@ static void Task_UpdateLvlInHealthbox(u8 taskId)
     {
         u8 monIndex = gTasks[taskId].tExpTask_monId;
 
+        #ifndef EMER_REDUCED
         GetMonData(&gPlayerParty[monIndex], MON_DATA_LEVEL);  // Unused return value.
+        #endif
 
         if (IsDoubleBattle() == TRUE && monIndex == gBattlerPartyIndexes[BATTLE_PARTNER(battlerId)])
             UpdateHealthboxAttribute(gHealthboxSpriteIds[BATTLE_PARTNER(battlerId)], &gPlayerParty[monIndex], HEALTHBOX_ALL);
@@ -1382,7 +1397,11 @@ static void DestroyExpTaskAndCompleteOnInactiveTextPrinter(u8 taskId)
     u8 battlerId;
 
     monIndex = gTasks[taskId].tExpTask_monId;
+
+    #ifndef EMER_REDUCED
     GetMonData(&gPlayerParty[monIndex], MON_DATA_LEVEL);  // Unused return value.
+    #endif
+
     battlerId = gTasks[taskId].tExpTask_battler;
     gBattlerControllerFuncs[battlerId] = CompleteOnInactiveTextPrinter;
     DestroyTask(taskId);
@@ -2775,7 +2794,12 @@ static void PlayerHandleHealthBarUpdate(void)
 {
     s16 hpVal;
 
+    #ifdef EMER_REDUCED
+    LoadBattleBarGfx();
+    #else
     LoadBattleBarGfx(0);
+    #endif
+
     hpVal = gBattleBufferA[gActiveBattler][2] | (gBattleBufferA[gActiveBattler][3] << 8);
 
     // gPlayerPartyLostHP used by Battle Dome, but never read
@@ -2813,8 +2837,16 @@ static void PlayerHandleExpUpdate(void)
         s16 expPointsToGive;
         u8 taskId;
 
+        #ifdef EMER_REDUCED
+        LoadBattleBarGfx();
+        #else
         LoadBattleBarGfx(1);
+        #endif
+
+        #ifndef EMER_REDUCED
         GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);  // Unused return value.
+        #endif
+
         expPointsToGive = T1_READ_16(&gBattleBufferA[gActiveBattler][2]);
         taskId = CreateTask(Task_GiveExpToMon, 10);
         gTasks[taskId].tExpTask_monId = monId;

@@ -353,6 +353,7 @@ void SpriteCB_WaitForBattlerBallReleaseAnim(struct Sprite *sprite)
     }
 }
 
+#ifndef EMER_REDUCED
 static void UnusedDoBattleSpriteAffineAnim(struct Sprite *sprite, bool8 pointless)
 {
     sprite->animPaused = TRUE;
@@ -365,6 +366,7 @@ static void UnusedDoBattleSpriteAffineAnim(struct Sprite *sprite, bool8 pointles
 
     AnimateSprite(sprite);
 }
+#endif
 
 #define sSpeedX data[0]
 
@@ -665,10 +667,12 @@ void BattleLoadPlayerMonSpriteGfx(struct Pokemon *mon, u8 battlerId)
     }
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void BattleGfxSfxDummy1(void)
 {
 }
+#endif
 
 void BattleGfxSfxDummy2(u16 species)
 {
@@ -702,6 +706,7 @@ void FreeTrainerFrontPicPalette(u16 frontPicId)
     FreeSpritePaletteByTag(gTrainerFrontPicPaletteTable[frontPicId].tag);
 }
 
+#ifndef EMER_REDUCED
 // Unused.
 void BattleLoadAllHealthBoxesGfxAtOnce(void)
 {
@@ -727,6 +732,7 @@ void BattleLoadAllHealthBoxesGfxAtOnce(void)
     for (i = 0; i < numberOfBattlers; i++)
         LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[gBattlerPositions[i]]);
 }
+#endif
 
 bool8 BattleLoadAllHealthBoxesGfx(u8 state)
 {
@@ -782,11 +788,17 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
 
     return retVal;
 }
-
+#ifdef EMER_REDUCED
+void LoadBattleBarGfx()
+{
+    LZDecompressWram(gBattleInterfaceGfx_BattleBar, gMonSpritesGfxPtr->barFontGfx);
+}
+#else
 void LoadBattleBarGfx(u8 unused)
 {
     LZDecompressWram(gBattleInterfaceGfx_BattleBar, gMonSpritesGfxPtr->barFontGfx);
 }
+#endif
 
 bool8 BattleInitAllSprites(u8 *state1, u8 *battlerId)
 {

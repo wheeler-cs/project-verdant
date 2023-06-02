@@ -2181,7 +2181,12 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
             UpdateHpTextInHealthbox(healthboxSpriteId, GetMonData(mon, MON_DATA_MAX_HP), HP_MAX);
         if (elementId == HEALTHBOX_HEALTH_BAR || elementId == HEALTHBOX_ALL)
         {
+            #ifdef EMER_REDUCED
+            LoadBattleBarGfx();
+            #else
             LoadBattleBarGfx(0);
+            #endif
+
             maxHp = GetMonData(mon, MON_DATA_MAX_HP);
             currHp = GetMonData(mon, MON_DATA_HP);
             SetBattleBarStruct(battlerId, healthboxSpriteId, maxHp, currHp, 0);
@@ -2195,7 +2200,12 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
             s32 currExpBarValue, maxExpBarValue;
             u8 level;
 
+            #ifdef EMER_REDUCED
+            LoadBattleBarGfx();
+            #else
             LoadBattleBarGfx(3);
+            #endif
+
             species = GetMonData(mon, MON_DATA_SPECIES);
             level = GetMonData(mon, MON_DATA_LEVEL);
             exp = GetMonData(mon, MON_DATA_EXP);
@@ -2220,7 +2230,12 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
             UpdateLvlInHealthbox(healthboxSpriteId, GetMonData(mon, MON_DATA_LEVEL));
         if (elementId == HEALTHBOX_HEALTH_BAR || elementId == HEALTHBOX_ALL)
         {
+            #ifdef EMER_REDUCED
+            LoadBattleBarGfx();
+            #else
             LoadBattleBarGfx(0);
+            #endif
+
             maxHp = GetMonData(mon, MON_DATA_MAX_HP);
             currHp = GetMonData(mon, MON_DATA_HP);
             SetBattleBarStruct(battlerId, healthboxSpriteId, maxHp, currHp, 0);
@@ -2459,6 +2474,7 @@ static u8 CalcBarFilledPixels(s32 maxValue, s32 oldValue, s32 receivedValue, s32
     return filledPixels;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 // These two functions seem as if they were made for testing the health bar.
 static s16 Debug_TestHealthBar(struct TestingBar *barInfo, s32 *currValue, u16 *dest, s32 unused)
@@ -2495,6 +2511,7 @@ static void Debug_TestHealthBar_Helper(struct TestingBar *barInfo, s32 *currValu
 
     CpuCopy16(src, dest, sizeof(src));
 }
+#endif
 
 static u8 GetScaledExpFraction(s32 oldValue, s32 receivedValue, s32 maxValue, u8 scale)
 {

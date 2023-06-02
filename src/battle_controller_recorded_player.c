@@ -1537,7 +1537,12 @@ static void RecordedPlayerHandleHealthBarUpdate(void)
 {
     s16 hpVal;
 
+    #ifdef EMER_REDUCED
+    LoadBattleBarGfx();
+    #else
     LoadBattleBarGfx(0);
+    #endif
+
     hpVal = gBattleBufferA[gActiveBattler][2] | (gBattleBufferA[gActiveBattler][3] << 8);
 
     if (hpVal != INSTANT_HP_BAR_DROP)
