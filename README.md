@@ -4,12 +4,18 @@ This is a decompilation of Pokémon Emerald.
 
 It builds the following ROM:
 
-* [**pokeemerald.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1961) `sha1: f3ae088181bf583e55daf962a92bb46f4f1d07b7`
+* **pokeemerald.gba**: `sha1: 2058ec765b74c6d5be36c58b661be8e541fc7a89`
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
+To view a roadmap of the project see [roadmap.md](docs/roadmap.md).
+
 
 ## See also
+* [**Reduced Emerald**](https://github.com/wheeler-cs/emerald-reduced): Upstream for Project Verdant
+  that attempts to reduce the codebase size of the original game.
+* [**Pokémon Emerald**](https://github.com/pret/pokeemerald): The origin of this and Emerald Reduced
+  that originates from pret.
 
 Other disassembly and/or decompilation projects:
 * [**Pokémon Red and Blue**](https://github.com/pret/pokered)
