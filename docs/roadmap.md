@@ -2,7 +2,8 @@
 #### Updating game mechanics to more closely match modern games. ####
 
 ### 1.1 ###
-- [ ] Physical-Special Split
+- [X] Physical-Special Split
+    - TODO: Add icons indicating contact type of move
 
 ### 1.2 ###
 - [ ] Infinite-Use TMs
@@ -36,10 +37,6 @@
 
 ### 3.2 ###
 - [ ] Portraits for In-Game Trades
-
-### 3.3 ###
-- [ ] Easy Reuse Repels
-- [ ] No Exit in Party Menu After Item Usage
 
 
 ## Version 4 - New Content ##
