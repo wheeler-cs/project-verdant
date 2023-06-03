@@ -61,4 +61,8 @@
 // Uncomment to implement quality of life improvements (vanilla compatible)
 #define EMER_QOL
 
+// Uncomment to implement the phys-special split for moves
+// Implementation of https://github.com/pret/pokeemerald/wiki/add-physical-special-split
+#define PHYS_SPEC_SPLIT
+
 #endif // GUARD_CONFIG_H
