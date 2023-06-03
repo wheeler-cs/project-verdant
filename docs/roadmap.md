@@ -15,7 +15,7 @@
 - [ ] Chain Fishing
 
 
-## Version 2 - Robust Infrastructure ##
+## Version 2 - Better Infrastructure ##
 ### 2.1 ###
 - [ ] Increase Max Trainer Battles
 
@@ -30,18 +30,44 @@
 - [ ] Get Info on IVs
 
 
-## Version 3 - New Content ##
+## Version 3 - Improved Vanilla ##
 ### 3.1 ###
+- [ ] Evolution Stone Shop
+
+### 3.2 ###
+- [ ] Portraits for In-Game Trades
+
+### 3.3 ###
+- [ ] Easy Reuse Repels
+- [ ] No Exit in Party Menu After Item Usage
+
+
+## Version 4 - New Content ##
+### 4.1 ###
 - [ ] Additional Player Outfits
 - [ ] New Encounter Tiles
 
-### 3.2 ###
+### 4.2 ###
 - [ ] Generation II Poké Balls
 
-### 3.3 ###
+### 4.3 ###
 - [ ] Generation IV Poké Balls
 
+### 4.4 ###
+- [ ] Wild Boss Encounters
 
-## Version 4 - Dex Completion ##
-### 4.1 ###
+
+## Version 5 - Dex Completion* ##
+### 5.1 ###
 - [ ] Hoenn Dex
+
+### 5.2 ###
+- [ ] Dex No. 001 - 100
+
+### 5.3 ###
+- [ ] Dex No. 101 - 200
+
+### 5.4 ###
+- [ ] Dex No. 201 - 251
+
+### * New areas will be added as needed ###
