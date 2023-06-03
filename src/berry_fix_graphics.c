@@ -34,6 +34,7 @@ static const struct {
     }
 };
 
+#ifndef EMER_REDUCED
 // Unused. See berry_fix_program.c
 static void LoadBerryFixGraphics(u32 idx)
 {
@@ -47,3 +48,4 @@ static void LoadBerryFixGraphics(u32 idx)
     REG_BG0CNT = 0x1f00;
     REG_DISPCNT = DISPCNT_BG0_ON;
 }
+#endif

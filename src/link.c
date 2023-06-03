@@ -278,6 +278,7 @@ static void InitLinkTestBG(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 charB
     SetGpuReg(REG_OFFSET_BG0VOFS + bgNum * 4, 0);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void LoadLinkTestBgGfx(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 charBaseBlock)
 {
@@ -317,6 +318,7 @@ static void LinkTestScreen(void)
     CreateTask(Task_PrintTestData, 0);
     SetMainCallback2(CB2_LinkTest);
 }
+#endif
 
 void SetLocalLinkPlayerId(u8 playerId)
 {
@@ -779,6 +781,7 @@ u32 LinkDummy_Return2(void)
     return 2;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static bool32 IsFullLinkGroupWithNoRS(void)
 {
@@ -788,6 +791,7 @@ static bool32 IsFullLinkGroupWithNoRS(void)
     }
     return TRUE;
 }
+#endif
 
 bool32 Link_AnyPartnersPlayingRubyOrSapphire(void)
 {
@@ -1012,6 +1016,7 @@ void SetBerryBlenderLinkCallback(void)
         gLinkCallback = LinkCB_BerryBlenderSendHeldKeys;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static u32 GetBerryBlenderKeySendAttempts(void)
 {
@@ -1023,6 +1028,7 @@ static void SendBerryBlenderNoSpaceForPokeblocks(void)
 {
     BuildSendCmd(LINKCMD_BLENDER_NO_PBLOCK_SPACE);
 }
+#endif
 
 u8 GetMultiplayerId(void)
 {
@@ -1297,11 +1303,13 @@ u8 GetSavedPlayerCount(void)
     return gSavedLinkPlayerCount;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static u8 GetSavedMultiplayerId(void)
 {
     return gSavedMultiplayerId;
 }
+#endif
 
 bool8 DoesLinkPlayerCountMatchSaved(void)
 {
@@ -1382,11 +1390,13 @@ bool8 IsLinkMaster(void)
     return EXTRACT_MASTER(gLinkStatus);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static u8 GetDummy2(void)
 {
     return sDummy2;
 }
+#endif
 
 void SetCloseLinkCallbackAndType(u16 type)
 {
