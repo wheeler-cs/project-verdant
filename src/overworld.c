@@ -825,9 +825,19 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     ResetFieldTasksArgs();
     RunOnResumeMapScript();
 
+#ifdef EMER_QOL
+    /**
+     * Implements https://www.pokecommunity.com/showpost.php?p=10449889
+     * Do not show the map name popup if a new section is not entered, even if technically a new
+     * map is loaded.
+     */
+    if (gMapHeader.regionMapSectionId != sLastMapSectionId)
+        ShowMapNamePopup();
+#else
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER
      || gMapHeader.regionMapSectionId != sLastMapSectionId)
         ShowMapNamePopup();
+#endif
 }
 
 static void LoadMapFromWarp(bool32 a1)
