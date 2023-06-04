@@ -700,6 +700,13 @@ static const u8 sTextColors[][3] =
     {0, 3, 4},
     {0, 5, 6},
     {0, 7, 8}
+#ifdef PHYS_SPEC_SPLIT
+    // Text colors for physical, special, and status moves
+    ,
+    {0, 9, 5}, // [13], Physical, Red
+    {0, 7, 8}, // [14], Special, Blue
+    {0, 3, 2}  // [15], Status, White
+#endif
 };
 
 static const u8 sAButton_Gfx[] = INCBIN_U8("graphics/summary_screen/a_button.4bpp");
@@ -3502,7 +3509,19 @@ static void PrintMoveNameAndPP(u8 moveIndex)
     if (move != 0)
     {
         pp = CalculatePPWithBonus(move, summary->ppBonuses, moveIndex);
+
+    #ifdef PHYS_SPEC_SPLIT
+        // Make the moves' text in the summary screen have a corresponding color to phys-spec
+        if (IS_MOVE_PHYSICAL(move))
+            PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 13);        
+        else if (IS_MOVE_SPECIAL(move))
+            PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 14);
+        else
+            PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 15);
+    #else
         PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
+    #endif
+
         ConvertIntToDecimalStringN(gStringVar1, summary->pp[moveIndex], STR_CONV_MODE_RIGHT_ALIGN, 2);
         ConvertIntToDecimalStringN(gStringVar2, pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
         DynamicPlaceholderTextUtil_Reset();
