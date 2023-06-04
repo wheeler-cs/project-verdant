@@ -55,14 +55,28 @@
 #endif
 #endif
 
-// Uncomment to remove unneeded things (vanilla compatible)
+/**
+ * Vanilla-Compatible Changes
+ *
+ * The changes below are compatible with saves that originate from the vanilla ROM. In theory, they
+ * should just affect how the game runs, but not how it stores save data.
+ */
+// Uncomment to remove unneeded functions, data, and variables
 #define EMER_REDUCED
 
-// Uncomment to implement quality of life improvements (vanilla compatible)
+// Uncomment to implement quality of life improvements for more convient gameplay
 #define EMER_QOL
 
-// Uncomment to implement the phys-special split for moves (vanilla compatible)
+// Uncomment to implement the phys-special split for moves
 // Implementation of https://github.com/pret/pokeemerald/wiki/add-physical-special-split
 #define PHYS_SPEC_SPLIT
+
+
+/**
+ * Non-Vanilla Changes
+ * 
+ * Changes below ARE NOT comptabile with the base ROM. Trying to import/export a save between
+ * vanilla and this mod will almost certainly result in an error message upon loading.
+ */
 
 #endif // GUARD_CONFIG_H
