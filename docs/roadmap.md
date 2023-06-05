@@ -1,4 +1,4 @@
-# Current Project Version: 1.1 #
+# Current Project Version: 1.2 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -12,7 +12,13 @@
       special, and white are status.
 
 ### 1.2 ###
-- [ ] Infinite-Use TMs
+- [x] Infinite-Use TMs - `INFINITE_TMS`
+  - TMs are no longer consumed upon usage and remain in the player's inventory permanently once
+    obtained.
+  - Overworld and NPC text pertaining to TMs has been modified to reflect this change as well.
+  - Learnsets for each TM have not been modified in any way.
+  - There are a few quirks with this mod, especially when going between vanilla and the modded
+    version. These can be read about in [`config.h`](../include/config.h).
 
 ### 1.3 ###
 - [ ] Nature Stat Effects in Summary

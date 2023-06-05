@@ -4777,8 +4777,12 @@ static void Task_LearnedMove(u8 taskId)
     if (move[1] == 0)
     {
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
+    #ifndef INFINITE_TMS
+    // Do not consume TMs on usage
         if (item < ITEM_HM01_CUT)
             RemoveBagItem(item, 1);
+    #endif
+
     }
     GetMonNickname(mon, gStringVar1);
     StringCopy(gStringVar2, gMoveNames[move[0]]);
@@ -4883,13 +4887,26 @@ static void Task_PartyMenuReplaceMove(u8 taskId)
 {
     struct Pokemon *mon;
     u16 move;
+#ifdef INFINITE_TMS
+// Stores the the PP of the move to be replaced
+    u8 oldPP;
+#endif
 
     if (IsPartyMenuTextPrinterActive() != TRUE)
     {
         mon = &gPlayerParty[gPartyMenu.slotId];
         RemoveMonPPBonus(mon, GetMoveSlotToReplace());
+    #ifdef INFINITE_TMS
+    // Get the current PP of the move to be replaced by the TM
+        oldPP = GetMonData (mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL);
+    #endif
         move = gPartyMenu.data1;
         SetMonMoveSlot(mon, move, GetMoveSlotToReplace());
+    #ifdef INFINITE_TMS
+    // Make sure the PP of the old move carries over if it is less than the new move's max PP
+        if (GetMonData (mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL) > oldPP)
+            SetMonData (mon, MON_DATA_PP1 + GetMoveSlotToReplace(), &oldPP);
+    #endif
         Task_LearnedMove(taskId);
     }
 }

@@ -993,6 +993,13 @@ static void Task_BuyMenu(u8 taskId)
             {
                 BuyMenuDisplayMessage(taskId, gText_YouDontHaveMoney, BuyMenuReturnToItemList);
             }
+        #ifdef INFINITE_TMS
+        // Prevent duplicate TMs from being bought
+            else if (ItemId_GetPocket (itemId) == POCKET_TM_HM && CheckBagHasItem (itemId, 1))
+            {
+                BuyMenuDisplayMessage (taskId, gText_YouAlreadyHaveThis, BuyMenuReturnToItemList);
+            }
+        #endif
             else
             {
                 if (sMartInfo.martType == MART_TYPE_NORMAL)

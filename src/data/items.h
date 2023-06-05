@@ -3519,6 +3519,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM01_FOCUS_PUNCH,
         .price = 3000,
         .description = sTM01Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3530,6 +3533,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM02_DRAGON_CLAW,
         .price = 3000,
         .description = sTM02Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3541,6 +3547,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM03_WATER_PULSE,
         .price = 3000,
         .description = sTM03Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3552,6 +3561,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM04_CALM_MIND,
         .price = 3000,
         .description = sTM04Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3563,6 +3575,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM05_ROAR,
         .price = 1000,
         .description = sTM05Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3574,6 +3589,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM06_TOXIC,
         .price = 3000,
         .description = sTM06Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3585,6 +3603,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM07_HAIL,
         .price = 3000,
         .description = sTM07Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3596,6 +3617,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM08_BULK_UP,
         .price = 3000,
         .description = sTM08Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3607,6 +3631,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM09_BULLET_SEED,
         .price = 3000,
         .description = sTM09Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3618,6 +3645,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM10_HIDDEN_POWER,
         .price = 3000,
         .description = sTM10Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3629,6 +3659,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM11_SUNNY_DAY,
         .price = 2000,
         .description = sTM11Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3640,6 +3673,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM12_TAUNT,
         .price = 3000,
         .description = sTM12Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3651,6 +3687,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM13_ICE_BEAM,
         .price = 3000,
         .description = sTM13Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3662,6 +3701,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM14_BLIZZARD,
         .price = 5500,
         .description = sTM14Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3673,6 +3715,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM15_HYPER_BEAM,
         .price = 7500,
         .description = sTM15Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3684,6 +3729,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM16_LIGHT_SCREEN,
         .price = 3000,
         .description = sTM16Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3695,6 +3743,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM17_PROTECT,
         .price = 3000,
         .description = sTM17Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3706,6 +3757,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM18_RAIN_DANCE,
         .price = 2000,
         .description = sTM18Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3717,6 +3771,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM19_GIGA_DRAIN,
         .price = 3000,
         .description = sTM19Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3728,6 +3785,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM20_SAFEGUARD,
         .price = 3000,
         .description = sTM20Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3739,6 +3799,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM21_FRUSTRATION,
         .price = 1000,
         .description = sTM21Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3750,6 +3813,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM22_SOLAR_BEAM,
         .price = 3000,
         .description = sTM22Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3761,6 +3827,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM23_IRON_TAIL,
         .price = 3000,
         .description = sTM23Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3772,6 +3841,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM24_THUNDERBOLT,
         .price = 3000,
         .description = sTM24Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3783,6 +3855,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM25_THUNDER,
         .price = 5500,
         .description = sTM25Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3794,6 +3869,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM26_EARTHQUAKE,
         .price = 3000,
         .description = sTM26Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3805,6 +3883,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM27_RETURN,
         .price = 1000,
         .description = sTM27Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3816,6 +3897,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM28_DIG,
         .price = 2000,
         .description = sTM28Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3827,6 +3911,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM29_PSYCHIC,
         .price = 2000,
         .description = sTM29Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3838,6 +3925,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM30_SHADOW_BALL,
         .price = 3000,
         .description = sTM30Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3849,6 +3939,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM31_BRICK_BREAK,
         .price = 3000,
         .description = sTM31Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3860,6 +3953,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM32_DOUBLE_TEAM,
         .price = 2000,
         .description = sTM32Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3871,6 +3967,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM33_REFLECT,
         .price = 3000,
         .description = sTM33Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3882,6 +3981,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM34_SHOCK_WAVE,
         .price = 3000,
         .description = sTM34Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3893,6 +3995,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM35_FLAMETHROWER,
         .price = 3000,
         .description = sTM35Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3904,6 +4009,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM36_SLUDGE_BOMB,
         .price = 1000,
         .description = sTM36Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3915,6 +4023,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM37_SANDSTORM,
         .price = 2000,
         .description = sTM37Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3926,6 +4037,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM38_FIRE_BLAST,
         .price = 5500,
         .description = sTM38Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3937,6 +4051,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM39_ROCK_TOMB,
         .price = 3000,
         .description = sTM39Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3948,6 +4065,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM40_AERIAL_ACE,
         .price = 3000,
         .description = sTM40Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3959,6 +4079,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM41_TORMENT,
         .price = 3000,
         .description = sTM41Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3970,6 +4093,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM42_FACADE,
         .price = 3000,
         .description = sTM42Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3981,6 +4107,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM43_SECRET_POWER,
         .price = 3000,
         .description = sTM43Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -3992,6 +4121,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM44_REST,
         .price = 3000,
         .description = sTM44Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -4003,6 +4135,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM45_ATTRACT,
         .price = 3000,
         .description = sTM45Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -4014,6 +4149,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM46_THIEF,
         .price = 3000,
         .description = sTM46Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -4025,6 +4163,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM47_STEEL_WING,
         .price = 3000,
         .description = sTM47Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -4036,6 +4177,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM48_SKILL_SWAP,
         .price = 3000,
         .description = sTM48Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -4047,6 +4191,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM49_SNATCH,
         .price = 3000,
         .description = sTM49Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
@@ -4058,6 +4205,9 @@ const struct Item gItems[] =
         .itemId = ITEM_TM50_OVERHEAT,
         .price = 3000,
         .description = sTM50Desc,
+    #ifdef INFINITE_TMS
+        .importance = 1,
+    #endif
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,

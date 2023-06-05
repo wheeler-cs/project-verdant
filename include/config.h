@@ -55,6 +55,8 @@
 #endif
 #endif
 
+
+
 /**
  * Vanilla-Compatible Changes
  *
@@ -71,12 +73,35 @@
 // Implementation of https://github.com/pret/pokeemerald/wiki/add-physical-special-split
 #define PHYS_SPEC_SPLIT
 
-
+// Uncomment to allow TMs to be re-used infintely
+// Implementation of https://github.com/pret/pokeemerald/wiki/Infinite-TM-usage
+#define INFINITE_TMS
 /**
- * Non-Vanilla Changes
+ * NOTE: This mod is pretty much entirely compatible with the vanilla base game. There are a few
+ *       things to be aware of when going between vanilla and the modded version.
+ *          - Any TMs in the player's PC will remain there until withdrawn. However, they should
+ *            still be usable without issue.
+ *          - It is possible to buy multiple of the same TM at a store (e.g. Lilycove Department
+ *            Store), but this will not provided any additional benefit and will just waste money if
+ *            doing so with the mod.
+ *          - If multiple of the same type of TM were obtained in the modded version, this would
+ *            not be indicated in any way. However, if one were to switch back to vanilla after
+ *            doing so, they would have the expected quantity of TMs as if they had been obtained in
+ *            the base game.
+ *          - The TLDR is that the obtained quantities of TMs between vanilla and modded are
+ *            presevered simply because this mod affects how the TMs are obtained, but not how they
+ *            are stored in the game's save (i.e. the fields that store the currently-owned quantity
+ *            of each TM remain in the codebase and are still technically usable).
+ */
+
+
+
+/* Non-Vanilla Changes
  * 
  * Changes below ARE NOT comptabile with the base ROM. Trying to import/export a save between
  * vanilla and this mod will almost certainly result in an error message upon loading.
  */
+
+
 
 #endif // GUARD_CONFIG_H
