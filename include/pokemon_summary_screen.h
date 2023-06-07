@@ -5,6 +5,10 @@
 
 extern u8 gLastViewedMonIndex;
 
+#ifdef SUMMARY_EVS
+extern u8 showEVs;
+#endif
+
 extern const u8 *const gMoveDescriptionPointers[];
 extern const u8 *const gNatureNamePointers[];
 

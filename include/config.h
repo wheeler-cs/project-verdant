@@ -94,6 +94,13 @@
  *            of each TM remain in the codebase and are still technically usable).
  */
 
+// Uncomment to allow the effect natures have on stats to be viewable in the summary screen
+// Implementation of https://github.com/pret/pokeemerald/wiki/Colored-stats-by-nature-in-summary-screen
+#define NATURE_STAT_COLOR
+
+// Uncomment to allow EVs to be viewable in the summary screen by pressing SELECT
+// Implementation of https://www.pokecommunity.com/showpost.php?p=10161688&postcount=77
+#define SUMMARY_EVS
 
 
 /* Non-Vanilla Changes

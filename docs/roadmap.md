@@ -1,4 +1,4 @@
-# Current Project Version: 1.2 #
+# Current Project Version: 1.3 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -12,7 +12,7 @@
       special, and white are status.
 
 ### 1.2 ###
-- [x] Infinite-Use TMs - `INFINITE_TMS`
+- [X] Infinite-Use TMs - `INFINITE_TMS`
   - TMs are no longer consumed upon usage and remain in the player's inventory permanently once
     obtained.
   - Overworld and NPC text pertaining to TMs has been modified to reflect this change as well.
@@ -21,8 +21,16 @@
     version. These can be read about in [`config.h`](../include/config.h).
 
 ### 1.3 ###
-- [ ] Nature Stat Effects in Summary
-- [ ] EVs Viewable in Summary
+- [X] Nature Stat Effects in Summary - `NATURE_STAT_COLOR`
+  - How stats are affected by natures is reflected in the summary screen.
+  - Boosted stats are red and stunted stats are blue, while unaffected stats retain normal black
+    text.
+  - How natures affect stats has not be modified, and this is a purely visual mod.
+- [X] EVs Viewable in Summary - `SUMMARY_EVS`
+  - The total amount of EVs gained for a single Pokémon can be accessed through the summary screen.
+  - Pressing the SELECT button on the stats menu page swaps current stats for the total number of
+    EVs gained for each stat. Pressing SELECT again returns to the normal stats screen.
+  - EVs are not modifiable, and this mod only reveals data normally hidden to the player.
 
 ### 1.4 ###
 - [ ] Chain Fishing
@@ -54,6 +62,9 @@
 
 ### 3.2 ###
 - [ ] Portraits for In-Game Trades
+
+### 3.3 ###
+- [ ] Type Reveal for Hidden Power
 
 
 ## Version 4 - New Content ##
