@@ -48,6 +48,10 @@
 #include "constants/trainers.h"
 #include "constants/union_room.h"
 
+#ifdef CHAIN_FISHING
+#include "wild_encounter.h"
+#endif
+
 struct SpeciesItem
 {
     u16 species;
@@ -2202,6 +2206,10 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 value;
     u16 checksum;
 
+#if defined(CHAIN_FISHING) || defined(ITEM_SHINY_CHARM)
+    u32 shinyValue;
+#endif
+
     ZeroBoxMonData(boxMon);
 
     if (hasFixedPersonality)
@@ -2209,12 +2217,16 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     else
         personality = Random32();
 
+#if !defined(CHAIN_FISHING) && !defined(ITEM_SHINY_CHARM)
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
+#endif
 
     // Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY)
     {
+    #if !defined(CHAIN_FISHING) && !defined(ITEM_SHINY_CHARM)
         u32 shinyValue;
+    #endif
         do
         {
             // Choose random OT IDs until one that results in a non-shiny Pokémon
@@ -2228,12 +2240,46 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else // Player is the OT
     {
+
+    #if defined(CHAIN_FISHING) || defined(ITEM_SHINY_CHARM)
+        u32 rolls = 0;
+        u32 shinyRollCount = 0;
+    #endif
+
         value = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    
+    #ifdef ITEM_SHINY_CHARM
+        // Shiny Charm boosts shiny encounter rate
+        if (CheckBagHasItem (ITEM_SHINY_CHARM, 1))
+            shinyRollCount += 3;
+    #endif
+    
+    #ifdef CHAIN_FISHING
+        // TODO: Change how this scales to be a Sigmoid Function
+        if (gIsFishingEncounter)
+            shinyRollCount += 1 + 2 * gChainFishingStreak;
+    #endif
+
+    #if defined(CHAIN_FISHING) || defined(ITEM_SHINY_CHARM)
+        for (rolls = 0; rolls < shinyRollCount; rolls++)
+        {
+            // Generate a random personality value
+            personality = Random32();
+            // Calculate if the personality value is a shiny
+            shinyValue  = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+            // Shiny was calculated, stop loop
+            if (shinyValue < SHINY_ODDS)
+                break;
+        }
+    #endif
     }
 
+#if defined(CHAIN_FISHING) || defined(ITEM_SHINY_CHARM)
+    SetBoxMonData (boxMon, MON_DATA_PERSONALITY, &personality);
+#endif
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
     checksum = CalculateBoxMonChecksum(boxMon);

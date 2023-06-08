@@ -1955,6 +1955,10 @@ static bool8 Fishing_StartEncounter(struct Task *task)
 
 static bool8 Fishing_NotEvenNibble(struct Task *task)
 {
+#ifdef CHAIN_FISHING
+    // Reset chain fishing streak if couldn't get a bite
+    gChainFishingStreak = 0;
+#endif
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
@@ -1965,6 +1969,10 @@ static bool8 Fishing_NotEvenNibble(struct Task *task)
 
 static bool8 Fishing_GotAway(struct Task *task)
 {
+#ifdef CHAIN_FISHING
+    // Reset chain fishing streak if failed the quick-time event
+    gChainFishingStreak = 0;
+#endif
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
     FillWindowPixelBuffer(0, PIXEL_FILL(1));

@@ -61,6 +61,10 @@
 #include "constants/trainers.h"
 #include "cable_club.h"
 
+#ifdef CHAIN_FISHING
+#include "wild_encounter.h"
+#endif
+
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
 
@@ -5134,6 +5138,9 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
 {
     if (!gPaletteFade.active)
     {
+    #ifdef CHAIN_FISHING
+        gIsFishingEncounter = FALSE;
+    #endif
         ResetSpriteData();
         if (gLeveledUpInBattle == 0 || gBattleOutcome != B_OUTCOME_WON)
         {

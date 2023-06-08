@@ -17,6 +17,10 @@
 #include "constants/rgb.h"
 #include "constants/metatile_behaviors.h"
 
+#ifdef CHAIN_FISHING
+#include "wild_encounter.h"
+#endif
+
 struct ConnectionFlags
 {
     u8 south:1;
@@ -70,6 +74,10 @@ const struct MapHeader *const GetMapHeaderFromConnection(const struct MapConnect
 
 void InitMap(void)
 {
+#ifdef CHAIN_FISHING
+    // Reset chain fishing streak if loading a new map
+    gChainFishingStreak = 0;
+#endif
     InitMapLayoutData(&gMapHeader);
     SetOccupiedSecretBaseEntranceMetatiles(gMapHeader.events);
     RunOnLoadMapScript();

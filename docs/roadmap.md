@@ -1,4 +1,4 @@
-# Current Project Version: 1.3 #
+# Current Project Version: 1.4 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -33,7 +33,17 @@
   - EVs are not modifiable, and this mod only reveals data normally hidden to the player.
 
 ### 1.4 ###
-- [ ] Chain Fishing
+- [X] Chain Fishing - `CHAIN_FISHING`
+  - Consecutive successful reels when fishing increase the odds of a shiny Pokémon being
+    encountered, with more reels leading to a greater chance.
+  - Any fishing rod will work, and switching between them will not break the chain.
+  - The following events will cause the chain to be broken:
+    - Failing a reel, either due to no bites or failing the quick-time event.
+    - Changing maps or reloading areas.
+  - TODO: Change how the encounter rate scales (Sigmoid Function).
+  - TODO: Modify how no bites interrupt chain.
+  - TODO: Add a counter in the catch textbox indicating chain count.
+  - TODO: Make the quick-time event easier (or non-existent).
 
 
 ## Version 2 - Better Infrastructure ##

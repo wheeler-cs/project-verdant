@@ -102,6 +102,10 @@
 // Implementation of https://www.pokecommunity.com/showpost.php?p=10161688&postcount=77
 #define SUMMARY_EVS
 
+// Uncomment to enable chain fishing
+// Implementaiton of https://github.com/pret/pokeemerald/wiki/Chain-Fishing
+#define CHAIN_FISHING
+
 
 /* Non-Vanilla Changes
  * 

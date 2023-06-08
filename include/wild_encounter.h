@@ -28,6 +28,11 @@ struct WildPokemonHeader
 
 extern const struct WildPokemonHeader gWildMonHeaders[];
 
+#ifdef CHAIN_FISHING
+extern u8 gChainFishingStreak;
+extern bool8 gIsFishingEncounter;
+#endif
+
 void DisableWildEncounters(bool8 disabled);
 bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavior);
 bool8 SweetScentWildEncounter(void);
