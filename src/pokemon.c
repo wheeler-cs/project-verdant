@@ -2258,9 +2258,11 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     #endif
     
     #ifdef CHAIN_FISHING
-        // TODO: Change how this scales to be a Sigmoid Function
         if (gIsFishingEncounter)
-            shinyRollCount += 1 + 2 * gChainFishingStreak;
+        {
+            // Mathematical function that scales shiny tries to chain streak
+            shinyRollCount += ((gChainFishingStreak / 4) * gChainFishingStreak) + 1;
+        }
     #endif
 
     #if defined(CHAIN_FISHING) || defined(ITEM_SHINY_CHARM)

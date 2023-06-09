@@ -115,4 +115,10 @@
 
 
 
+
+// Enable debugging options in code
+//#define VERDANT_DEBUG
+
+
+
 #endif // GUARD_CONFIG_H

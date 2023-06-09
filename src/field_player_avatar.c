@@ -30,6 +30,10 @@
 #include "constants/songs.h"
 #include "constants/trainer_types.h"
 
+#ifdef CHAIN_FISHING
+#include "string_util.h"
+#endif
+
 #define NUM_FORCED_MOVEMENTS 18
 #define NUM_ACRO_BIKE_COLLISIONS 5
 
@@ -1911,7 +1915,17 @@ static bool8 Fishing_MonOnHook(struct Task *task)
 {
     AlignFishingAnimationFrames();
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
+#ifdef CHAIN_FISHING
+    // Print the current streak when landing, or "MAX" if 50 or greater
+    if (gChainFishingStreak < 50)
+        ConvertIntToDecimalStringN (gStringVar1, gChainFishingStreak + 1, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy (gStringVar1, gText_Max);
+    StringExpandPlaceholders (gStringVar4, gText_StreakCount);
+    AddTextPrinterParameterized2 (0, FONT_NORMAL, gStringVar4, 1, 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+#else
     AddTextPrinterParameterized2(0, FONT_NORMAL, gText_PokemonOnHook, 1, 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+#endif
     task->tStep++;
     task->tFrameCounter = 0;
     return FALSE;

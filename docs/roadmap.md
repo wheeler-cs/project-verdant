@@ -1,4 +1,4 @@
-# Current Project Version: 1.4 #
+# Current Project Version: 1.4.2 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -40,9 +40,10 @@
   - The following events will cause the chain to be broken:
     - Failing a reel, either due to no bites or failing the quick-time event.
     - Changing maps or reloading areas.
-  - TODO: Change how the encounter rate scales (Sigmoid Function).
+  - **1.4.1**: Nonlinear chance of shiny based off of streak number, with higher streaks being
+               better. _Streak benefits cap at 50_.
+  - **1.4.2**: Visible counter when landing a Pokémon to help keep track of streak.
   - TODO: Modify how no bites interrupt chain.
-  - TODO: Add a counter in the catch textbox indicating chain count.
   - TODO: Make the quick-time event easier (or non-existent).
 
 

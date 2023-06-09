@@ -779,7 +779,8 @@ void FishingWildEncounter(u8 rod)
 
 #ifdef CHAIN_FISHING
     gIsFishingEncounter = TRUE;
-    if (gChainFishingStreak < 255)
+    // Limit chain shiny rolls to the effects of a 50 streak
+    if (gChainFishingStreak < 51)
         gChainFishingStreak++;
 #endif
 

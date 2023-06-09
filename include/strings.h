@@ -1028,6 +1028,10 @@ extern const u8 gText_OhABite[];
 extern const u8 gText_PokemonOnHook[];
 extern const u8 gText_NotEvenANibble[];
 extern const u8 gText_ItGotAway[];
+#ifdef CHAIN_FISHING
+extern const u8 gText_StreakCount[];
+extern const u8 gText_Max[];
+#endif
 
 extern const u8 gText_HallOfFame[];
 extern const u8 gText_LogOff[];
