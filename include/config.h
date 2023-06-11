@@ -106,6 +106,9 @@
 // Implementaiton of https://github.com/pret/pokeemerald/wiki/Chain-Fishing
 #define CHAIN_FISHING
 
+// Uncomment to enable easier, more consistent fishing
+#define EASY_FISHING
+
 
 /* Non-Vanilla Changes
  * 

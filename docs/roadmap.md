@@ -1,4 +1,4 @@
-# Current Project Version: 1.4.2 #
+# Current Project Version: 1.4.3 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -43,8 +43,9 @@
   - **1.4.1**: Nonlinear chance of shiny based off of streak number, with higher streaks being
                better. _Streak benefits cap at 50_.
   - **1.4.2**: Visible counter when landing a Pokémon to help keep track of streak.
-  - TODO: Modify how no bites interrupt chain.
-  - TODO: Make the quick-time event easier (or non-existent).
+  - **1.4.3**: `EASY_FISHING` allows for more consistent fishing when chain fishing. Catching is
+               automatic, with the only way to lose a bite is reeling the rod in before an encounter
+               is generated.
 
 
 ## Version 2 - Better Infrastructure ##

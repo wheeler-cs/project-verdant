@@ -2274,7 +2274,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
             shinyValue  = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
             // Shiny was calculated, stop loop
             if (shinyValue < SHINY_ODDS)
+            {
+            #ifdef EASY_FISHING
+                // If a shiny is encountered, reset the chain fishing counter back to 0
+                gChainFishingStreak = 0;
+            #endif
                 break;
+            }
         }
     #endif
     }

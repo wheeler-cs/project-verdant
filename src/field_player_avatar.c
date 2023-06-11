@@ -1838,8 +1838,13 @@ static bool8 Fishing_CheckForBite(struct Task *task)
             u8 ability = GetMonAbility(&gPlayerParty[0]);
             if (ability == ABILITY_SUCTION_CUPS || ability  == ABILITY_STICKY_HOLD)
             {
+            #ifdef EASY_FISHING
+                // Make Suction Cups and Sticky Hold always get a bite
+                bite = TRUE;
+            #else
                 if (Random() % 100 > 14)
                     bite = TRUE;
+            #endif
             }
         }
 
@@ -1859,6 +1864,10 @@ static bool8 Fishing_CheckForBite(struct Task *task)
 
 static bool8 Fishing_GotBite(struct Task *task)
 {
+#ifdef EASY_FISHING
+    // Ping a sound effect when getting a bite
+    PlaySE(SE_PIN);
+#endif
     AlignFishingAnimationFrames();
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_OhABite, 0, 17, 0, NULL);
     task->tStep++;
@@ -1869,6 +1878,12 @@ static bool8 Fishing_GotBite(struct Task *task)
 // We have a bite. Now, wait for the player to press A, or the timer to expire.
 static bool8 Fishing_WaitForA(struct Task *task)
 {
+#ifdef EASY_FISHING
+    // Make it where no timer exists and fishing just requires pressing A
+    AlignFishingAnimationFrames();
+    if (JOY_NEW(A_BUTTON))
+        task->tStep++;
+#else
     const s16 reelTimeouts[3] = {
         [OLD_ROD]   = 36,
         [GOOD_ROD]  = 33,
@@ -1881,12 +1896,18 @@ static bool8 Fishing_WaitForA(struct Task *task)
         task->tStep = FISHING_GOT_AWAY;
     else if (JOY_NEW(A_BUTTON))
         task->tStep++;
+#endif
     return FALSE;
 }
 
 // Determine if we're going to play the dot game again
 static bool8 Fishing_CheckMoreDots(struct Task *task)
 {
+#ifdef EASY_FISHING
+    // Move on to next stage of fishing instead of doing more dot quick-time minigames
+    AlignFishingAnimationFrames();
+    task->tStep++;
+#else
     const s16 moreDotsChance[][2] =
     {
         [OLD_ROD]   = {0, 0},
@@ -1896,6 +1917,7 @@ static bool8 Fishing_CheckMoreDots(struct Task *task)
 
     AlignFishingAnimationFrames();
     task->tStep++;
+    // Easy fishing will just move on to the next stage of fishing without trying to do more dots
     if (task->tRoundsPlayed < task->tMinRoundsRequired)
     {
         task->tStep = FISHING_START_ROUND;
@@ -1908,6 +1930,7 @@ static bool8 Fishing_CheckMoreDots(struct Task *task)
         if (moreDotsChance[task->tFishingRod][task->tRoundsPlayed] > probability)
             task->tStep = FISHING_START_ROUND;
     }
+#endif
     return FALSE;
 }
 
@@ -1917,7 +1940,7 @@ static bool8 Fishing_MonOnHook(struct Task *task)
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
 #ifdef CHAIN_FISHING
     // Print the current streak when landing, or "MAX" if 50 or greater
-    if (gChainFishingStreak < 50)
+    if (gChainFishingStreak < 49)
         ConvertIntToDecimalStringN (gStringVar1, gChainFishingStreak + 1, STR_CONV_MODE_LEFT_ALIGN, 3);
     else
         StringCopy (gStringVar1, gText_Max);
@@ -1970,8 +1993,13 @@ static bool8 Fishing_StartEncounter(struct Task *task)
 static bool8 Fishing_NotEvenNibble(struct Task *task)
 {
 #ifdef CHAIN_FISHING
+#ifdef EASY_FISHING
     // Reset chain fishing streak if couldn't get a bite
     gChainFishingStreak = 0;
+#else
+    // Divide current streak by two instead of completely getting rid of it
+    gChainFishingStreak /= 2;
+#endif
 #endif
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
@@ -1984,8 +2012,13 @@ static bool8 Fishing_NotEvenNibble(struct Task *task)
 static bool8 Fishing_GotAway(struct Task *task)
 {
 #ifdef CHAIN_FISHING
+#ifdef EASY_FISHING
     // Reset chain fishing streak if failed the quick-time event
     gChainFishingStreak = 0;
+#else
+    // Divide current streak by two instead of completely getting rid of it
+    gChainFishingStreak /= 2;
+#endif
 #endif
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
