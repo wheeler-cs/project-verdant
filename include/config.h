@@ -116,6 +116,16 @@
  * vanilla and this mod will almost certainly result in an error message upon loading.
  */
 
+// This allows for ALL non-vanilla changes to be enabled, forcing the new ROM to fully depart from
+// vanilla standards
+#define PROJECT_VERDANT
+
+#ifdef PROJECT_VERDANT  // Begin Project Verdant
+    // Allow for more trainer battles in the game
+    #define TRAINER_EXPANSION
+
+#endif  // End Project Verdant
+
 
 
 

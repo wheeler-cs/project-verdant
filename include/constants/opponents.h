@@ -861,7 +861,13 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      855
-#define MAX_TRAINERS_COUNT                  864
+#ifdef TRAINER_EXPANSION
+    #define LAST_TRAINER                        TRAINER_MAY_PLACEHOLDER
+    #define TRAINERS_COUNT                      LAST_TRAINER + 1
+    #define MAX_TRAINERS_COUNT                  1024
+#else
+    #define TRAINERS_COUNT                      855
+    #define MAX_TRAINERS_COUNT                  864
+#endif
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

@@ -51,7 +51,10 @@
 ## Version 2 - Better Infrastructure ##
 #### Improving the back-end and engine for more features. ####
 ### 2.1 ###
-- [ ] Increase Max Trainer Battles
+- [ ] Increase Trainer Battles - `TRAINER_EXPANSION`
+  - Allows for more space to be allocated in the save data for trainer flags.
+  - Set to whatever value `MAX_TRAINERS_COUNT` is in
+    [`opponents.h`](../include/constants/opponents.h).
 
 ### 2.2 ###
 - [ ] Increase Money Limit
