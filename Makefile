@@ -36,12 +36,10 @@ else
 EXE :=
 endif
 
-#TITLE       := POKEMON EMER
-#GAME_CODE   := BPEE
 TITLE		:= PKM VERDANT
 GAME_CODE   := VRDT
 MAKER_CODE  := HW
-REVISION    := 2.1
+REVISION    := 2.2
 MODERN      ?= 0
 
 ifeq (modern,$(MAKECMDGOALS))

@@ -1045,7 +1045,11 @@ static void PrintMoneyOnCard(void)
     else
         AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 16, 57, sTrainerCardTextColors, TEXT_SKIP_DRAW, gText_TrainerCardMoney);
 
+#ifdef BIG_WALLET
+    ConvertIntToDecimalStringN (gStringVar1, sData->trainerCard.money, STR_CONV_MODE_LEFT_ALIGN, 7);
+#else
     ConvertIntToDecimalStringN(gStringVar1, sData->trainerCard.money, STR_CONV_MODE_LEFT_ALIGN, 6);
+#endif
     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
     if (!sData->isHoenn)
     {

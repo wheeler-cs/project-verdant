@@ -10,7 +10,11 @@
 #include "strings.h"
 #include "decompress.h"
 
-#define MAX_MONEY 999999
+#ifdef BIG_WALLET
+    #define MAX_MONEY 9999999
+#else
+    #define MAX_MONEY 999999
+#endif
 
 EWRAM_DATA static u8 sMoneyBoxWindowId = 0;
 EWRAM_DATA static u8 sMoneyLabelSpriteId = 0;
@@ -132,7 +136,11 @@ void SubtractMoneyFromVar0x8005(void)
 
 void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
 {
+#ifdef BIG_WALLET
+    PrintMoneyAmount (windowId, 32, 1, amount, speed);
+#else
     PrintMoneyAmount(windowId, 38, 1, amount, speed);
+#endif
 }
 
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
@@ -140,9 +148,16 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
     u8 *txtPtr;
     s32 strLength;
 
+#ifdef BIG_WALLET
+    ConvertUIntToDecimalStringN (gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, 7);
+
+    strLength = 7 - StringLength (gStringVar1);
+#else
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, 6);
 
     strLength = 6 - StringLength(gStringVar1);
+#endif
+
     txtPtr = gStringVar4;
 
     while (strLength-- > 0)

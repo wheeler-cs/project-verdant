@@ -1,4 +1,4 @@
-# Current Project Version: 2.1 #
+# Current Project Version: 2.2 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -57,8 +57,13 @@
     [`opponents.h`](../include/constants/opponents.h).
 
 ### 2.2 ###
-- [ ] Increase Money Limit
-- [ ] Increase Tracked Play Time Limit
+- [X] Increase Money Limit - `BIG_WALLET`
+  - The maximum amount of money a player can obtain is increased from 999,999 to 9,999,999.
+- [X] Increase Tracked Play Time Limit - `BIG_PLAY_TIME`
+  - The maximum play time displayed to the player is boosted from 999:59 to 9,999:59.
+  - This should be vanilla-compatible as this simply takes advantage of the fact that the hours
+    field in play time has an upper limit of 65,535 hours (16-bit limit). The game already tracks
+    data to this high a number, but does not display it to the player.
 
 ### 2.3 ###
 - [ ] Custom Encounter Scripting

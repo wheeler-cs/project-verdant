@@ -1212,15 +1212,39 @@ static void HallOfFame_PrintPlayerInfo(u8 unused1, u8 unused2)
     trainerId = (gSaveBlock2Ptr->playerTrainerId[0]) | (gSaveBlock2Ptr->playerTrainerId[1] << 8);
     AddTextPrinterParameterized3(1, FONT_NORMAL, 0, 0x11, sPlayerInfoTextColors, 0, gText_IDNumber);
     text[0] = (trainerId % 100000) / 10000 + CHAR_0;
-    text[1] = (trainerId % 10000) / 1000 + CHAR_0;
-    text[2] = (trainerId % 1000) / 100 + CHAR_0;
-    text[3] = (trainerId % 100) / 10 + CHAR_0;
-    text[4] = (trainerId % 10) / 1 + CHAR_0;
+    text[1] = (trainerId %  10000)  / 1000 + CHAR_0;
+    text[2] = (trainerId %   1000)  /  100 + CHAR_0;
+    text[3] = (trainerId %    100)  /   10 + CHAR_0;
+    text[4] = (trainerId %     10)  /    1 + CHAR_0;
     text[5] = EOS;
     width = GetStringRightAlignXOffset(FONT_NORMAL, text, 0x70);
     AddTextPrinterParameterized3(1, FONT_NORMAL, width, 0x11, sPlayerInfoTextColors, TEXT_SKIP_DRAW, text);
 
     AddTextPrinterParameterized3(1, FONT_NORMAL, 0, 0x21, sPlayerInfoTextColors, TEXT_SKIP_DRAW, gText_Time);
+
+#ifdef BIG_PLAY_TIME
+    // Hours field of play time, up to 4 digits
+    text[0] = (gSaveBlock2Ptr->playTimeHours / 1000)       + CHAR_0;
+    text[1] = (gSaveBlock2Ptr->playTimeHours % 1000) / 100 + CHAR_0;
+    text[2] = (gSaveBlock2Ptr->playTimeHours %  100) /  10 + CHAR_0;
+    text[3] = (gSaveBlock2Ptr->playTimeHours %   10)       + CHAR_0;
+
+    // Blank spaces when time is below certain amounts
+    if (text[0] == CHAR_0)
+        text[0] = CHAR_SPACE;
+    if (text[1] == CHAR_0)
+        text[1] = CHAR_SPACE;
+    if (text[1] == CHAR_SPACE && text[2] == CHAR_0)
+        text[9] = CHAR_SPACE;
+
+    // Colon between hour and minutes fields on trainer card
+    text[4] = CHAR_COLON;
+
+    // Minutes field of play time
+    text[5] = (gSaveBlock2Ptr->playTimeMinutes % 100) / 10 + CHAR_0;
+    text[6] = (gSaveBlock2Ptr->playTimeMinutes % 10) + CHAR_0;
+    text[7] = EOS; // End time string
+#else
     text[0] = (gSaveBlock2Ptr->playTimeHours / 100) + CHAR_0;
     text[1] = (gSaveBlock2Ptr->playTimeHours % 100) / 10 + CHAR_0;
     text[2] = (gSaveBlock2Ptr->playTimeHours % 10) + CHAR_0;
@@ -1234,6 +1258,7 @@ static void HallOfFame_PrintPlayerInfo(u8 unused1, u8 unused2)
     text[4] = (gSaveBlock2Ptr->playTimeMinutes % 100) / 10 + CHAR_0;
     text[5] = (gSaveBlock2Ptr->playTimeMinutes % 10) + CHAR_0;
     text[6] = EOS;
+#endif
 
     width = GetStringRightAlignXOffset(FONT_NORMAL, text, 0x70);
     AddTextPrinterParameterized3(1, FONT_NORMAL, width, 0x21, sPlayerInfoTextColors, TEXT_SKIP_DRAW, text);

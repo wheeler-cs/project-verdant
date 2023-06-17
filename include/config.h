@@ -94,6 +94,8 @@
  *            of each TM remain in the codebase and are still technically usable).
  */
 
+
+
 // Uncomment to allow the effect natures have on stats to be viewable in the summary screen
 // Implementation of https://github.com/pret/pokeemerald/wiki/Colored-stats-by-nature-in-summary-screen
 #define NATURE_STAT_COLOR
@@ -109,6 +111,10 @@
 // Uncomment to enable easier, more consistent fishing
 #define EASY_FISHING
 
+// Uncomment to increase the limit on displayed play time from 999:59 to 9,999:59
+#define BIG_PLAY_TIME
+
+
 
 /* Non-Vanilla Changes
  * 
@@ -123,6 +129,10 @@
 #ifdef PROJECT_VERDANT  // Begin Project Verdant
     // Allow for more trainer battles in the game
     #define TRAINER_EXPANSION
+
+    // Increased money cap from 999,999 to 9,999,999
+    #define BIG_WALLET
+
 
 #endif  // End Project Verdant
 
