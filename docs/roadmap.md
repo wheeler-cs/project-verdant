@@ -1,4 +1,4 @@
-# Current Project Version: 1.4.3 #
+# Current Project Version: 2.1 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -51,7 +51,7 @@
 ## Version 2 - Better Infrastructure ##
 #### Improving the back-end and engine for more features. ####
 ### 2.1 ###
-- [ ] Increase Trainer Battles - `TRAINER_EXPANSION`
+- [X] Increase Trainer Battles - `TRAINER_EXPANSION`
   - Allows for more space to be allocated in the save data for trainer flags.
   - Set to whatever value `MAX_TRAINERS_COUNT` is in
     [`opponents.h`](../include/constants/opponents.h).
