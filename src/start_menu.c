@@ -1015,7 +1015,11 @@ static u8 SaveFileExistsCallback(void)
     }
     else
     {
+    #ifdef EMER_QOL
+        sSaveDialogCallback = SaveSavingMessageCallback;
+    #else
         ShowSaveMessage(gText_AlreadySavedFile, SaveConfirmOverwriteCallback);
+    #endif
     }
 
     return SAVE_IN_PROGRESS;

@@ -442,6 +442,7 @@ void Menu_LoadStdPalAt(u16 offset)
     LoadPalette(gStandardMenuPalette, offset, STD_WINDOW_PALETTE_SIZE);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static const u16 *Menu_GetStdPal(void)
 {
@@ -455,6 +456,7 @@ static u16 Menu_GetStdPalColor(u8 colorNum)
         colorNum = 0;
     return gStandardMenuPalette[colorNum];
 }
+#endif
 
 void DisplayItemMessageOnField(u8 taskId, const u8 *string, TaskFunc callback)
 {
@@ -510,6 +512,7 @@ void RemoveStartMenuWindow(void)
     }
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static u16 GetDialogFrameBaseTileNum(void)
 {
@@ -521,6 +524,7 @@ static u16 GetStandardFrameBaseTileNum(void)
 {
     return STD_WINDOW_BASE_TILE_NUM;
 }
+#endif
 
 u8 AddMapNamePopUpWindow(void)
 {
@@ -567,6 +571,7 @@ void DrawDialogFrameWithCustomTileAndPalette(u8 windowId, bool8 copyToVram, u16 
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
+#ifndef EMER_REDUCED
 // Never used.
 static void DrawDialogFrameWithCustomTile(u8 windowId, bool8 copyToVram, u16 tileNum)
 {
@@ -578,6 +583,7 @@ static void DrawDialogFrameWithCustomTile(u8 windowId, bool8 copyToVram, u16 til
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
+#endif
 
 static void WindowFunc_DrawDialogFrameWithCustomTileAndPalette(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 paletteNum)
 {
@@ -700,6 +706,7 @@ void DrawStdFrameWithCustomTileAndPalette(u8 windowId, bool8 copyToVram, u16 bas
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
+#ifndef EMER_REDUCED
 // Never used.
 void DrawStdFrameWithCustomTile(u8 windowId, bool8 copyToVram, u16 baseTileNum)
 {
@@ -711,6 +718,7 @@ void DrawStdFrameWithCustomTile(u8 windowId, bool8 copyToVram, u16 baseTileNum)
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
+#endif
 
 static void WindowFunc_DrawStdFrameWithCustomTileAndPalette(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 paletteNum)
 {
@@ -877,6 +885,7 @@ void HofPCTopBar_PrintPair(const u8 *string, const u8 *string2, bool8 noBg, u8 l
     }
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void HofPCTopBar_CopyToVram(void)
 {
@@ -893,6 +902,7 @@ static void HofPCTopBar_Clear(void)
         CopyWindowToVram(sHofPCTopBarWindowId, COPYWIN_FULL);
     }
 }
+#endif
 
 void HofPCTopBar_RemoveWindow(void)
 {
@@ -936,12 +946,14 @@ u8 InitMenuNormal(u8 windowId, u8 fontId, u8 left, u8 top, u8 cursorHeight, u8 n
     return InitMenu(windowId, fontId, left, top, cursorHeight, numChoices, initialCursorPos, FALSE);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static u8 InitMenuDefaultCursorHeight(u8 windowId, u8 fontId, u8 left, u8 top, u8 numChoices, u8 initialCursorPos)
 {
     u8 cursorHeight = GetMenuCursorDimensionByFont(fontId, 1);
     return InitMenuNormal(windowId, fontId, left, top, cursorHeight, numChoices, initialCursorPos);
 }
+#endif
 
 void RedrawMenuCursor(u8 oldPos, u8 newPos)
 {
@@ -1114,6 +1126,7 @@ void PrintMenuActionTextsAtPos(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineH
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void PrintMenuActionTextsWithSpacing(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *menuActions, u8 letterSpacing, u8 lineSpacing)
 {
@@ -1128,6 +1141,7 @@ static void PrintMenuActionTextsAtTop(u8 windowId, u8 fontId, u8 lineHeight, u8 
 {
     PrintMenuActionTextsAtPos(windowId, fontId, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_WIDTH), 1, lineHeight, itemCount, menuActions);
 }
+#endif
 
 void PrintMenuActionTexts(u8 windowId, u8 fontId, u8 left, u8 top, u8 letterSpacing, u8 lineHeight, u8 itemCount, const struct MenuAction *menuActions, const u8 *actionIds)
 {
@@ -1156,11 +1170,13 @@ void PrintMenuActionTexts(u8 windowId, u8 fontId, u8 left, u8 top, u8 letterSpac
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void PrintMenuActionTextsAtTopById(u8 windowId, u8 fontId, u8 lineHeight, u8 itemCount, const struct MenuAction *menuActions, const u8 *actionIds)
 {
     PrintMenuActionTexts(windowId, fontId, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_WIDTH), 1, GetFontAttribute(fontId, FONTATTR_LETTER_SPACING), lineHeight, itemCount, menuActions, actionIds);
 }
+#endif
 
 void SetWindowTemplateFields(struct WindowTemplate *template, u8 bg, u8 left, u8 top, u8 width, u8 height, u8 paletteNum, u16 baseBlock)
 {
@@ -1245,11 +1261,13 @@ static void PrintMenuActionGridText(u8 windowId, u8 fontId, u8 left, u8 top, u8 
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void PrintMenuActionGridTextAtTop(u8 windowId, u8 fontId, u8 width, u8 height, u8 columns, u8 rows, const struct MenuAction *menuActions)
 {
     PrintMenuActionGridText(windowId, fontId, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_WIDTH), 0, width, height, columns, rows, menuActions);
 }
+#endif
 
 void PrintMenuActionGrid(u8 windowId, u8 fontId, u8 left, u8 top, u8 optionWidth, u8 horizontalCount, u8 verticalCount, const struct MenuAction *menuActions, const u8 *actionIds)
 {
@@ -1282,11 +1300,13 @@ void PrintMenuActionGrid(u8 windowId, u8 fontId, u8 left, u8 top, u8 optionWidth
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void PrintMenuActionGrid_TopLeft(u8 windowId, u8 fontId, u8 optionWidth, u8 unused, u8 horizontalCount, u8 verticalCount, const struct MenuAction *menuActions, const u8 *actionIds)
 {
     PrintMenuActionGrid(windowId, fontId, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_WIDTH), 0, optionWidth, horizontalCount, verticalCount, menuActions, actionIds);
 }
+#endif
 
 static u8 InitMenuGrid(u8 windowId, u8 fontId, u8 left, u8 top, u8 optionWidth, u8 optionHeight, u8 columns, u8 rows, u8 numChoices, u8 cursorPos)
 {
@@ -1315,6 +1335,7 @@ static u8 InitMenuGrid(u8 windowId, u8 fontId, u8 left, u8 top, u8 optionWidth, 
     return sMenu.cursorPos;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static u8 InitMenuGridDefaultCursorHeight(u8 windowId, u8 fontId, u8 left, u8 top, u8 width, u8 columns, u8 rows, u8 cursorPos)
 {
@@ -1322,6 +1343,7 @@ static u8 InitMenuGridDefaultCursorHeight(u8 windowId, u8 fontId, u8 left, u8 to
     u8 numChoices = columns * rows;
     return InitMenuGrid(windowId, fontId, left, top, width, cursorHeight, columns, rows, numChoices, cursorPos);
 }
+#endif
 
 // Erase cursor at old position, draw cursor at new position.
 static void MoveMenuGridCursor(u8 oldCursorPos, u8 newCursorPos)
@@ -1408,6 +1430,7 @@ u8 ChangeGridMenuCursorPosition(s8 deltaX, s8 deltaY)
     }
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static s8 Menu_ProcessGridInput_NoSoundLimit(void)
 {
@@ -1447,6 +1470,7 @@ static s8 Menu_ProcessGridInput_NoSoundLimit(void)
 
     return MENU_NOTHING_CHOSEN;
 }
+#endif
 
 s8 Menu_ProcessGridInput(void)
 {
@@ -1489,6 +1513,7 @@ s8 Menu_ProcessGridInput(void)
     return MENU_NOTHING_CHOSEN;
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static s8 Menu_ProcessGridInputRepeat_NoSoundLimit(void)
 {
@@ -1570,6 +1595,7 @@ static s8 Menu_ProcessGridInputRepeat(void)
 
     return MENU_NOTHING_CHOSEN;
 }
+#endif
 
 u8 InitMenuInUpperLeftCorner(u8 windowId, u8 itemCount, u8 initialCursorPos, bool8 APressMuted)
 {
@@ -2082,6 +2108,7 @@ static void UnusedBlitBitmapRect(const struct Bitmap *src, struct Bitmap *dst, u
     }
 }
 
+#ifndef EMER_REDUCED
 // Unused
 static void LoadMonIconPalAtOffset(u8 palOffset, u16 speciesId)
 {
@@ -2093,6 +2120,7 @@ static void DrawMonIconAtPos(u8 windowId, u16 speciesId, u32 personality, u16 x,
 {
     BlitBitmapToWindow(windowId, GetMonIconPtr(speciesId, personality, 1), x, y, 32, 32);
 }
+#endif
 
 void ListMenuLoadStdPalAt(u8 palOffset, u8 palId)
 {
