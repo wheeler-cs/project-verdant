@@ -1939,3 +1939,17 @@
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
 	.endm
+
+#ifdef ENCOUNTER_SCRIPTING
+	.macro setcustombossmon species:req, level:req, item=ITEM_NONE
+	setvar VAR_0x8004, \species
+	setvar VAR_0x8005, \level
+	setvar VAR_0x8006, \item
+	special CreateCustomBossMon
+	.endm
+
+	.macro setshinyattempts tries:req
+	setvar VAR_0x8004, \tries
+	special SetNextMonShinyChance
+	.endm
+#endif
