@@ -491,6 +491,9 @@ gSpecials::
 	def_special DoDeoxysRockInteraction
 	def_special SetDeoxysRockPalette
 	def_special CreateEnemyEventMon
+	def_special CreateCustomEnemyMon
+	def_special SetNextMonShinyChance
+	def_special SetCustomMove
 	def_special StartMirageTowerDisintegration
 	def_special StartMirageTowerShake
 	def_special StartMirageTowerFossilFallAndSink

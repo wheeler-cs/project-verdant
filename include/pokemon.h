@@ -434,11 +434,12 @@ void SetDeoxysStats(void);
 u16 GetUnionRoomTrainerPic(void);
 u16 GetUnionRoomTrainerClass(void);
 void CreateEnemyEventMon(void);
-#ifdef ENCOUNTER_SCRIPTING
-    void CreateCustomBossMon (void);
-    void SetNextMonShinyChance (void);
-    void TryExtraShinyRolls (u32 rolls, u32 value, u32 *personality);
-#endif
+
+void CreateCustomEnemyMon (void);
+void SetNextMonShinyChance (void);
+void TryExtraShinyRolls (u32 rolls, u32 value, u32 *personality);
+void SetCustomMove (void);
+
 void CalculateMonStats(struct Pokemon *mon);
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);

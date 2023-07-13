@@ -66,7 +66,13 @@
     data to this high a number, but does not display it to the player.
 
 ### 2.3 ###
-- [ ] Custom Encounter Scripting
+- [~] Custom Encounter Scripting
+  - Doesn't use a `#define` macro because of the way scripts are compiled.
+  - Introduces a number of scripting macros:
+    - `createbossmon`: Creates a custom wild Pokémon battle.
+    - `setshinybonus`: Sets the number of extra shiny tries attempted in Pokémon generation.
+    - `givemove`: Allows for custom moves to be given in specific slots.
+  - Scripting macros utilize new functions added to the code base to work properly.
 
 ### 2.4 ###
 - [ ] Get Info on IVs

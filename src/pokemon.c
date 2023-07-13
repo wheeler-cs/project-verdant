@@ -76,9 +76,7 @@ EWRAM_DATA struct Pokemon gEnemyParty[PARTY_SIZE] = {0};
 EWRAM_DATA struct SpriteTemplate gMultiuseSpriteTemplate = {0};
 EWRAM_DATA static struct MonSpritesGfxManager *sMonSpritesGfxManagers[MON_SPR_GFX_MANAGERS_COUNT] = {NULL};
 
-#ifdef ENCOUNTER_SCRIPTING
 EWRAM_DATA u32 gExtraShinyRolls = 0;
-#endif
 
 #include "data/battle_moves.h"
 
@@ -2293,13 +2291,12 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     SetBoxMonData (boxMon, MON_DATA_PERSONALITY, &personality);
 #endif
 
-#ifdef ENCOUNTER_SCRIPTING
     if (gExtraShinyRolls)
     {
         TryExtraShinyRolls (gExtraShinyRolls, value, &personality);
         gExtraShinyRolls = 0;
     }
-#endif
+
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
     checksum = CalculateBoxMonChecksum(boxMon);
@@ -2845,8 +2842,7 @@ void CreateEnemyEventMon(void)
     }
 }
 
-#ifdef ENCOUNTER_SCRIPTING
-void CreateCustomBossMon (void)
+void CreateCustomEnemyMon (void)
 {
     s32 species = gSpecialVar_0x8004;
     s32 level   = gSpecialVar_0x8005;
@@ -2881,7 +2877,14 @@ void TryExtraShinyRolls (u32 rolls, u32 value, u32 *personality)
             break;
     }
 }
-#endif
+
+void SetCustomMove (void)
+{
+    u16 move = gSpecialVar_0x8004;
+    u8 slot = gSpecialVar_0x8005;
+
+    SetMonMoveSlot (&gEnemyParty[0], move, slot);
+}
 
 static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
 {

@@ -1939,3 +1939,24 @@
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
 	.endm
+
+	@ Like seteventmon, but without the modernFatefulEncounter bit being set
+	.macro createbossmon species:req, level:req, item=ITEM_NONE
+	setvar VAR_0x8004, \species
+	setvar VAR_0x8005, \level
+	setvar VAR_0x8006, \item
+	special CreateCustomEnemyMon
+	.endm
+
+	@ Sets the number of extra shiny attempts to be made for next encounter
+	.macro setshinybonus tries:req
+	setvar VAR_0x8004, \tries
+	special SetNextMonShinyChance
+	.endm
+
+	@ Gives a specific move in a given slot to an already generated Pokémon
+	.macro givemove moveid:req, position:req
+	setvar VAR_0x8004, moveid
+	setvar VAR_0x8005, position
+	special SetCustomMove
+	.endm

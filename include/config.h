@@ -133,9 +133,6 @@
     // Increased money cap from 999,999 to 9,999,999
     #define BIG_WALLET
 
-    // Enables scripting for custom encounters
-    #define ENCOUNTER_SCRIPTING
-
 #endif  // End Project Verdant
 
 
