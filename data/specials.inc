@@ -491,9 +491,6 @@ gSpecials::
 	def_special DoDeoxysRockInteraction
 	def_special SetDeoxysRockPalette
 	def_special CreateEnemyEventMon
-#ifdef ENCOUNTER_SCRIPTING
-	def_special CreateCustomBossMon
-#endif
 	def_special StartMirageTowerDisintegration
 	def_special StartMirageTowerShake
 	def_special StartMirageTowerFossilFallAndSink
