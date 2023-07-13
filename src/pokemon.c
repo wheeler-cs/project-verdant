@@ -76,6 +76,10 @@ EWRAM_DATA struct Pokemon gEnemyParty[PARTY_SIZE] = {0};
 EWRAM_DATA struct SpriteTemplate gMultiuseSpriteTemplate = {0};
 EWRAM_DATA static struct MonSpritesGfxManager *sMonSpritesGfxManagers[MON_SPR_GFX_MANAGERS_COUNT] = {NULL};
 
+#ifdef ENCOUNTER_SCRIPTING
+EWRAM_DATA u32 gExtraShinyRolls = 0;
+#endif
+
 #include "data/battle_moves.h"
 
 // Used in an unreferenced function in RS.
@@ -2288,6 +2292,14 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 #if defined(CHAIN_FISHING) || defined(ITEM_SHINY_CHARM)
     SetBoxMonData (boxMon, MON_DATA_PERSONALITY, &personality);
 #endif
+
+#ifdef ENCOUNTER_SCRIPTING
+    if (gExtraShinyRolls)
+    {
+        TryExtraShinyRolls (gExtraShinyRolls, value, &personality);
+        gExtraShinyRolls = 0;
+    }
+#endif
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
     checksum = CalculateBoxMonChecksum(boxMon);
@@ -2832,6 +2844,44 @@ void CreateEnemyEventMon(void)
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
     }
 }
+
+#ifdef ENCOUNTER_SCRIPTING
+void CreateCustomBossMon (void)
+{
+    s32 species = gSpecialVar_0x8004;
+    s32 level   = gSpecialVar_0x8005;
+    s32 item    = gSpecialVar_0x8006;
+
+    ZeroEnemyPartyMons();
+    CreateMon (&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+
+    if (item)
+    {
+        u8 heldItem[2];
+        heldItem[0] = item;
+        heldItem[1] = item >> 8;
+        SetMonData (&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
+    }
+}
+
+void SetNextMonShinyChance (void)
+{
+    s32 gExtraShinyRolls = gSpecialVar_0x8004;
+}
+
+void TryExtraShinyRolls (u32 rolls, u32 value, u32 *personality)
+{
+    u32 i;
+    u32 shinyValue;
+    for (i = 0; i < rolls; i++)
+    {
+        *personality = Random32();
+        shinyValue  = HIHALF(value) ^ LOHALF(value) ^ HIHALF(*personality) ^ LOHALF(*personality);
+        if (shinyValue < SHINY_ODDS)
+            break;
+    }
+}
+#endif
 
 static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
 {
