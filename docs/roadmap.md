@@ -1,4 +1,4 @@
-# Current Project Version: 2.2 #
+# Current Project Version: 2.3 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -66,13 +66,14 @@
     data to this high a number, but does not display it to the player.
 
 ### 2.3 ###
-- [~] Custom Encounter Scripting
+- [X] Custom Encounter Scripting
   - Doesn't use a `#define` macro because of the way scripts are compiled.
   - Introduces a number of scripting macros:
     - `createbossmon`: Creates a custom wild Pokémon battle.
     - `setshinybonus`: Sets the number of extra shiny tries attempted in Pokémon generation.
     - `givemove`: Allows for custom moves to be given in specific slots.
   - Scripting macros utilize new functions added to the code base to work properly.
+  - Encounter scripting will be continually updated as new features are added.
 
 ### 2.4 ###
 - [ ] Get Info on IVs
