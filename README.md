@@ -4,7 +4,7 @@ This is a decompilation of Pokémon Emerald.
 
 It builds the following ROM:
 
-* **pokeemerald.gba**: `sha1: 591a2615053642433dabb2eda4a8094c8d3a1721`
+* **verdant.gba** *v2.4*: `sha1: 078a97865f7374ca75a0e9dd52de190f7a7b277d`
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 

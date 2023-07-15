@@ -1,4 +1,4 @@
-# Current Project Version: 2.3 #
+# Current Project Version: 2.4 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -76,7 +76,16 @@
   - Encounter scripting will be continually updated as new features are added.
 
 ### 2.4 ###
-- [ ] Get Info on IVs
+- [X] Get Info on IVs
+  - Functions added to codebase to be used as "specials" in scripting.
+  - Doesn't use `#define` macro for the same reason custom encounter scripting does.
+  - Each special returns the IV of one stat of the lead party member:
+    - `GetHPIV`: Returns IV of HP.
+    - `GetAtkIV`: Returns IV of attack.
+    - `GetDefIV`: Returns IV of defense.
+    - `GetSpeedIV`: Returns IV of speed.
+    - `GetSpAtkIV`: Returns IV of special attack.
+    - `GetSpDefIV`: Returns IV of special defense.
 
 ### 2.5 ###
 - [ ] Date Tracking

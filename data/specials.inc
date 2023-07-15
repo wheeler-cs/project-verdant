@@ -538,3 +538,9 @@ gSpecials::
 	def_special RemoveRecordsWindow
 	def_special CloseDeptStoreElevatorWindow
 	def_special TrySetBattleTowerLinkType
+	def_special GetHPIV
+	def_special GetAtkIV
+	def_special GetDefIV
+	def_special GetSpeedIV
+	def_special GetSpAtkIV
+	def_special GetSpDefIV	
