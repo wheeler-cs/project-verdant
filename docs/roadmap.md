@@ -3,7 +3,7 @@
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
 
-### 1.1 ###
+### 1.1 - Physical-Special Move Split ###
 - [X] Physical-Special Split - `PHYS_SPEC_SPLIT`
     - Each move is considered either physical, special, or status.
     - Physical moves use ATK stat, special moves use SP. ATK stat, and status moves just perform
@@ -11,7 +11,7 @@
     - Move categories are indicated by text color in the summary screen: red are physical, blue are
       special, and white are status.
 
-### 1.2 ###
+### 1.2 - Infinitly-Usable TMs ###
 - [X] Infinite-Use TMs - `INFINITE_TMS`
   - TMs are no longer consumed upon usage and remain in the player's inventory permanently once
     obtained.
@@ -20,7 +20,7 @@
   - There are a few quirks with this mod, especially when going between vanilla and the modded
     version. These can be read about in [`config.h`](../include/config.h).
 
-### 1.3 ###
+### 1.3 - Summary Screen Improvements ###
 - [X] Nature Stat Effects in Summary - `NATURE_STAT_COLOR`
   - How stats are affected by natures is reflected in the summary screen.
   - Boosted stats are red and stunted stats are blue, while unaffected stats retain normal black
@@ -32,7 +32,7 @@
     EVs gained for each stat. Pressing SELECT again returns to the normal stats screen.
   - EVs are not modifiable, and this mod only reveals data normally hidden to the player.
 
-### 1.4 ###
+### 1.4 - Fishing Improvements ###
 - [X] Chain Fishing - `CHAIN_FISHING`
   - Consecutive successful reels when fishing increase the odds of a shiny Pokémon being
     encountered, with more reels leading to a greater chance.
@@ -50,13 +50,13 @@
 
 ## Version 2 - Better Infrastructure ##
 #### Improving the back-end and engine for more features. ####
-### 2.1 ###
+### 2.1 - Increased Number of Trainers ###
 - [X] Increase Trainer Battles - `TRAINER_EXPANSION`
   - Allows for more space to be allocated in the save data for trainer flags.
   - Set to whatever value `MAX_TRAINERS_COUNT` is in
     [`opponents.h`](../include/constants/opponents.h).
 
-### 2.2 ###
+### 2.2 - Increased Time and Money Limits ###
 - [X] Increase Money Limit - `BIG_WALLET`
   - The maximum amount of money a player can obtain is increased from 999,999 to 9,999,999.
 - [X] Increase Tracked Play Time Limit - `BIG_PLAY_TIME`
@@ -65,7 +65,7 @@
     field in play time has an upper limit of 65,535 hours (16-bit limit). The game already tracks
     data to this high a number, but does not display it to the player.
 
-### 2.3 ###
+### 2.3 - Custom Encounter Infrastructure ###
 - [X] Custom Encounter Scripting
   - Doesn't use a `#define` macro because of the way scripts are compiled.
   - Introduces a number of scripting macros:
@@ -75,7 +75,7 @@
   - Scripting macros utilize new functions added to the code base to work properly.
   - Encounter scripting will be continually updated as new features are added.
 
-### 2.4 ###
+### 2.4 - IV Checking in Scripts ###
 - [X] Get Info on IVs
   - Functions added to codebase to be used as "specials" in scripting.
   - Doesn't use `#define` macro for the same reason custom encounter scripting does.
@@ -87,8 +87,8 @@
     - `GetSpAtkIV`: Returns IV of special attack.
     - `GetSpDefIV`: Returns IV of special defense.
 
-### 2.5 ###
-- [ ] Date Tracking
+### 2.5 - Date and Time Support ###
+- [~] Date Tracking - `DATE_TIME`
 
 
 ## Version 3 - Improved Vanilla ##
