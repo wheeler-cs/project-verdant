@@ -1233,8 +1233,7 @@ void AnimSkyAttackBird_Step(struct Sprite *sprite)
 }
 
 #ifndef EMER_REDUCED
-// Unused
-static void AnimTask_SetAttackerVisibility(u8 taskId)
+static void UNUSED AnimTask_SetAttackerVisibility(u8 taskId)
 {
     if (gBattleAnimArgs[0] == 0)
     {
