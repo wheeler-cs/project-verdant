@@ -693,9 +693,9 @@ static const struct BattleBackground sBattleTerrainTable[] =
 };
 
 #ifndef EMER_REDUCED
-static void CB2_UnusedBattleInit(void);
+static void UNUSED CB2_UnusedBattleInit(void);
 
-static void UnusedBattleInit(void)
+static void UNUSED UnusedBattleInit(void)
 {
     u8 spriteId;
 
@@ -705,7 +705,7 @@ static void UnusedBattleInit(void)
     SetMainCallback2(CB2_UnusedBattleInit);
 }
 
-static void CB2_UnusedBattleInit(void)
+static void UNUSED CB2_UnusedBattleInit(void)
 {
     AnimateSprites();
     BuildOamBuffer();
