@@ -348,6 +348,7 @@ struct LinkBattlerHeader
     struct BattleEnigmaBerry battleEnigmaBerry;
 };
 
+#ifndef EMER_REDUCED
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -442,6 +443,123 @@ struct BattleStruct
     u8 arenaLostOpponentMons;
     u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
 };
+#else
+// Alternate struct for BattleStruct
+struct BattleStruct
+{
+    // AI
+    u8 AI_monToSwitchIntoId[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    u8 AI_itemType[2]; // 2 * 8 = 16 bits
+    u8 AI_itemFlags[2]; // 2 * 8 = 16 bits
+
+    // Battle moves
+    u8 moveTarget[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    u8 chosenMovePositions[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+
+    // Switch-outs
+    u8 switchInAbilitiesCounter;
+    u8 intimidateBattler;
+    u8 switchInItemsCounter;
+    bool8 overworldWeatherDone;
+
+    // Experience
+    u8 givenExpMons; // Bits for enemy party's Pokémon that gave exp to player's party.
+    u8 expGetterBattlerId;
+    u8 expGetterMonId;
+    u8 sentInPokes;
+    u16 expValue;
+
+    u8 lastTakenMove[MAX_BATTLERS_COUNT * 2 * 2]; // Last move that a battler was hit with. This field seems to erroneously take 16 bytes instead of 8.
+    u8 lastTakenMoveFrom[MAX_BATTLERS_COUNT * MAX_BATTLERS_COUNT * 2]; // a 3-D array [target][attacker][byte]
+
+    u8 turnEffectsTracker;
+    u8 turnEffectsBattlerId;
+    u8 wishPerishSongState;
+    u8 wishPerishSongBattlerId;
+
+    u8 turnCountersTracker;
+    u8 turnSideTracker;
+
+    u8 runTries;
+    u8 wildVictorySong;
+    u8 moneyMultiplier;
+
+    u8 wrappedMove[MAX_BATTLERS_COUNT * 2]; // Leftover from Ruby's ewram access.
+    u8 wrappedBy[MAX_BATTLERS_COUNT];
+
+    // Safari zone
+    u8 safariGoNearCounter;
+    u8 safariPkblThrowCounter;
+    u8 safariEscapeFactor;
+    u8 safariCatchFactor;
+    
+    // Wally battles
+    u8 wallyBattleState;
+    u8 wallyMovesState;
+    u8 wallyWaitFrames;
+    u8 wallyMoveFrames;
+
+    u8 focusPunchBattlerId;
+    u8 field_93; // related to choosing pokemon?
+
+    // Battle arena
+    s8 arenaMindPoints[2];
+    s8 arenaSkillPoints[2];
+    u16 arenaStartHp[2];
+    u8 arenaLostPlayerMons; // Bits for party member, lost as in referee's decision, not by fainting.
+    u8 arenaLostOpponentMons;
+    u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
+
+    // Link battles
+    u8 linkBattleVsSpriteId_V; // The letter "V"
+    u8 linkBattleVsSpriteId_S; // The letter "S"
+    union {
+        struct LinkBattlerHeader linkBattlerHeader;
+        u32 battleVideo[2];
+    } multiBuffer;
+    struct BattleTvMovePoints tvMovePoints;
+    struct BattleTv tv;
+
+    // Castform
+    u8 formToChangeInto;
+    u16 castformPalette[NUM_CASTFORM_FORMS][16];
+
+    // To-Do groups
+    u8 scriptPartyIdx; // for printing the nickname
+    u8 hpScale;
+
+    u8 dynamicMoveType;
+    u8 battlerPreventingSwitchout;
+    u8 savedTurnActionNumber;
+    u8 faintedActionsState;
+    u8 faintedActionsBattlerId;
+    bool8 selectionScriptFinished[MAX_BATTLERS_COUNT];
+    u8 battlerPartyIndexes[MAX_BATTLERS_COUNT];
+    u8 monToSwitchIntoId[MAX_BATTLERS_COUNT];
+    u8 battlerPartyOrders[MAX_BATTLERS_COUNT][PARTY_SIZE / 2];
+    u8 caughtMonNick[POKEMON_NAME_LENGTH + 1];
+    u8 stateIdAfterSelScript[MAX_BATTLERS_COUNT];
+    u8 prevSelectedPartySlot;
+    u8 stringMoveType;
+    u8 absentBattlerFlags;
+    u8 palaceFlags; // First 4 bits are "is <= 50% HP and not asleep" for each battler, last 4 bits are selected moves to pass to AI
+    u16 hpOnSwitchout[NUM_BATTLE_SIDES];
+    u32 savedBattleTypeFlags;
+    u8 abilityPreventingSwitchout;
+    u8 synchronizeMoveEffect;
+    bool8 anyMonHasTransformed;
+    void (*savedCallback)(void);
+    u16 usedHeldItems[MAX_BATTLERS_COUNT];
+    u8 chosenItem[MAX_BATTLERS_COUNT]; // why is this an u8?
+    u16 choicedMove[MAX_BATTLERS_COUNT];
+    u16 changedItems[MAX_BATTLERS_COUNT];
+
+
+    u16 assistPossibleMoves[PARTY_SIZE * MAX_MON_MOVES]; // Each of mons can know max 4 moves; NOTE: can go anywhere, only ref'd once
+    u8 arenaTurnCounter; // NOTE: Not really used much of anywhere w/ other gBattleStruct members
+    u8 atkCancellerTracker; // NOTE: Can go anywhere, no other local references w/i struct
+};
+#endif
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
 // and 1 flag per battler to indicate whether the battler is awake and at <= 50% HP (which affects move choice).

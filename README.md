@@ -1,10 +1,19 @@
 # Pokémon Emerald
 
-This is a decompilation of Pokémon Emerald.
+This is a modification of Pokémon Emerald intended to reduce CPU and memory usage while still maintaining compatibility
+with the vanilla game.
 
-It builds the following ROM:
+Current memory usage:
 
-* [**pokeemerald.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1961) `sha1: f3ae088181bf583e55daf962a92bb46f4f1d07b7`
+| **Memory Region** | **Used Size** | **Region Size** | **% Used** |
+|-------------------|---------------|-----------------|------------|
+|     **EWRAM**     |   249,664 B   |     256 KiB     |   95.24%   |
+|     **IWRAM**     |    30,876 B   |      32 KiB     |   94.23%   |
+|      **ROM**      |  14,550,244 B |      32 MiB     |   43.36%   |
+
+Currently, it builds the following ROM:
+
+**pokeemerald.gba** `sha1: 9b66ecb9ef44f0399755433bf8b94522a7c4aba2`
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
