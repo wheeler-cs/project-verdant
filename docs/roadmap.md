@@ -1,4 +1,4 @@
-# Current Project Version: 2.4 #
+# Current Project Version: 2.4.1 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -87,50 +87,46 @@
     - `GetSpAtkIV`: Returns IV of special attack.
     - `GetSpDefIV`: Returns IV of special defense.
 
-### 2.5 - Date and Time Support ###
-- [~] Date Tracking - `DATE_TIME`
-
 
 ## Version 3 - Improved Vanilla ##
 #### Changes that keep the spirit of the base game. ####
-### 3.1 ###
 - [ ] Evolution Stone Shop
-
-### 3.2 ###
 - [ ] Portraits for In-Game Trades
-
-### 3.3 ###
 - [ ] Type Reveal for Hidden Power
 
 
-## Version 4 - New Content ##
+## Version 4 - Feature Porting ##
+#### Porting of mechanics and items from other generations. ####
+- [ ] Generation II Pokeballs
+- [ ] Generation IV Pokeballs
+
+
+## Version 5 - New Content ##
 #### Changes that add variety to gameplay and customization. ####
-### 4.1 ###
 - [ ] Additional Player Outfits
 - [ ] New Encounter Tiles
-
-### 4.2 ###
-- [ ] Generation II Poké Balls
-
-### 4.3 ###
-- [ ] Generation IV Poké Balls
-
-### 4.4 ###
 - [ ] Wild Boss Encounters
 
 
-## Version 5 - Dex Completion* ##
+## Version 6 - Dex Completion* ##
 #### Allowing completion of the National Dex without trading. ####
-### 5.1 ###
 - [ ] Hoenn Dex
-
-### 5.2 ###
-- [ ] Dex No. 001 - 100
-
-### 5.3 ###
-- [ ] Dex No. 101 - 200
-
-### 5.4 ###
-- [ ] Dex No. 201 - 251
+- [ ] Kanto Dex
+  - [ ] 001 - 025
+  - [ ] 026 - 050
+  - [ ] 051 - 075
+  - [ ] 076 - 100
+  - [ ] 101 - 125
+  - [ ] 126 - 151
+- [ ] Johto Dex
+  - [ ] 152 - 175
+  - [ ] 176 - 200
+  - [ ] 201 - 225
+  - [ ] 226 - 251
 
 ### * New areas will be added as needed ###
+
+
+## Backlog ##
+#### Undetermined time for implementation ####
+- [ ] Date & Time Support

@@ -40,3 +40,4 @@ prefabs.json
 *.js
 
 *.code-workspace
+tools/poryscript
