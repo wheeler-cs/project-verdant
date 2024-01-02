@@ -447,16 +447,40 @@ struct BattleStruct
 // Alternate struct for BattleStruct
 struct BattleStruct
 {
+    // String printing
+    u8 scriptPartyIdx; // for printing the nickname
+    u8 hpScale;
+    u8 stringMoveType;
+
     // AI
     u8 AI_monToSwitchIntoId[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    //
     u8 AI_itemType[2]; // 2 * 8 = 16 bits
     u8 AI_itemFlags[2]; // 2 * 8 = 16 bits
+    //
+    u8 dynamicMoveType;
 
     // Battle moves
     u8 moveTarget[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    //
     u8 chosenMovePositions[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
 
+    // Move end
+    u8 faintedActionsState;
+    u8 faintedActionsBattlerId;
+
+    // Turn ending
+    u8 savedTurnActionNumber;
+    u8 turnEffectsBattlerId;
+    u8 turnEffectsTracker;
+    u8 turnCountersTracker;
+    u8 turnSideTracker;
+    u8 wishPerishSongState;
+    u8 wishPerishSongBattlerId;
+
     // Switch-outs
+    u8 abilityPreventingSwitchout;
+    u8 battlerPreventingSwitchout;
     u8 switchInAbilitiesCounter;
     u8 intimidateBattler;
     u8 switchInItemsCounter;
@@ -467,22 +491,15 @@ struct BattleStruct
     u8 expGetterBattlerId;
     u8 expGetterMonId;
     u8 sentInPokes;
+    //
     u16 expValue;
+
+    // Battle victory
+    u8 wildVictorySong;
+    u8 moneyMultiplier;
 
     u8 lastTakenMove[MAX_BATTLERS_COUNT * 2 * 2]; // Last move that a battler was hit with. This field seems to erroneously take 16 bytes instead of 8.
     u8 lastTakenMoveFrom[MAX_BATTLERS_COUNT * MAX_BATTLERS_COUNT * 2]; // a 3-D array [target][attacker][byte]
-
-    u8 turnEffectsTracker;
-    u8 turnEffectsBattlerId;
-    u8 wishPerishSongState;
-    u8 wishPerishSongBattlerId;
-
-    u8 turnCountersTracker;
-    u8 turnSideTracker;
-
-    u8 runTries;
-    u8 wildVictorySong;
-    u8 moneyMultiplier;
 
     u8 wrappedMove[MAX_BATTLERS_COUNT * 2]; // Leftover from Ruby's ewram access.
     u8 wrappedBy[MAX_BATTLERS_COUNT];
@@ -498,9 +515,6 @@ struct BattleStruct
     u8 wallyMovesState;
     u8 wallyWaitFrames;
     u8 wallyMoveFrames;
-
-    u8 focusPunchBattlerId;
-    u8 field_93; // related to choosing pokemon?
 
     // Battle arena
     s8 arenaMindPoints[2];
@@ -524,15 +538,7 @@ struct BattleStruct
     u8 formToChangeInto;
     u16 castformPalette[NUM_CASTFORM_FORMS][16];
 
-    // To-Do groups
-    u8 scriptPartyIdx; // for printing the nickname
-    u8 hpScale;
-
-    u8 dynamicMoveType;
-    u8 battlerPreventingSwitchout;
-    u8 savedTurnActionNumber;
-    u8 faintedActionsState;
-    u8 faintedActionsBattlerId;
+    // TODO ==============================================
     bool8 selectionScriptFinished[MAX_BATTLERS_COUNT];
     u8 battlerPartyIndexes[MAX_BATTLERS_COUNT];
     u8 monToSwitchIntoId[MAX_BATTLERS_COUNT];
@@ -540,12 +546,10 @@ struct BattleStruct
     u8 caughtMonNick[POKEMON_NAME_LENGTH + 1];
     u8 stateIdAfterSelScript[MAX_BATTLERS_COUNT];
     u8 prevSelectedPartySlot;
-    u8 stringMoveType;
     u8 absentBattlerFlags;
     u8 palaceFlags; // First 4 bits are "is <= 50% HP and not asleep" for each battler, last 4 bits are selected moves to pass to AI
     u16 hpOnSwitchout[NUM_BATTLE_SIDES];
     u32 savedBattleTypeFlags;
-    u8 abilityPreventingSwitchout;
     u8 synchronizeMoveEffect;
     bool8 anyMonHasTransformed;
     void (*savedCallback)(void);
@@ -553,11 +557,12 @@ struct BattleStruct
     u8 chosenItem[MAX_BATTLERS_COUNT]; // why is this an u8?
     u16 choicedMove[MAX_BATTLERS_COUNT];
     u16 changedItems[MAX_BATTLERS_COUNT];
-
-
+    u8 focusPunchBattlerId;
+    u8 field_93; // related to choosing pokemon?
     u16 assistPossibleMoves[PARTY_SIZE * MAX_MON_MOVES]; // Each of mons can know max 4 moves; NOTE: can go anywhere, only ref'd once
     u8 arenaTurnCounter; // NOTE: Not really used much of anywhere w/ other gBattleStruct members
     u8 atkCancellerTracker; // NOTE: Can go anywhere, no other local references w/i struct
+    u8 runTries; // NOTE: Can go anywhere, no locality w/ other vars in struct
 };
 #endif
 
