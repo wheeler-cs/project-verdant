@@ -383,11 +383,16 @@ static bool8 FindMonWithFlagsAndSuperEffective(u8 flags, u8 moduloPercent)
         u8 monAbility;
 
         #ifdef EMER_REDUCED
+        // Cache the value of species since it's used in 2 places
         species = GetMonData (&party[i], MON_DATA_SPECIES_OR_EGG);
+
+        // Don't consider fainted mons, empty slots, or eggs
         if (GetMonData (&party[i], MON_DATA_HP) == 0)
             continue;
-        if ((species == SPECIES_NONE) || (species == SPECIES_EGG))
+        if ((species & SPECIES_NONE) || (species & SPECIES_EGG))
             continue;
+
+        // Mons are already on the field
         if (i == gBattlerPartyIndexes[battlerIn1])
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
