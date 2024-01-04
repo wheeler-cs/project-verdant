@@ -301,7 +301,85 @@ const struct SpriteTemplate gEggThrowSpriteTemplate =
     .callback = AnimThrowProjectile,
 };
 
+#ifndef EMER_REDUCED
+//Unused
+static const struct SpriteTemplate sCirclingFingerSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_FINGER,
+    .paletteTag = ANIM_TAG_FINGER,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimCirclingFinger,
+};
 
+// Unused (association assumed)
+static const union AnimCmd *const sAnims_BouncingMusicNote[] =
+{
+    sAnim_BouncingMusicNote,
+};
+
+// Unused
+static const struct SpriteTemplate sBouncingMusicNoteSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_MUSIC_NOTES,
+    .paletteTag = ANIM_TAG_MUSIC_NOTES,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimBouncingMusicNote,
+};
+
+// Unused
+static const struct SpriteTemplate sVibrateBattlerBackSpriteTemplate =
+{
+    .tileTag = 0,
+    .paletteTag = 0,
+    .oam = &gDummyOamData,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimVibrateBattlerBack,
+};
+
+// Unused
+static const struct SpriteTemplate sMovingClampSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_CLAMP,
+    .paletteTag = ANIM_TAG_CLAMP,
+    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gAffineAnims_Bite,
+    .callback = AnimMovingClamp,
+};
+
+// Unused
+static const struct SpriteTemplate sSmallExplosionSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_EXPLOSION_6,
+    .paletteTag = ANIM_TAG_EXPLOSION_6,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = sAnims_SmallExplosion,
+    .images = NULL,
+    .affineAnims = sAffineAnims_SmallExplosion,
+    .callback = AnimSpriteOnMonPos,
+};
+
+// Unused
+static const struct SpriteTemplate sVoidLinesSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_VOID_LINES,
+    .paletteTag = ANIM_TAG_VOID_LINES,
+    .oam = &gOamData_AffineOff_ObjBlend_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimVoidLines,
+};
+#endif
 
 
 const union AnimCmd gCoinAnimCmds[] =
@@ -638,30 +716,21 @@ const union AffineAnimCmd gThinRingExpandingAffineAnimCmds1[] =
 {
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 30),
-
-    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
-    #endif
 };
 
 const union AffineAnimCmd gThinRingExpandingAffineAnimCmds2[] =
 {
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
     AFFINEANIMCMD_FRAME(0x20, 0x20, 0, 15),
-
-    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
-    #endif
 };
 
 const union AffineAnimCmd gHyperVoiceRingAffineAnimCmds[] =
 {
     AFFINEANIMCMD_FRAME(0x10, 0x10, 0, 0),
     AFFINEANIMCMD_FRAME(0xB, 0xB, 0, 45),
-
-    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
-    #endif
 };
 
 const union AffineAnimCmd *const gThinRingExpandingAffineAnimTable[] =
@@ -690,10 +759,7 @@ const union AffineAnimCmd gThinRingShrinkingAffineAnimCmds[] =
 {
     AFFINEANIMCMD_FRAME(0x200, 0x200, 0, 0),
     AFFINEANIMCMD_FRAME(0xFFF0, 0xFFF0, 0, 30),
-
-    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
-    #endif
 };
 
 const union AffineAnimCmd *const gThinRingShrinkingAffineAnimTable[] =
@@ -1133,19 +1199,13 @@ const union AffineAnimCmd gPerishSongMusicNoteAffineAnimCmds1[] =
 const union AffineAnimCmd gPerishSongMusicNoteAffineAnimCmds2[] =
 {
     AFFINEANIMCMD_FRAME(0x0, 0x0, -8, 16),
-
-    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
-    #endif
 };
 
 const union AffineAnimCmd gPerishSongMusicNoteAffineAnimCmds3[] =
 {
     AFFINEANIMCMD_FRAME(0x0, 0x0, 8, 16),
-
-    #ifndef EMER_REDUCED
     AFFINEANIMCMD_END_ALT(1),
-    #endif
 };
 
 const union AffineAnimCmd *const gPerishSongMusicNoteAffineAnimTable[] =
@@ -3782,82 +3842,4 @@ void AnimTask_GetFuryCutterHitCount(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
-#ifndef EMER_REDUCED
-//Unused
-static const struct SpriteTemplate sCirclingFingerSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_FINGER,
-    .paletteTag = ANIM_TAG_FINGER,
-    .oam = &gOamData_AffineOff_ObjNormal_32x32,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimCirclingFinger,
-};
 
-// Unused (association assumed)
-static const union AnimCmd *const sAnims_BouncingMusicNote[] =
-{
-    sAnim_BouncingMusicNote,
-};
-
-// Unused
-static const struct SpriteTemplate sBouncingMusicNoteSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_MUSIC_NOTES,
-    .paletteTag = ANIM_TAG_MUSIC_NOTES,
-    .oam = &gOamData_AffineOff_ObjNormal_16x16,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimBouncingMusicNote,
-};
-
-// Unused
-static const struct SpriteTemplate sVibrateBattlerBackSpriteTemplate =
-{
-    .tileTag = 0,
-    .paletteTag = 0,
-    .oam = &gDummyOamData,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimVibrateBattlerBack,
-};
-
-// Unused
-static const struct SpriteTemplate sMovingClampSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_CLAMP,
-    .paletteTag = ANIM_TAG_CLAMP,
-    .oam = &gOamData_AffineNormal_ObjBlend_64x64,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gAffineAnims_Bite,
-    .callback = AnimMovingClamp,
-};
-
-// Unused
-static const struct SpriteTemplate sSmallExplosionSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_EXPLOSION_6,
-    .paletteTag = ANIM_TAG_EXPLOSION_6,
-    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
-    .anims = sAnims_SmallExplosion,
-    .images = NULL,
-    .affineAnims = sAffineAnims_SmallExplosion,
-    .callback = AnimSpriteOnMonPos,
-};
-
-// Unused
-static const struct SpriteTemplate sVoidLinesSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_VOID_LINES,
-    .paletteTag = ANIM_TAG_VOID_LINES,
-    .oam = &gOamData_AffineOff_ObjBlend_64x64,
-    .anims = gDummySpriteAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimVoidLines,
-};
-#endif

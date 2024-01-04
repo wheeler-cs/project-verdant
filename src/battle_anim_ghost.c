@@ -218,7 +218,7 @@ static const struct SpriteTemplate sMonMoveCircularSpriteTemplate =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimMonMoveCircular,
-};a
+};
 #endif
 
 static void AnimConfuseRayBallBounce(struct Sprite *sprite)
