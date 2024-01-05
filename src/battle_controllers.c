@@ -71,9 +71,11 @@ void SetUpBattleVarsAndBirchZigzagoon(void)
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &i);
     }
 
+    #ifndef EMER_REDUCED
     // Below are never read
     gUnusedFirstBattleVar1 = 0;
     gUnusedFirstBattleVar2 = 0;
+    #endif
 }
 
 void InitBattleControllers(void)

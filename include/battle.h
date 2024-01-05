@@ -348,6 +348,7 @@ struct LinkBattlerHeader
     struct BattleEnigmaBerry battleEnigmaBerry;
 };
 
+#ifndef EMER_REDUCED
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -442,6 +443,152 @@ struct BattleStruct
     u8 arenaLostOpponentMons;
     u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
 };
+#else
+// Alternate struct for BattleStruct
+struct BattleStruct
+{
+    // String printing
+    u8 scriptPartyIdx; // for printing the nickname
+    u8 hpScale;
+    u8 stringMoveType;
+
+    // AI
+    u8 dynamicMoveType;
+    //
+    u16 assistPossibleMoves[PARTY_SIZE * MAX_MON_MOVES]; // Each of mons can know max 4 moves; 6 * 4 * 16 = 384 bits
+    //
+    u8 AI_monToSwitchIntoId[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    //
+    u8 AI_itemType[2]; // 2 * 8 = 16 bits
+    u8 AI_itemFlags[2]; // 2 * 8 = 16 bits
+
+    // Battle action selection
+    bool8 selectionScriptFinished[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    //
+    u8 stateIdAfterSelScript[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    //
+    u8 moveTarget[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    //
+    u8 chosenMovePositions[MAX_BATTLERS_COUNT]; // 4 * 8 = 32 bits
+    //
+    u8 battlerPartyOrders[MAX_BATTLERS_COUNT][PARTY_SIZE / 2]; // 4 * (6 / 2) * 8 = 96 bits
+
+    // Item usage
+    u8 chosenItem[MAX_BATTLERS_COUNT]; // why is this an u8?; 4 * 8 = 32 bits
+
+    // Move end
+    u8 absentBattlerFlags;
+    u8 faintedActionsState;
+    u8 faintedActionsBattlerId;
+    u8 synchronizeMoveEffect;
+    //
+    u8 lastTakenMove[MAX_BATTLERS_COUNT * 2 * 2]; // Last move that a battler was hit with. This field seems to erroneously take 16 bytes instead of 8; 4 * 2 * 2 * 8 = 128 bits
+    u8 lastTakenMoveFrom[MAX_BATTLERS_COUNT * MAX_BATTLERS_COUNT * 2]; // a 3-D array [target][attacker][byte]; 4 * 4 * 2 * 8 = 128 bits
+    u16 choicedMove[MAX_BATTLERS_COUNT]; // 4 * 16 = 64 bits
+    u16 changedItems[MAX_BATTLERS_COUNT]; // 4 * 16 = 64 bits
+    u16 usedHeldItems[MAX_BATTLERS_COUNT]; // 16 * 4 = 64 bits
+
+    // Kinda fits both Move end and Turn ending
+    u8 wrappedMove[MAX_BATTLERS_COUNT * 2]; // Leftover from Ruby's ewram access; 4 * 2 * 8 = 64 bits
+
+    // Turn ending
+    u8 savedTurnActionNumber;
+    u8 turnEffectsBattlerId;
+    u8 turnEffectsTracker;
+    u8 turnCountersTracker;
+    //
+    u8 turnSideTracker;
+    u8 wishPerishSongState;
+    u8 wishPerishSongBattlerId;
+    u8 focusPunchBattlerId; // Mainly called at the start of a turn
+
+    // Kinda fits both Turn ending and Switch-outs
+    u8 wrappedBy[MAX_BATTLERS_COUNT];
+
+    // Switch-outs
+    u8 abilityPreventingSwitchout;
+    u8 battlerPreventingSwitchout;
+    u8 prevSelectedPartySlot;
+    u8 switchInAbilitiesCounter;
+    //
+    u8 intimidateBattler;
+    u8 switchInItemsCounter;
+    bool8 overworldWeatherDone;
+    u8 field_93; // related to choosing pokemon?
+    //
+    u8 monToSwitchIntoId[MAX_BATTLERS_COUNT]; // 4 * 8 = 32
+    //
+    u8 battlerPartyIndexes[MAX_BATTLERS_COUNT]; // 4 * 8 = 32
+    //
+    u16 hpOnSwitchout[NUM_BATTLE_SIDES]; // 4 * 16 = 64
+
+    // Experience
+    u8 givenExpMons; // Bits for enemy party's Pokémon that gave exp to player's party.
+    u8 expGetterBattlerId;
+    u8 expGetterMonId;
+    u8 sentInPokes;
+    //
+    u16 expValue;
+    u8 atkCancellerTracker; // Occurs when a battler is unable to use a move due to some constraint (FRZN, Taunt, etc.)
+    u8 runTries; // NOTE: Can go anywhere, no locality w/ other vars in struct
+
+    // Battle start
+    u32 savedBattleTypeFlags;
+    void (*savedCallback)(void); // 32 bits... probably
+
+    // Battle victory
+    u8 wildVictorySong;
+    u8 moneyMultiplier;
+    u8 arenaTurnCounter; // NOTE: Not really used much of anywhere w/ other gBattleStruct members
+    u8 padding_battlevictory;
+    //
+    u8 caughtMonNick[POKEMON_NAME_LENGTH + 1]; // 11 * 8 = 88 bits, only really used w/ naming a new mon
+
+    // Safari zone
+    u8 safariGoNearCounter;
+    u8 safariPkblThrowCounter;
+    u8 safariEscapeFactor;
+    u8 safariCatchFactor;
+    
+    // Wally battles
+    u8 wallyBattleState;
+    u8 wallyMovesState;
+    u8 wallyWaitFrames;
+    u8 wallyMoveFrames;
+
+    // Battle arena
+    s8 arenaMindPoints[2]; // 2 * 8 = 16 bits
+    s8 arenaSkillPoints[2]; // 2 * 8 = 16 bits
+    //
+    u16 arenaStartHp[2]; // 2 * 16 = 32
+    //
+    u8 arenaLostPlayerMons; // Bits for party member, lost as in referee's decision, not by fainting.
+    u8 arenaLostOpponentMons;
+    u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
+
+    // Battle palace
+    u8 palaceFlags; // First 4 bits are "is <= 50% HP and not asleep" for each battler, last 4 bits are selected moves to pass to AI
+
+    // Link battles
+    u8 linkBattleVsSpriteId_V; // The letter "V"
+    u8 linkBattleVsSpriteId_S; // The letter "S"
+    u16 padding_linkbattles;
+    //
+    union {
+        struct LinkBattlerHeader linkBattlerHeader;
+        u32 battleVideo[2];
+    } multiBuffer;
+    // TODO: Figure out the size of these structures
+    struct BattleTvMovePoints tvMovePoints;
+    struct BattleTv tv;
+
+    // Castform
+    bool8 anyMonHasTransformed; // Used in battle TV, but nowhere else it seems
+    u8 formToChangeInto;
+    u16 castformPalette[NUM_CASTFORM_FORMS][16]; // 4 * 16 * 16 = 1024 bits
+
+};
+#endif
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
 // and 1 flag per battler to indicate whether the battler is awake and at <= 50% HP (which affects move choice).

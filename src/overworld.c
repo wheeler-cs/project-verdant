@@ -212,10 +212,12 @@ static const struct WarpData sDummyWarpData =
     .y = -1,
 };
 
+#ifndef EMER_REDUCED
 static const u32 sUnusedData[] =
 {
     1200, 3600, 1200, 2400, 50, 80, -44, 44
 };
+#endif
 
 const struct UCoords32 gDirectionToVectors[] =
 {

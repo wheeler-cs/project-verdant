@@ -130,7 +130,9 @@ void CB1_Overworld(void);
 void CB2_OverworldBasic(void);
 void CB2_Overworld(void);
 void SetMainCallback1(void (*cb)(void));
+#ifndef EMER_REDUCED
 void SetUnusedCallback(void *func);
+#endif
 void CB2_NewGame(void);
 void CB2_WhiteOut(void);
 void CB2_LoadMap(void);

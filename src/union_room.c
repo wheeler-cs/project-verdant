@@ -203,7 +203,9 @@ static EWRAM_DATA union
     struct WirelessLink_Group *group;
     struct WirelessLink_URoom *uRoom;
 } sWirelessLinkMain = {};
+#ifndef EMER_REDUCED
 static EWRAM_DATA u32 sUnused = 0;
+#endif
 EWRAM_DATA struct RfuGameCompatibilityData gRfuPartnerCompatibilityData = {};
 EWRAM_DATA u16 gUnionRoomOfferedSpecies = 0;
 EWRAM_DATA u8 gUnionRoomRequestedMonType = 0;
@@ -2149,8 +2151,10 @@ static void Task_CardOrNewsWithFriend(u8 taskId)
             id = ListMenu_ProcessInput(data->listTaskId);
             if (JOY_NEW(A_BUTTON) && id != LIST_NOTHING_CHOSEN)
             {
+                #ifndef EMER_REDUCED
                 // Needed to match
                 u32 UNUSED activity = data->playerList->players[id].rfu.data.activity;
+                #endif
 
                 if (data->playerList->players[id].groupScheduledAnim == UNION_ROOM_SPAWN_IN && !data->playerList->players[id].rfu.data.startedActivity)
                 {
@@ -2425,8 +2429,10 @@ void RunUnionRoom(void)
     ResetHostRfuGameData();
     CreateTask(Task_RunUnionRoom, 10);
 
+    #ifndef EMER_REDUCED
     // dumb line needed to match
     sWirelessLinkMain.uRoom = sWirelessLinkMain.uRoom;
+    #endif
 
     uroom = AllocZeroed(sizeof(*sWirelessLinkMain.uRoom));
     sWirelessLinkMain.uRoom = uroom;
