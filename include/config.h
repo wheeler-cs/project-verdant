@@ -133,8 +133,8 @@
     // Increased money cap from 999,999 to 9,999,999
     #define BIG_WALLET
 
-    // Support for both time AND date
-    #define DATE_TIME
+    // Show portraits for in-game trades
+    #define TRADE_PORTRAITS
 
 #endif  // End Project Verdant
 

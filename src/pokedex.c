@@ -4254,6 +4254,18 @@ u16 GetPokedexHeightWeight(u16 dexNum, u8 data)
     }
 }
 
+#ifdef TRADE_PORTRAITS
+s8 GetSeenPokedexFlag(void)
+{
+    return GetSetPokedexFlag (gSpecialVar_0x8004, FLAG_GET_SEEN);
+}
+
+void SetSeenPokedexFlag(void)
+{
+    GetSetPokedexFlag (gSpecialVar_0x8004, FLAG_SET_SEEN);
+}
+#endif
+
 s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
 {
     u8 index;

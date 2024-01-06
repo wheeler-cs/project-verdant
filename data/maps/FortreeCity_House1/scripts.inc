@@ -32,8 +32,32 @@ FortreeCity_House1_EventScript_Trader::
 
 FortreeCity_House1_EventScript_DeclineTrade::
 	msgbox FortreeCity_House1_Text_YouWontTradeMe, MSGBOX_DEFAULT
+#ifdef TRADE_PORTRAITS
+	setvar VAR_0x8004, SPECIES_VOLBEAT
+	specialvar VAR_RESULT, GetSeenPokedexFlag
+	call_if_eq VAR_RESULT, FALSE, FortreeCity_House1_EventScript_ShowTradeRequest
+#endif
 	release
 	end
+
+#ifdef TRADE_PORTRAITS
+FortreeCity_House1_EventScript_ShowTradeRequest::
+	msgbox FortreeCity_House1_Text_AtLeastLetMeShowYou, MSGBOX_DEFAULT
+	showmonpic SPECIES_VOLBEAT, 10, 3
+	msgbox FortreeCity_House1_Text_ThisIsWhatIWant, MSGBOX_DEFAULT
+	special SetSeenPokedexFlag
+	hidemonpic
+	return
+
+FortreeCity_House1_Text_AtLeastLetMeShowYou::
+	.string "At least let me show you what one\n"
+	.string "looks like before you go!$"
+
+FortreeCity_House1_Text_ThisIsWhatIWant::
+	.string "This is what VOLBEAT looks like.\p"
+	.string "You can always check your POKeDEX\n"
+	.string "if you ever need a refresher.$"
+#endif
 
 FortreeCity_House1_EventScript_NotRequestedMon::
 	bufferspeciesname STR_VAR_1, VAR_0x8009
