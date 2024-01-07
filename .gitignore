@@ -41,3 +41,4 @@ prefabs.json
 
 *.code-workspace
 tools/poryscript
+*.bak

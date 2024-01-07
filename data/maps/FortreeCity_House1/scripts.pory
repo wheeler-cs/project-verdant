@@ -1,0 +1,165 @@
+const REF_TRADE = INGAME_TRADE_PLUSLE
+const REQUESTED_MON = SPECIES_VOLBEAT
+const OFFERED_MON = SPECIES_PLUSLE
+
+raw `
+FortreeCity_House1_MapScripts::
+    .byte 0
+`
+
+script FortreeCity_House1_EventScript_Trader
+{
+    lock
+    faceplayer
+    // FortreeCity_House1_EventScript_TradeCompleted
+    if (flag(FLAG_FORTREE_NPC_TRADE_COMPLETED))
+    {
+        msgbox(FortreeCity_House1_Text_GoingToMakeVolbeatStrong, MSGBOX_DEFAULT)
+    }
+    else
+    {
+        call(FortreeCity_House1_EventScript_BufferTradeData)
+        msgbox(FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == NO)
+        {
+            call(FortreeCity_House1_EventScript_DeclineTrade)
+        }
+        else
+        {
+            special(ChoosePartyMon)
+            waitstate
+            copyvar(VAR_0x800A, VAR_0x8004)
+            if(var(VAR_0x8004) == PARTY_NOTHING_CHOSEN)
+            {
+                call(FortreeCity_House1_EventScript_DeclineTrade)
+            }
+            else
+            {
+                copyvar(VAR_0x8005, VAR_0x800A)
+                specialvar(VAR_RESULT, GetTradeSpecies)
+                copyvar(VAR_0x8008, VAR_RESULT)
+                compare(VAR_0x8008, VAR_0x8009)
+                if (var(VAR_RESULT) == FALSE)
+                {
+                    call(FortreeCity_House1_EventScript_NotRequestedMon)
+                }
+                else
+                {
+                    copyvar(VAR_0x8004, VAR_0x8008)
+                    copyvar(VAR_0x8005, VAR_0x800A)
+                    special (CreateInGameTradePokemon)
+                    special (DoInGameTradeScene)
+                    waitstate
+                    bufferspeciesname(STR_VAR_1, VAR_0x8009)
+                    msgbox(FortreeCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT)
+                    setflag(FLAG_FORTREE_NPC_TRADE_COMPLETED)
+                }
+            }
+        }
+    }
+    release
+    end
+}
+
+script FortreeCity_House1_EventScript_BufferTradeData
+{
+    setvar(VAR_0x8008, REF_TRADE)
+    copyvar(VAR_0x8004, VAR_0x8008)
+    specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+    copyvar(VAR_0x8009, VAR_RESULT)
+    return
+}
+
+script FortreeCity_House1_EventScript_DeclineTrade
+{
+    msgbox(FortreeCity_House1_Text_YouWontTradeMe, MSGBOX_DEFAULT)
+#ifdef TRADE_PORTRAITS
+    // Check if request mon has been seen. If not, set the "seen" flag for it in the dex
+    setvar(VAR_0x8004, SPECIES_VOLBEAT)
+    specialvar(VAR_RESULT, GetSeenPokedexFlag)
+    if(!(var(VAR_RESULT)))
+    {
+        msgbox(format("At least let me show you what one looks like before you go!"), MSGBOX_DEFAULT)
+        showmonpic(REQUESTED_MON, 10, 3)
+        msgbox(format("This is what {STR_VAR_1} looks like.\pYou can always check your POKéDEX if you need a refresher."), MSGBOX_DEFAULT)
+        special(SetSeenPokedexFlag)
+        hidemonpic
+    }
+#endif
+    return
+}
+
+script FortreeCity_House1_EventScript_NotRequestedMon
+{
+    bufferspeciesname(STR_VAR_1, VAR_0x8009)
+    msgbox(FortreeCity_House1_Text_ThisIsntAMon, MSGBOX_DEFAULT)
+    return
+}
+
+script FortreeCity_House1_EventScript_ExpertF
+{
+    msgbox(FortreeCity_House1_Text_TradingMemoriesWithOthers, MSGBOX_NPC)
+    end
+}
+
+script FortreeCity_House1_EventScript_Zigzagoon
+{
+    lock
+    faceplayer
+    waitse
+    playmoncry (SPECIES_ZIGZAGOON, CRY_MODE_NORMAL)
+    msgbox(FortreeCity_House1_Text_Zigzagoon, MSGBOX_DEFAULT)
+    waitmoncry
+    release
+    end
+}
+
+text FortreeCity_House1_Text_YouWillTradeWontYou
+{
+	"Wrooooaaar! I need it!\n"
+	"I have to get me a {STR_VAR_1}!\l"
+	"I'll do anything for it!\p"
+	"…Uh… Did you hear that?\n"
+	"My shout from the bottom of my heart?\p"
+	"Having heard that, you will trade\n"
+	"your {STR_VAR_1} for my {STR_VAR_2},\l"
+	"won't you?"
+}
+
+text FortreeCity_House1_Text_MonYouTakeCare
+{
+	"Oh, yeah, right on!\p"
+	"{STR_VAR_1}, welcome!\n"
+	"{STR_VAR_2}, you take care!"
+}
+
+text FortreeCity_House1_Text_ThisIsntAMon
+{
+	"Uh, no, I don't think so.\n"
+	"That isn't a {STR_VAR_1}."
+}
+
+text FortreeCity_House1_Text_YouWontTradeMe
+{
+	"No? You won't trade me?\n"
+	"Even after I bared my heart to you?"
+}
+
+text FortreeCity_House1_Text_GoingToMakeVolbeatStrong
+{
+	"I'm going to make VOLBEAT super\n"
+	"strong from this moment on!\p"
+	"I hope you do the same with PLUSLE!"
+}
+
+text FortreeCity_House1_Text_TradingMemoriesWithOthers
+{
+	"Trading POKéMON with others…\p"
+	"It's as if you're trading your own\n"
+	"memories with other people."
+}
+
+text FortreeCity_House1_Text_Zigzagoon
+{
+	"ZIGZAGOON: Gumomoh?"
+}
