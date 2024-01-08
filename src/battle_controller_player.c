@@ -2802,9 +2802,11 @@ static void PlayerHandleHealthBarUpdate(void)
 
     hpVal = gBattleBufferA[gActiveBattler][2] | (gBattleBufferA[gActiveBattler][3] << 8);
 
+#ifndef EMER_REDUCED
     // gPlayerPartyLostHP used by Battle Dome, but never read
     if (hpVal > 0)
         gPlayerPartyLostHP += hpVal;
+#endif
 
     if (hpVal != INSTANT_HP_BAR_DROP)
     {
