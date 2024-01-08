@@ -14,7 +14,7 @@ The ROM can be built and verified using the following hash:
 
 | **Memory Region** | **Used Size** | **Region Size** | **% Used** |
 |-------------------|---------------|-----------------|------------|
-|     **EWRAM**     |   249,688 B   |     256 KiB     |   95.25%   |
+|     **EWRAM**     |   249,676 B   |     256 KiB     |   95.24%   |
 |     **IWRAM**     |    30,876 B   |      32 KiB     |   94.23%   |
 |      **ROM**      |  14,550,244 B |      32 MiB     |   43.36%   |
 

@@ -80,10 +80,12 @@ struct CreditsEntry
     const u8 *text;
 };
 
+#ifndef EMER_REDUCED
 static EWRAM_DATA s16 UNUSED sUnkVar = 0; // Never read, only set to 0
+static EWRAM_DATA bool8 sUsedSpeedUp = 0; // Never read
+#endif
 static EWRAM_DATA u16 sSavedTaskId = 0;
 EWRAM_DATA bool8 gHasHallOfFameRecords = 0;
-static EWRAM_DATA bool8 sUsedSpeedUp = 0; // Never read
 static EWRAM_DATA struct CreditsData *sCreditsData = {0};
 
 static const u16 sCredits_Pal[] = INCBIN_U16("graphics/credits/credits.gbapal");
@@ -354,7 +356,9 @@ static void CB2_Credits(void)
         VBlankCB_Credits();
         RunTasks();
         AnimateSprites();
+    #ifndef EMER_REDUCED
         sUsedSpeedUp = TRUE;
+    #endif
     }
     BuildOamBuffer();
     UpdatePaletteFade();
@@ -447,7 +451,9 @@ void CB2_StartCreditsSequence(void)
     SetVBlankCallback(VBlankCB_Credits);
     m4aSongNumStart(MUS_CREDITS);
     SetMainCallback2(CB2_Credits);
+#ifndef EMER_REDUCED
     sUsedSpeedUp = FALSE;
+#endif
     sCreditsData = AllocZeroed(sizeof(struct CreditsData));
 
     DeterminePokemonToShow();
@@ -479,7 +485,9 @@ static void Task_CreditsMain(u8 taskId)
         return;
     }
 
+#ifndef EMER_REDUCED
     sUnkVar = 0;
+#endif
     mode = gTasks[taskId].tNextMode;
 
     if (gTasks[taskId].tNextMode == MODE_BIKE_SCENE)
@@ -739,7 +747,9 @@ static void Task_UpdatePage(u8 taskId)
             gTasks[taskId].tState = 1;
             gTasks[taskId].tDelay = 72;
             gTasks[gTasks[taskId].tMainTaskId].tPrintedPage = FALSE;
+        #ifndef EMER_REDUCED
             sUnkVar = 0;
+        #endif
         }
         return;
     case 1:

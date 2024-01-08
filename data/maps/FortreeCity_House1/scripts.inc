@@ -109,47 +109,47 @@ FortreeCity_House1_EventScript_DeclineTrade_1:
 FortreeCity_House1_EventScript_DeclineTrade_2:
 # 82 "data/maps/FortreeCity_House1/scripts.pory"
 	msgbox FortreeCity_House1_EventScript_DeclineTrade_Text_0, MSGBOX_DEFAULT
-# 83 "data/maps/FortreeCity_House1/scripts.pory"
-	showmonpic SPECIES_VOLBEAT, 10, 3
 # 84 "data/maps/FortreeCity_House1/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_VOLBEAT
+	showmonpic SPECIES_VOLBEAT, 10, 3
 # 85 "data/maps/FortreeCity_House1/scripts.pory"
-	msgbox FortreeCity_House1_EventScript_DeclineTrade_Text_1, MSGBOX_DEFAULT
+	bufferspeciesname STR_VAR_1, SPECIES_VOLBEAT
 # 86 "data/maps/FortreeCity_House1/scripts.pory"
-	special SetSeenPokedexFlag
+	msgbox FortreeCity_House1_EventScript_DeclineTrade_Text_1, MSGBOX_DEFAULT
 # 87 "data/maps/FortreeCity_House1/scripts.pory"
+	special SetSeenPokedexFlag
+# 88 "data/maps/FortreeCity_House1/scripts.pory"
 	hidemonpic
 	goto FortreeCity_House1_EventScript_DeclineTrade_1
 
 
 FortreeCity_House1_EventScript_NotRequestedMon::
-# 95 "data/maps/FortreeCity_House1/scripts.pory"
-	bufferspeciesname STR_VAR_1, VAR_0x8009
 # 96 "data/maps/FortreeCity_House1/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_0x8009
+# 97 "data/maps/FortreeCity_House1/scripts.pory"
 	msgbox FortreeCity_House1_Text_ThisIsntAMon, MSGBOX_DEFAULT
 	return
 
 
 FortreeCity_House1_EventScript_ExpertF::
-# 102 "data/maps/FortreeCity_House1/scripts.pory"
+# 103 "data/maps/FortreeCity_House1/scripts.pory"
 	msgbox FortreeCity_House1_Text_TradingMemoriesWithOthers, MSGBOX_NPC
 	end
 
 
 FortreeCity_House1_EventScript_Zigzagoon::
-# 108 "data/maps/FortreeCity_House1/scripts.pory"
-	lock
 # 109 "data/maps/FortreeCity_House1/scripts.pory"
-	faceplayer
+	lock
 # 110 "data/maps/FortreeCity_House1/scripts.pory"
-	waitse
+	faceplayer
 # 111 "data/maps/FortreeCity_House1/scripts.pory"
-	playmoncry SPECIES_ZIGZAGOON, CRY_MODE_NORMAL
+	waitse
 # 112 "data/maps/FortreeCity_House1/scripts.pory"
-	msgbox FortreeCity_House1_Text_Zigzagoon, MSGBOX_DEFAULT
+	playmoncry SPECIES_ZIGZAGOON, CRY_MODE_NORMAL
 # 113 "data/maps/FortreeCity_House1/scripts.pory"
-	waitmoncry
+	msgbox FortreeCity_House1_Text_Zigzagoon, MSGBOX_DEFAULT
 # 114 "data/maps/FortreeCity_House1/scripts.pory"
+	waitmoncry
+# 115 "data/maps/FortreeCity_House1/scripts.pory"
 	release
 	end
 
@@ -160,13 +160,13 @@ FortreeCity_House1_EventScript_DeclineTrade_Text_0:
 	.string "like before you go!$"
 
 FortreeCity_House1_EventScript_DeclineTrade_Text_1:
-# 85 "data/maps/FortreeCity_House1/scripts.pory"
+# 86 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "This is what {STR_VAR_1} looks like.\p"
 	.string "You can always check your POKéDEX if\n"
 	.string "you need a refresher.$"
 
 FortreeCity_House1_Text_YouWillTradeWontYou::
-# 118 "data/maps/FortreeCity_House1/scripts.pory"
+# 119 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "Wrooooaaar! I need it!\n"
 	.string "I have to get me a {STR_VAR_1}!\l"
 	.string "I'll do anything for it!\p"
@@ -177,33 +177,33 @@ FortreeCity_House1_Text_YouWillTradeWontYou::
 	.string "won't you?$"
 
 FortreeCity_House1_Text_MonYouTakeCare::
-# 130 "data/maps/FortreeCity_House1/scripts.pory"
+# 131 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "Oh, yeah, right on!\p"
 	.string "{STR_VAR_1}, welcome!\n"
 	.string "{STR_VAR_2}, you take care!$"
 
 FortreeCity_House1_Text_ThisIsntAMon::
-# 137 "data/maps/FortreeCity_House1/scripts.pory"
+# 138 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "Uh, no, I don't think so.\n"
 	.string "That isn't a {STR_VAR_1}.$"
 
 FortreeCity_House1_Text_YouWontTradeMe::
-# 143 "data/maps/FortreeCity_House1/scripts.pory"
+# 144 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "No? You won't trade me?\n"
 	.string "Even after I bared my heart to you?$"
 
 FortreeCity_House1_Text_GoingToMakeVolbeatStrong::
-# 149 "data/maps/FortreeCity_House1/scripts.pory"
+# 150 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "I'm going to make VOLBEAT super\n"
 	.string "strong from this moment on!\p"
 	.string "I hope you do the same with PLUSLE!$"
 
 FortreeCity_House1_Text_TradingMemoriesWithOthers::
-# 156 "data/maps/FortreeCity_House1/scripts.pory"
+# 157 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "Trading POKéMON with others…\p"
 	.string "It's as if you're trading your own\n"
 	.string "memories with other people.$"
 
 FortreeCity_House1_Text_Zigzagoon::
-# 163 "data/maps/FortreeCity_House1/scripts.pory"
+# 164 "data/maps/FortreeCity_House1/scripts.pory"
 	.string "ZIGZAGOON: Gumomoh?$"
