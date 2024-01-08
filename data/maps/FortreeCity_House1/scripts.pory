@@ -80,7 +80,9 @@ script FortreeCity_House1_EventScript_DeclineTrade
     if(!(var(VAR_RESULT)))
     {
         msgbox(format("At least let me show you what one looks like before you go!"), MSGBOX_DEFAULT)
+        // Show requested mon's portrait to player as a visual aid
         showmonpic(REQUESTED_MON, 10, 3)
+        bufferspeciesname (STR_VAR_1, REQUESTED_MON)
         msgbox(format("This is what {STR_VAR_1} looks like.\pYou can always check your POKéDEX if you need a refresher."), MSGBOX_DEFAULT)
         special(SetSeenPokedexFlag)
         hidemonpic
