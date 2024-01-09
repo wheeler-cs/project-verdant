@@ -11,70 +11,74 @@ script FortreeCity_House1_EventScript_Trader
 {
     lock
     faceplayer
-    // FortreeCity_House1_EventScript_TradeCompleted
     if (flag(FLAG_FORTREE_NPC_TRADE_COMPLETED))
     {
-        msgbox(FortreeCity_House1_Text_GoingToMakeVolbeatStrong, MSGBOX_DEFAULT)
+        goto(FortreeCity_House1_EventScript_TradeCompleted)
     }
-    else
+    setvar(VAR_0x8008, REF_TRADE)
+    setvar(VAR_0x8004, REF_TRADE)
+    specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+    copyvar(VAR_0x8009, VAR_RESULT)
+    msgbox(FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO)
     {
-        call(FortreeCity_House1_EventScript_BufferTradeData)
-        msgbox(FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO)
-        if (var(VAR_RESULT) == NO)
-        {
-            call(FortreeCity_House1_EventScript_DeclineTrade)
-        }
-        else
-        {
-            special(ChoosePartyMon)
-            waitstate
-            copyvar(VAR_0x800A, VAR_0x8004)
-            if(var(VAR_0x8004) == PARTY_NOTHING_CHOSEN)
-            {
-                call(FortreeCity_House1_EventScript_DeclineTrade)
-            }
-            else
-            {
-                copyvar(VAR_0x8005, VAR_0x800A)
-                specialvar(VAR_RESULT, GetTradeSpecies)
-                copyvar(VAR_0x8008, VAR_RESULT)
-                compare(VAR_0x8008, VAR_0x8009)
-                if (var(VAR_RESULT) == FALSE)
-                {
-                    call(FortreeCity_House1_EventScript_NotRequestedMon)
-                }
-                else
-                {
-                    copyvar(VAR_0x8004, VAR_0x8008)
-                    copyvar(VAR_0x8005, VAR_0x800A)
-                    special (CreateInGameTradePokemon)
-                    special (DoInGameTradeScene)
-                    waitstate
-                    bufferspeciesname(STR_VAR_1, VAR_0x8009)
-                    msgbox(FortreeCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT)
-                    setflag(FLAG_FORTREE_NPC_TRADE_COMPLETED)
-                }
-            }
-        }
+        goto(FortreeCity_House1_EventScript_DeclineTrade)
     }
+    special(ChoosePartyMon)
+    waitstate
+    copyvar(VAR_0x800A, VAR_0x8004)
+    if(var(VAR_0x8004) == PARTY_NOTHING_CHOSEN)
+    {
+        goto(FortreeCity_House1_EventScript_DeclineTrade)
+    }
+    copyvar(VAR_0x8005, VAR_0x800A)
+    specialvar(VAR_RESULT, GetTradeSpecies)
+    copyvar(VAR_0x800B, VAR_RESULT)
+    goto_if_ne(VAR_RESULT, VAR_0x8009, FortreeCity_House1_EventScript_NotRequestedMon)
+    copyvar(VAR_0x8004, VAR_0x8008)
+    copyvar(VAR_0x8005, VAR_0x800A)
+    special(CreateInGameTradePokemon)
+    special(DoInGameTradeScene)
+    waitstate
+    bufferspeciesname(STR_VAR_1, REQUESTED_MON)
+    bufferspeciesname(STR_VAR_2, OFFERED_MON)
+    msgbox(FortreeCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT)
+    setflag(FLAG_FORTREE_NPC_TRADE_COMPLETED)
     release
     end
 }
 
-script FortreeCity_House1_EventScript_BufferTradeData
+
+script FortreeCity_House1_EventScript_TradeCompleted
 {
-    setvar(VAR_0x8008, REF_TRADE)
-    copyvar(VAR_0x8004, VAR_0x8008)
-    specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
-    copyvar(VAR_0x8009, VAR_RESULT)
-    return
+    msgbox(FortreeCity_House1_Text_GoingToMakeVolbeatStrong, MSGBOX_DEFAULT)
+    release
+    end
 }
 
 script FortreeCity_House1_EventScript_DeclineTrade
 {
     msgbox(FortreeCity_House1_Text_YouWontTradeMe, MSGBOX_DEFAULT)
 #ifdef TRADE_PORTRAITS
-    // Check if request mon has been seen. If not, set the "seen" flag for it in the dex
+    call(FortreeCity_House1_EventScript_TryAddRequestToPokedex)
+#endif
+    release
+    end
+}
+
+script FortreeCity_House1_EventScript_NotRequestedMon
+{
+    bufferspeciesname(STR_VAR_1, VAR_0x8009)
+    msgbox(FortreeCity_House1_Text_ThisIsntAMon, MSGBOX_DEFAULT)
+#ifdef TRADE_PORTRAITS
+    call(FortreeCity_House1_EventScript_TryAddRequestToPokedex)
+#endif
+    release
+    end
+}
+
+script FortreeCity_House1_EventScript_TryAddRequestToPokedex
+{
     setvar(VAR_0x8004, REQUESTED_MON)
     specialvar(VAR_RESULT, GetSeenPokedexFlag)
     if(!(var(VAR_RESULT)))
@@ -87,14 +91,6 @@ script FortreeCity_House1_EventScript_DeclineTrade
         special(SetSeenPokedexFlag)
         hidemonpic
     }
-#endif
-    return
-}
-
-script FortreeCity_House1_EventScript_NotRequestedMon
-{
-    bufferspeciesname(STR_VAR_1, VAR_0x8009)
-    msgbox(FortreeCity_House1_Text_ThisIsntAMon, MSGBOX_DEFAULT)
     return
 }
 
