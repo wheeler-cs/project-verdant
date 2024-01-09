@@ -75,7 +75,7 @@ script FortreeCity_House1_EventScript_DeclineTrade
     msgbox(FortreeCity_House1_Text_YouWontTradeMe, MSGBOX_DEFAULT)
 #ifdef TRADE_PORTRAITS
     // Check if request mon has been seen. If not, set the "seen" flag for it in the dex
-    setvar(VAR_0x8004, SPECIES_VOLBEAT)
+    setvar(VAR_0x8004, REQUESTED_MON)
     specialvar(VAR_RESULT, GetSeenPokedexFlag)
     if(!(var(VAR_RESULT)))
     {
