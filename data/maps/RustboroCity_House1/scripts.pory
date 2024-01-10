@@ -95,6 +95,7 @@ script RustboroCity_House1_EventScript_TryAddRequestToPokedex
 script RustboroCity_House1_EventScript_Hiker
 {
     msgbox(RustboroCity_House1_Text_AllSortsOfPlaces, MSGBOX_NPC)
+    end
 }
 
 text RustboroCity_House1_Text_IllTradeIfYouWant

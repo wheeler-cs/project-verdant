@@ -1,0 +1,160 @@
+const REF_TRADE = INGAME_TRADE_HORSEA
+const REQUESTED_MON = SPECIES_BAGON
+const OFFERED_MON = SPECIES_HORSEA
+
+raw `
+PacifidlogTown_House3_MapScripts::
+	.byte 0
+`
+
+script PacifidlogTown_House3_EventScript_Trader
+{
+    lock
+    faceplayer
+    // Check if trade has already been completed
+    if (flag(FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED))
+    {
+        goto(PacifidlogTown_House3_EventScript_TradeCompleted)
+    }
+    // Buffer trade data
+    setvar(VAR_0x8008, REF_TRADE)
+    setvar(VAR_0x8004, REF_TRADE)
+    specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+    copyvar(VAR_0x8009, VAR_RESULT)
+    // Ask player if they want to trade
+	bufferspeciesname(STR_VAR_1, REQUESTED_MON)
+	bufferspeciesname(STR_VAR_2, OFFERED_MON)
+    msgbox(PacifidlogTown_House3_Text_WillingToTradeIt, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) // Player declined to trade
+    {
+        goto(PacifidlogTown_House3_EventScript_DeclineTrade)
+    }
+    // Have player select a party member for trade
+    special(ChoosePartyMon)
+    waitstate
+    copyvar(VAR_0x800A, VAR_0x8004)
+    if(var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) // Nothing was chosen
+    {
+        goto(PacifidlogTown_House3_EventScript_DeclineTrade)
+    }
+    // Check player selection against requested mon
+    copyvar(VAR_0x8005, VAR_0x800A)
+    specialvar(VAR_RESULT, GetTradeSpecies)
+    copyvar(VAR_0x800B, VAR_RESULT)
+    goto_if_ne(VAR_RESULT, VAR_0x8009, PacifidlogTown_House3_EventScript_NotRequestedMon) // Selection didn't match request
+    // Setup and do trade
+    copyvar(VAR_0x8004, VAR_0x8008)
+    copyvar(VAR_0x8005, VAR_0x800A)
+    special(CreateInGameTradePokemon)
+    special(DoInGameTradeScene)
+    waitstate
+    // Buffer species names for NPC text
+    bufferspeciesname(STR_VAR_1, REQUESTED_MON)
+    bufferspeciesname(STR_VAR_2, OFFERED_MON)
+    msgbox(PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou, MSGBOX_DEFAULT)
+    // Indicate trade is complete and exit script
+    setflag(FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED)
+    release
+    end
+}
+
+script PacifidlogTown_House3_EventScript_TradeCompleted
+{
+    msgbox(PacifidlogTown_House3_Text_NotDesperateOrAnything, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script PacifidlogTown_House3_EventScript_DeclineTrade
+{
+	msgbox(PacifidlogTown_House3_Text_NotDesperateOrAnything, MSGBOX_DEFAULT)
+#ifdef TRADE_PORTRAITS
+	call(PacifidlogTown_House3_EventScript_TryAddRequestToPokedex)
+#endif
+	release
+	end
+}
+
+script PacifidlogTown_House3_EventScript_NotRequestedMon
+{
+	bufferspeciesname(STR_VAR_1, REQUESTED_MON)
+	msgbox(PacifidlogTown_House3_Text_WontAcceptAnyLessThanRealMon, MSGBOX_DEFAULT)
+#ifdef TRADE_PORTRAITS
+	call(PacifidlogTown_House3_EventScript_TryAddRequestToPokedex)
+#endif
+	release
+	end
+}
+
+script PacifidlogTown_House3_EventScript_TryAddRequestToPokedex
+{
+    // Check if reqeusted mon has been seen. If not, set the "seen" flag for it in the dex
+    setvar(VAR_0x8004, REQUESTED_MON)
+    specialvar(VAR_RESULT, GetSeenPokedexFlag)
+    if(!(var(VAR_RESULT)))
+    {
+        msgbox(format("Maybe as an incentive I can show you what you're looking for."), MSGBOX_DEFAULT)
+        // Show requested mon's portrait to player
+        showmonpic(REQUESTED_MON, 10, 3)
+        bufferspeciesname(STR_VAR_1, REQUESTED_MON)
+        msgbox(format("This is {STR_VAR_1}. Pretty cool, huh?"), MSGBOX_DEFAULT)
+        special(SetSeenPokedexFlag)
+        hidemonpic
+    }
+    return
+}
+
+script PacifidlogTown_House3_EventScript_Girl
+{
+	msgbox(PacifidlogTown_House3_Text_IsThatAPokedex, MSGBOX_NPC)
+	end
+}
+
+text PacifidlogTown_House3_Text_WillingToTradeIt
+{
+	"Check out this {STR_VAR_2}!\p"
+	"It's the {STR_VAR_2} that I caught\n"
+	"yesterday to celebrate my birthday!\p"
+	"Oh, I can see that you want it!\n"
+	"After all, it's priceless!\p"
+	"I'll tell you what. I might be willing\n"
+	"to trade it for a {STR_VAR_1}."
+}
+
+text PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou
+{
+	"Oh, so this is a {STR_VAR_1}?\p"
+	"It's sort of like a {STR_VAR_2},\n"
+	"and yet it's subtly different.\p"
+	"Thank you!"
+}
+
+text PacifidlogTown_House3_Text_WontAcceptAnyLessThanRealMon
+{
+	"No, no, no! I won't accept any\n"
+	"less than a real {STR_VAR_1}!"
+}
+
+text PacifidlogTown_House3_Text_NotDesperateOrAnything
+{
+	"Oh, so you're not going to go through\n"
+	"with this?\p"
+	"That's cool. I'm not desperate to make\n"
+	"a trade or anything."
+}
+
+text PacifidlogTown_House3_Text_ReallyWantedToGetBagon
+{
+	"I know I could go looking for one\n"
+	"on my own, but…\p"
+	"But I really wanted to get a BAGON\n"
+	"that another TRAINER caught…"
+}
+
+text PacifidlogTown_House3_Text_IsThatAPokedex
+{
+	"Is that a POKéDEX?\p"
+	"Did you get to meet a lot of different\n"
+	"POKéMON?\p"
+	"I wish I was like you."
+}

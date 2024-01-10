@@ -1,4 +1,4 @@
-# Current Project Version: 2.4.4 #
+# Current Project Version: 2.4.5 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -94,7 +94,7 @@
 - [~] Portraits for In-Game Trades
   - [X] Rustboro
   - [X] Fortree
-  - [ ] Pacifidlog
+  - [X] Pacifidlog
   - [ ] Battle Frontier
 - [ ] Type Reveal for Hidden Power
 
