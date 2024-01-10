@@ -39,7 +39,7 @@ endif
 TITLE		:= PKM VERDANT
 GAME_CODE   := VRDT
 MAKER_CODE  := AW
-REVISION    := 2.4.2
+REVISION    := 2.4.4
 MODERN      ?= 0
 
 ifeq (modern,$(MAKECMDGOALS))

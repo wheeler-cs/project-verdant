@@ -1,4 +1,4 @@
-# Current Project Version: 2.4.2 #
+# Current Project Version: 2.4.4 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -91,7 +91,11 @@
 ## Version 3 - Improved Vanilla ##
 #### Changes that keep the spirit of the base game. ####
 - [ ] Evolution Stone Shop
-- [ ] Portraits for In-Game Trades
+- [~] Portraits for In-Game Trades
+  - [X] Rustboro
+  - [X] Fortree
+  - [ ] Pacifidlog
+  - [ ] Battle Frontier
 - [ ] Type Reveal for Hidden Power
 
 
