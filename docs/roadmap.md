@@ -1,4 +1,4 @@
-# Current Project Version: 2.4.5 #
+# Current Project Version: 3.0.0 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -90,12 +90,14 @@
 
 ## Version 3 - Improved Vanilla ##
 #### Changes that keep the spirit of the base game. ####
+### 3.0 - ###
+- [X] In-Game Trade Portraits `TRADE_PORTRAITS`
+  - Applies to all four trades originally in the game.
+  - If the player has never encountered the requested Pokémon, then a one-time text prompt shows what's been requested.
+  - The Pokémon is also marked as "seen" in the player's Pokédex for future reference.
+  - Scripts for eachof the maps the trades take place on have been converted to Poryscript for easier modification.
+
 - [ ] Evolution Stone Shop
-- [~] Portraits for In-Game Trades
-  - [X] Rustboro
-  - [X] Fortree
-  - [X] Pacifidlog
-  - [ ] Battle Frontier
 - [ ] Type Reveal for Hidden Power
 
 
