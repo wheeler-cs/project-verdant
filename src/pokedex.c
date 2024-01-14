@@ -4256,8 +4256,10 @@ u16 GetPokedexHeightWeight(u16 dexNum, u8 data)
 
 #ifdef TRADE_PORTRAITS
 s8 GetSeenPokedexFlag(void)
-{
-    return GetSetPokedexFlag (gSpecialVar_0x8004, FLAG_GET_SEEN);
+{   
+    // NOTE: I'm not sure if FLAG_GET_SEEN and FLAG_GET_CAUGHT are mutually exclusive or not, so I'm making sure
+    // neither of them are set before returning false. This is just a fail safe and may need ot change in the future.
+    return (GetSetPokedexFlag (gSpecialVar_0x8004, FLAG_GET_SEEN) || GetSetPokedexFlag (gSpecialVar_0x8004, FLAG_GET_CAUGHT));
 }
 
 void SetSeenPokedexFlag(void)
