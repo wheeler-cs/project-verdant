@@ -1,4 +1,4 @@
-# Current Project Version: 3.0.0 #
+# Current Project Version: 3.0.2 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -96,6 +96,10 @@
   - If the player has never encountered the requested Pokémon, then a one-time text prompt shows what's been requested.
   - The Pokémon is also marked as "seen" in the player's Pokédex for future reference.
   - Scripts for eachof the maps the trades take place on have been converted to Poryscript for easier modification.
+
+- [X] Custom Shiny Value `INCREASED_SHINY_ODDS`
+  - Added a preprocessor macro that allows for a custom shiny value to be set by the developer.
+  - Increased the default odds using this macro to match gen VI (1/4096).
 
 - [ ] Evolution Stone Shop
 - [ ] Type Reveal for Hidden Power

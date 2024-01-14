@@ -136,6 +136,9 @@
     // Show portraits for in-game trades
     #define TRADE_PORTRAITS
 
+    // Change the rarity of shinies
+    #define INCREASED_SHINY_ODDS
+
 #endif  // End Project Verdant
 
 

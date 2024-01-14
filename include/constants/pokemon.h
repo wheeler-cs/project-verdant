@@ -91,7 +91,11 @@
 #define MAX_STAT_STAGE    12
 
 // Shiny odds
-#define SHINY_ODDS 8 // Actual probability is SHINY_ODDS/65536
+#ifdef INCREASED_SHINY_ODDS
+#define SHINY_ODDS 16 // Shiny odds of ~1/4096
+#else
+#define SHINY_ODDS 8 // Shiny odds of 1/8192
+#endif
 
 // Ribbon IDs used by TV and Pokénav
 #define CHAMPION_RIBBON       0
