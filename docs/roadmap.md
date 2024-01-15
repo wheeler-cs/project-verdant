@@ -132,23 +132,15 @@
 - [ ] Wild Boss Encounters
 
 
-## Version 6 - Dex Completion* ##
+## Dex Completion ##
 #### Allowing completion of the National Dex without trading. ####
-- [ ] Hoenn Dex
+Each of the region dexes will be added over the course of the entire project, with no specific version set for any one
+of them to be complete by.
 - [ ] Kanto Dex
-  - [ ] 001 - 025
-  - [ ] 026 - 050
-  - [ ] 051 - 075
-  - [ ] 076 - 100
-  - [ ] 101 - 125
-  - [ ] 126 - 151
 - [ ] Johto Dex
-  - [ ] 152 - 175
-  - [ ] 176 - 200
-  - [ ] 201 - 225
-  - [ ] 226 - 251
+- [ ] Hoenn Dex
 
-### * New areas will be added as needed ###
+Refer to [`dex_completion.md`](./dex_completion.md) for a checklist of what is missing and what has been implemented.
 
 
 ## Backlog ##
