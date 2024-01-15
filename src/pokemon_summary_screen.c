@@ -4041,11 +4041,29 @@ static void SetMonTypeIcons(void)
 static void SetMoveTypeIcons(void)
 {
     u8 i;
+#ifdef REVEAL_HIDDEN_POWER
+    u8 hidden_power_type;
+#endif
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
+#ifdef REVEAL_HIDDEN_POWER
+        if(summary->moves[i] != MOVE_NONE)
+        {
+            if(summary->moves[i] == MOVE_HIDDEN_POWER)
+            {
+                hidden_power_type = GetHiddenPowerType(&sMonSummaryScreen->currentMon);
+               SetTypeSpritePosAndPal(hidden_power_type & 0x3F, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+            }
+            else
+            {
+                SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+            }
+        }
+#else
         if (summary->moves[i] != MOVE_NONE)
             SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+#endif
         else
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);
     }

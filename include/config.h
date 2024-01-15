@@ -139,6 +139,9 @@
     // Change the rarity of shinies
     #define INCREASED_SHINY_ODDS
 
+    // Reveal type of Hidden Power
+    #define REVEAL_HIDDEN_POWER
+
 #endif  // End Project Verdant
 
 

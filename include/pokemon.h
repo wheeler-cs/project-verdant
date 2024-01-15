@@ -577,5 +577,8 @@ u16 GetDefIV (void);
 u16 GetSpeedIV (void);
 u16 GetSpAtkIV (void);
 u16 GetSpDefIV (void);
+#ifdef REVEAL_HIDDEN_POWER
+u8 GetHiddenPowerType(struct Pokemon *mon);
+#endif
 
 #endif // GUARD_POKEMON_H

@@ -1,4 +1,4 @@
-# Current Project Version: 3.1.0 #
+# Current Project Version: 3.2.0 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -110,13 +110,19 @@
   - Changed the price of all stones to be 3,000 instead of 2,100 to make more even prices.
   - Fixed an odd quirk of gen 3 where moon stones couldn't be bought or sold.
 
-- [ ] Type Reveal for Hidden Power
+### 3.2 - Reveal Hidden Power ###
+- [X] Type Reveal for Hidden Power `REVEAL_HIDDEN_POWER`
+  - The type of the move Hidden Power is revealed in both the summary screen and the move selection screen in battle.
+  - Created a generic function `GetHiddenPowerType` within the code that automaically "calculates" the type of a
+    Pokemon's Hidden Power so it can be used elsewhere.
+  - The functionality of the move itself remains unchanged.
 
 
 ## Version 4 - Feature Porting ##
 #### Porting of mechanics and items from other generations. ####
 - [ ] Generation II Pokeballs
 - [ ] Generation IV Pokeballs
+- [ ] Generation VI Shiny Charm
 
 
 ## Version 5 - New Content ##
@@ -147,4 +153,6 @@
 
 ## Backlog ##
 #### Undetermined time for implementation ####
+- [ ] Evolution Held Items in Evolution Stone Shop
+- [ ] Evolution Stone Taking Place of Trade Evolutions
 - [ ] Date & Time Support
