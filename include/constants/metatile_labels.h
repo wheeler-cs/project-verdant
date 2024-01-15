@@ -716,11 +716,12 @@
 #define METATILE_SecretBase_YellowBrick_Top             0x226
 
 // gTileset_Shop
-#define METATILE_Shop_Door_Elevator   0x285
-#define METATILE_Shop_Laptop1_Flash   0x258
-#define METATILE_Shop_Laptop1_Normal  0x29D
-#define METATILE_Shop_Laptop2_Flash   0x260
-#define METATILE_Shop_Laptop2_Normal  0x2A5
+#define METATILE_Shop_Door_Elevator                         0x285
+#define METATILE_Shop_LILYCOVE_DEPT_CARPET_TILE_TRANSITION  0x319
+#define METATILE_Shop_Laptop1_Flash                         0x258
+#define METATILE_Shop_Laptop1_Normal                        0x29D
+#define METATILE_Shop_Laptop2_Flash                         0x260
+#define METATILE_Shop_Laptop2_Normal                        0x2A5
 
 // gTileset_Slateport
 #define METATILE_Slateport_Door             0x2DC

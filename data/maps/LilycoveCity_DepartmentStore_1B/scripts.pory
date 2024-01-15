@@ -1,0 +1,97 @@
+const NPC_SKITTY = 1
+const NPC_SKITTY_OWNER = 2
+const NPC_CONSULTATION_CLERK = 3
+const NPC_COUNTER_CLERK = 4
+const NPC_CASHIER_CLERK = 5
+const NPC_INDECISIVE_SAILOR = 6
+
+raw`
+LilycoveCity_DepartmentStore_1B_MapScripts::
+	.byte 0
+`
+
+script LilycoveCity_DepartmentStore_1B_EventScript_Skitty
+{
+    lock
+    faceplayer
+    playmoncry(SPECIES_SKITTY, CRY_MODE_ENCOUNTER)
+    msgbox(format("SKITTY: Myah myah!"), MSGBOX_NPC)
+    applymovement(NPC_SKITTY, LilycoveCity_DepartmentStore_1B_Movement_FaceRight)
+    waitmovement(0)
+    release
+    end
+}
+
+script LilycoveCity_DepartmentStore_1B_EventScript_SkittyOwner
+{
+    lock
+    faceplayer
+    msgbox(format("I've had SKITTY since it was young.\nNow I think it's time I evolve it!"), MSGBOX_DEFAULT)
+    applymovement(NPC_SKITTY_OWNER, LilycoveCity_DepartmentStore_1B_Movement_FaceOriginal)
+    waitmovement(0)
+    release
+    end
+}
+
+script LilycoveCity_DepartmentStore_1B_EventScript_ConsultationClerk
+{
+    lock
+    faceplayer
+    msgbox(format("Making sure a POKéMON is ready to evolve is important, because once a POKéMON evolves it can't go back."), MSGBOX_DEFAULT)
+    applymovement(NPC_CONSULTATION_CLERK, LilycoveCity_DepartmentStore_1B_Movement_FaceLeft)
+    waitmovement(0)
+    release
+    end
+}
+
+script LilycoveCity_DepartmentStore_1B_EventScript_CounterClerk
+{
+    lock
+    msgbox(format("We sell all sorts of evolution items for POKéMON!"), MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script LilycoveCity_DepartmentStore_1B_EventScript_StoneShopClerk
+{
+    lock
+    message(gText_HowMayIServeYou)
+    waitmessage
+    pokemart(EvolutionShop)
+    release
+    end
+}
+
+script LilycoveCity_DepartmentStore_1B_EventScript_IndecisiveSailor
+{
+    lock
+    faceplayer
+    msgbox(format("I can't decide if I want a THUNDER STONE or a WATER STONE for my EEVEE…\lOr maybe even a FIRE STONE.\pGaah! Such a hard decision!"), MSGBOX_DEFAULT)
+    release
+    end
+}
+
+mart EvolutionShop
+{
+    ITEM_SUN_STONE
+    ITEM_MOON_STONE
+    ITEM_FIRE_STONE
+    ITEM_THUNDER_STONE
+    ITEM_WATER_STONE
+    ITEM_LEAF_STONE
+}
+
+movement LilycoveCity_DepartmentStore_1B_Movement_FaceLeft
+{
+    face_left
+}
+
+movement LilycoveCity_DepartmentStore_1B_Movement_FaceRight
+{
+    face_right
+}
+
+movement LilycoveCity_DepartmentStore_1B_Movement_FaceOriginal
+{
+    face_original_direction
+}

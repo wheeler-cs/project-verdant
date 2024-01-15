@@ -1,4 +1,4 @@
-# Current Project Version: 3.0.2 #
+# Current Project Version: 3.1.0 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -90,18 +90,26 @@
 
 ## Version 3 - Improved Vanilla ##
 #### Changes that keep the spirit of the base game. ####
-### 3.0 - ###
+### 3.0 - In-Game Trade Portraits ###
 - [X] In-Game Trade Portraits `TRADE_PORTRAITS`
   - Applies to all four trades originally in the game.
   - If the player has never encountered the requested Pokémon, then a one-time text prompt shows what's been requested.
   - The Pokémon is also marked as "seen" in the player's Pokédex for future reference.
   - Scripts for eachof the maps the trades take place on have been converted to Poryscript for easier modification.
 
+#### 3.0.2 - Modifiable Shiny Odds ####
 - [X] Custom Shiny Value `INCREASED_SHINY_ODDS`
   - Added a preprocessor macro that allows for a custom shiny value to be set by the developer.
   - Increased the default odds using this macro to match gen VI (1/4096).
 
-- [ ] Evolution Stone Shop
+### 3.1 - Evolution Stone Shop ###
+- [X] Evolution Stone Shop
+  - No new `#define` macro because it is the creation of a new map, which doesn't use macros in a normal way.
+  - Added a shop where evolution stones can be bought.
+  - The shop is located in Lilycove City Department Store on a newly-created floor.
+  - Changed the price of all stones to be 3,000 instead of 2,100 to make more even prices.
+  - Fixed an odd quirk of gen 3 where moon stones couldn't be bought or sold.
+
 - [ ] Type Reveal for Hidden Power
 
 
