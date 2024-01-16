@@ -169,6 +169,130 @@ const struct Item gItems[] =
         .secondaryId = ITEM_PREMIER_BALL - FIRST_BALL,
     },
 
+    [ITEM_DUSK_BALL] =
+    {
+        .name = _("DUSK BALL"),
+        .itemId = ITEM_DUSK_BALL,
+        .price = 1000,
+        .description = sDuskBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_B_USE_OTHER,
+        .fieldUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = ITEM_DUSK_BALL - FIRST_BALL,
+    },
+
+    [ITEM_HEAL_BALL] =
+    {
+        .name = _("HEAL BALL"),
+        .itemId = ITEM_HEAL_BALL,
+        .price = 300,
+        .description = sHealBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_B_USE_OTHER,
+        .fieldUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = ITEM_HEAL_BALL - FIRST_BALL,
+    },
+
+    [ITEM_QUICK_BALL] =
+    {
+        .name = _("QUICK BALL"),
+        .itemId = ITEM_QUICK_BALL,
+        .price = 1000,
+        .description = sQuickBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_B_USE_OTHER,
+        .fieldUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = ITEM_QUICK_BALL - FIRST_BALL,
+    },
+
+    [ITEM_CHERISH_BALL] =
+    {
+        .name = _("CHERISH BALL"),
+        .itemId = ITEM_CHERISH_BALL,
+        .price = 0,
+        .description = sCherishBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_B_USE_OTHER,
+        .fieldUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = ITEM_CHERISH_BALL - FIRST_BALL,
+    },
+
+    [ITEM_FAST_BALL] =
+    {
+        .name = _("FAST BALL"),
+        .itemId = ITEM_FAST_BALL,
+        .price = 300,
+        .description = sDummyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LEVEL_BALL] =
+    {
+        .name = _("LEVEL BALL"),
+        .itemId = ITEM_LEVEL_BALL,
+        .price = 300,
+        .description = sDummyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LURE_BALL] =
+    {
+        .name = _("LURE BALL"),
+        .itemId = ITEM_LURE_BALL,
+        .price = 300,
+        .description = sDummyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_HEAVY_BALL] =
+    {
+        .name = _("HEAVY BALL"),
+        .itemId = ITEM_HEAVY_BALL,
+        .price = 300,
+        .description = sDummyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LOVE_BALL] =
+    {
+        .name = _("LOVE BALL"),
+        .itemId = ITEM_LOVE_BALL,
+        .price = 300,
+        .description = sDummyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_FRIEND_BALL] =
+    {
+        .name = _("FRIEND BALL"),
+        .itemId = ITEM_FRIEND_BALL,
+        .price = 300,
+        .description = sDummyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_MOON_BALL] =
+    {
+        .name = _("MOON BALL"),
+        .itemId = ITEM_MOON_BALL,
+        .price = 300,
+        .description = sDummyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
 // Medicine
 
     [ITEM_POTION] =
@@ -678,128 +802,6 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
-
-    [ITEM_034] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_035] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_036] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_037] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_038] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_039] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_03A] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_03B] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_03C] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_03D] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_03E] =
-    {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
-        .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
 // Vitamins
 
     [ITEM_HP_UP] =

@@ -55,18 +55,6 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_BLUE_SHARD] = {gItemIcon_Shard, gItemIconPalette_BlueShard},
     [ITEM_YELLOW_SHARD] = {gItemIcon_Shard, gItemIconPalette_YellowShard},
     [ITEM_GREEN_SHARD] = {gItemIcon_Shard, gItemIconPalette_GreenShard},
-    // ????????
-    [ITEM_034] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_035] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_036] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_037] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_038] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_039] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_03A] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_03B] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_03C] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_03D] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
-    [ITEM_03E] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     // Vitamins
     [ITEM_HP_UP] = {gItemIcon_HPUp, gItemIconPalette_HPUp},
     [ITEM_PROTEIN] = {gItemIcon_Vitamin, gItemIconPalette_Protein},
