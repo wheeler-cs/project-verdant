@@ -4,11 +4,13 @@
 #define ITEM_NONE 0
 
 // Balls
+// Gen I
 #define ITEM_MASTER_BALL   1
 #define ITEM_ULTRA_BALL    2
 #define ITEM_GREAT_BALL    3
 #define ITEM_POKE_BALL     4
 #define ITEM_SAFARI_BALL   5
+// Gen III
 #define ITEM_NET_BALL      6
 #define ITEM_DIVE_BALL     7
 #define ITEM_NEST_BALL     8
@@ -16,12 +18,25 @@
 #define ITEM_TIMER_BALL   10
 #define ITEM_LUXURY_BALL  11
 #define ITEM_PREMIER_BALL 12
+// Gen IV
+#define ITEM_DUSK_BALL    13 // TODO
+#define ITEM_HEAL_BALL    14 // TODO
+#define ITEM_QUICK_BALL   15 // TODO
+#define ITEM_CHERISH_BALL 16 // TODO
+// Gen II
+#define ITEM_FAST_BALL    17 // TODO
+#define ITEM_LEVEL_BALL   18 // TODO
+#define ITEM_LURE_BALL    19 // TODO
+#define ITEM_HEAVY_BALL   20 // TODO
+#define ITEM_LOVE_BALL    21 // TODO
+#define ITEM_FRIEND_BALL  22 // TODO
+#define ITEM_MOON_BALL    23 // TODO
 
 // Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient
 //       Several places expect the ball IDs to be first and contiguous (e.g. gBattlescriptsForBallThrow and MON_DATA_POKEBALL)
 //       If adding new balls, it's easiest to insert them after the last ball and increment the below IDs (and removing ITEM_034 for example)
 #define FIRST_BALL ITEM_MASTER_BALL
-#define LAST_BALL  ITEM_PREMIER_BALL
+#define LAST_BALL  ITEM_MOON_BALL // 23
 
 // Pokémon Items
 #define ITEM_POTION        (LAST_BALL + 1)
@@ -63,21 +78,6 @@
 #define ITEM_BLUE_SHARD    (LAST_BALL + 37)
 #define ITEM_YELLOW_SHARD  (LAST_BALL + 38)
 #define ITEM_GREEN_SHARD   (LAST_BALL + 39)
-#define ITEM_BLOCK_01_END ITEM_GREEN_SHARD
-// === Begin Free Block of Item IDs
-#define ITEM_034 (ITEM_BLOCK_01_END + 1)
-#define ITEM_035 (ITEM_BLOCK_01_END + 2)
-#define ITEM_036 (ITEM_BLOCK_01_END + 3)
-#define ITEM_037 (ITEM_BLOCK_01_END + 4)
-#define ITEM_038 (ITEM_BLOCK_01_END + 5)
-#define ITEM_039 (ITEM_BLOCK_01_END + 6)
-#define ITEM_03A (ITEM_BLOCK_01_END + 7)
-#define ITEM_03B (ITEM_BLOCK_01_END + 8)
-#define ITEM_03C (ITEM_BLOCK_01_END + 9)
-#define ITEM_03D (ITEM_BLOCK_01_END + 10)
-#define ITEM_03E (ITEM_BLOCK_01_END + 11)
-#define FREE_BLOCK_01_SIZE (ITEM_03E - ITEM_BLOCK_01_END)
-// === End Free Block of Item IDs
 #define ITEM_HP_UP 63
 #define ITEM_PROTEIN 64
 #define ITEM_IRON 65
