@@ -52,6 +52,9 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 
+#include "rtc.h" // Needed for interfacing w/ the RTC for Dusk Ball
+#include "wild_encounter.h" // Needed for checking if an encounter is through fishing
+
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
 #define DEFENDER_IS_PROTECTED ((gProtectStructs[gBattlerTarget].protected) && (gBattleMoves[gCurrentMove].flags & FLAG_PROTECT_AFFECTED))
@@ -9842,6 +9845,8 @@ static void Cmd_removelightscreenreflect(void)
 static void Cmd_handleballthrow(void)
 {
     u8 ballMultiplier = 0;
+    u16 species_player, species_opponent;
+    u32 personality_player, personality_opponent;
 
     if (gBattleControllerExecFlags)
         return;
@@ -9875,45 +9880,102 @@ static void Cmd_handleballthrow(void)
         {
             switch (gLastUsedItem)
             {
-            case ITEM_NET_BALL:
-                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_WATER) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_BUG))
-                    ballMultiplier = 30;
-                else
-                    ballMultiplier = 10;
-                break;
-            case ITEM_DIVE_BALL:
-                if (GetCurrentMapType() == MAP_TYPE_UNDERWATER)
-                    ballMultiplier = 35;
-                else
-                    ballMultiplier = 10;
-                break;
-            case ITEM_NEST_BALL:
-                if (gBattleMons[gBattlerTarget].level < 40)
-                {
-                    ballMultiplier = 40 - gBattleMons[gBattlerTarget].level;
-                    if (ballMultiplier <= 9)
+                case ITEM_NET_BALL:
+                    if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_WATER) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_BUG))
+                        ballMultiplier = 30;
+                    else
                         ballMultiplier = 10;
-                }
-                else
-                {
-                    ballMultiplier = 10;
-                }
-                break;
-            case ITEM_REPEAT_BALL:
-                if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), FLAG_GET_CAUGHT))
-                    ballMultiplier = 30;
-                else
-                    ballMultiplier = 10;
-                break;
-            case ITEM_TIMER_BALL:
-                ballMultiplier = gBattleResults.battleTurnCounter + 10;
-                if (ballMultiplier > 40)
-                    ballMultiplier = 40;
-                break;
-            case ITEM_LUXURY_BALL:
-            case ITEM_PREMIER_BALL:
-                ballMultiplier = 10;
-                break;
+                    break;
+                case ITEM_DIVE_BALL:
+                    if (GetCurrentMapType() == MAP_TYPE_UNDERWATER)
+                        ballMultiplier = 35;
+                    else
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_NEST_BALL:
+                    if (gBattleMons[gBattlerTarget].level < 40)
+                    {
+                        ballMultiplier = 40 - gBattleMons[gBattlerTarget].level;
+                        if (ballMultiplier <= 9)
+                            ballMultiplier = 10;
+                    }
+                    else
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_REPEAT_BALL:
+                    if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), FLAG_GET_CAUGHT))
+                        ballMultiplier = 30;
+                    else
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_TIMER_BALL:
+                    ballMultiplier = gBattleResults.battleTurnCounter + 10;
+                    if (ballMultiplier > 40)
+                        ballMultiplier = 40;
+                    break;
+                case ITEM_DUSK_BALL:
+                    RtcCalcLocalTime();
+                    // NOTE: Instead of dividing day and night into 0-12 and 12-24, put night as running from 8pm to 6am
+                    if((GetCurrentMapType() == MAP_TYPE_UNDERGROUND) || (gLocalTime.hours >= 20) || (gLocalTime.hours < 6))
+                        ballMultiplier = 30;
+                    else
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_QUICK_BALL:
+                    if(gBattleResults.battleTurnCounter == 0)
+                        ballMultiplier = 50;
+                    else
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_FAST_BALL:
+                    if(gSpeciesInfo[gBattleMons[gBattlerTarget].species].baseSpeed >= 100)
+                        ballMultiplier = 40;
+                    else
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_LEVEL_BALL:
+                    if(gBattleMons[gActiveBattler].level <= gBattleMons[gBattlerTarget].level)
+                        ballMultiplier = 10;
+                    else if(gBattleMons[gActiveBattler].level > (gBattleMons[gBattlerTarget].level * 4))
+                        ballMultiplier = 80;
+                    else if(gBattleMons[gActiveBattler].level > (gBattleMons[gBattlerTarget].level * 2))
+                        ballMultiplier = 40;
+                    else
+                        ballMultiplier = 20;
+                    break;
+                case ITEM_LURE_BALL:
+                #ifdef CHAIN_FISHING
+                    if(gIsFishingEncounter)
+                        ballMultiplier = 40;
+                    else
+                #endif
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_LOVE_BALL:
+                    species_player = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES);
+                    personality_player = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_PERSONALITY);
+                    species_opponent = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
+                    personality_player = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
+                    if(GetGenderFromSpeciesAndPersonality(species_player, personality_player) == GetGenderFromSpeciesAndPersonality(species_opponent, personality_opponent))
+                        ballMultiplier = 80;
+                    else
+                        ballMultiplier = 10;
+                    break;
+                case ITEM_MOON_BALL:
+                    species_opponent = gBattleMons[gBattlerTarget].species;
+                    if ((species_opponent == SPECIES_NIDORINA) ||
+                        (species_opponent == SPECIES_NIDORINO) ||
+                        (species_opponent == SPECIES_CLEFAIRY) ||
+                        (species_opponent == SPECIES_JIGGLYPUFF) ||
+                        (species_opponent == SPECIES_SKITTY))
+                    {
+                        ballMultiplier = 40;
+                    }
+                    else
+                        ballMultiplier = 10;
+                    break;
+                default:
+                    ballMultiplier = 10; // Handles Luxury, Premier, Heal, Cherish, Heavy*, Friend
             }
         }
         else
@@ -9930,12 +9992,27 @@ static void Cmd_handleballthrow(void)
 
         if (gLastUsedItem != ITEM_SAFARI_BALL)
         {
+            u16 opponent_weight = 0;
             if (gLastUsedItem == ITEM_MASTER_BALL)
             {
                 gBattleResults.usedMasterBall = TRUE;
             }
             else
             {
+                if (gLastUsedItem == ITEM_HEAVY_BALL) // Heavy ball effects the odds, not the multiplier
+                {
+                    opponent_weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), POKEDEX_INFO_WEIGHT);
+                    if (opponent_weight < 226)
+                        odds -= 20;
+                    else if (opponent_weight < 452)
+                        odds += 0;
+                    else if (opponent_weight < 677)
+                        odds += 20;
+                    else if (opponent_weight < 903)
+                        odds += 30;
+                    else
+                        odds += 40;
+                }
                 if (gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL] < 255)
                     gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
             }

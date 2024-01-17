@@ -4245,9 +4245,9 @@ u16 GetPokedexHeightWeight(u16 dexNum, u8 data)
 {
     switch (data)
     {
-    case 0:  // height
+    case POKEDEX_INFO_HEIGHT:  // height
         return gPokedexEntries[dexNum].height;
-    case 1:  // weight
+    case POKEDEX_INFO_WEIGHT:  // weight
         return gPokedexEntries[dexNum].weight;
     default:
         return 1;

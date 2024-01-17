@@ -80,8 +80,42 @@ static const u8 sQuickBallDesc[] = _(
 static const u8 sCherishBallDesc[] = _(
     "A rare BALL used\n"
     "to commemorate\n"
-    "some event."
-);
+    "some event.");
+
+static const u8 sFastBallDesc[] = _(
+    "A BALL for\n"
+    "catching fast\n"
+    "POKéMON.");
+
+static const u8 sLevelBallDesc[] = _(
+    "A BALL for\n"
+    "low-level\n"
+    "POKéMON.");
+
+static const u8 sLureBallDesc[] = _(
+    "A BALL for\n"
+    "POKéMON hooked\n"
+    "by a rod.");
+
+static const u8 sHeavyBallDesc[] = _(
+    "A BALL for\n"
+    "catching heavy\n"
+    "POKéMON.");
+
+static const u8 sLoveBallDesc[] = _(
+    "A BALL for\n"
+    "catching the\n"
+    "opposite gender.");
+
+static const u8 sFriendBallDesc[] = _(
+    "A BALL that\n"
+    "makes POKéMON\n"
+    "friendly.");
+
+static const u8 sMoonBallDesc[] = _(
+    "A BALL for\n"
+    "MOON STONE\n"
+    "evolvers.");
 
 // Medicine
 static const u8 sPotionDesc[] = _(

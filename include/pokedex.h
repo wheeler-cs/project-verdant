@@ -18,6 +18,12 @@ enum
     FLAG_SET_CAUGHT
 };
 
+enum
+{
+    POKEDEX_INFO_HEIGHT,
+    POKEDEX_INFO_WEIGHT
+};
+
 struct PokedexEntry
 {
     /*0x00*/ u8 categoryName[12];
