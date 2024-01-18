@@ -77,7 +77,7 @@
 #define ITEM_RED_SHARD     (LAST_BALL + 36)
 #define ITEM_BLUE_SHARD    (LAST_BALL + 37)
 #define ITEM_YELLOW_SHARD  (LAST_BALL + 38)
-#define ITEM_GREEN_SHARD   (LAST_BALL + 39) // 62 0x3E
+#define ITEM_GREEN_SHARD   (LAST_BALL + 39) // 62, 0x3E
 #define ITEM_HP_UP 63
 #define ITEM_PROTEIN 64
 #define ITEM_IRON 65
@@ -284,7 +284,7 @@
 #define ITEM_0FA 250
 #define ITEM_0FB 251
 #define ITEM_0FC 252
-#define ITEM_0FD 253
+#define ITEM_DEBUGGER 253
 
 // Contest held items
 #define ITEM_RED_SCARF 254

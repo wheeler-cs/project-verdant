@@ -1,4 +1,4 @@
-# Current Project Version: 3.2.0 #
+# Current Project Version: 3.2.1 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -117,11 +117,17 @@
     Pokemon's Hidden Power so it can be used elsewhere.
   - The functionality of the move itself remains unchanged.
 
+#### 3.2.1 - Debug Item ####
+- [X] Item for Debugging Program
+  - Added an item to allow for debugging the program.
+  - Key item given to player that triggers a warp to a special map on a specific tile in Oldale Town.
+  - Obtained using the easy chat system in any mart with the phrase `RUBY` `SAPPHIRE` `EMERALD` `I CHOOSE YOU`.
+
 
 ## Version 4 - Feature Porting ##
 #### Porting of mechanics and items from other generations. ####
-- [ ] Generation II Pokeballs
-- [ ] Generation IV Pokeballs
+- [~] Generation II Pokeballs
+- [~] Generation IV Pokeballs
 - [ ] Generation VI Shiny Charm
 
 

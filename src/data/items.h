@@ -3080,14 +3080,14 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_0FD] =
+    [ITEM_DEBUGGER] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
+        .name = _("DEBUGGER"),
+        .itemId = ITEM_DEBUGGER,
         .price = 0,
         .description = sDummyDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 

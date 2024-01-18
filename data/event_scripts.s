@@ -1058,3 +1058,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/LilycoveCity_DepartmentStore_1B/scripts.inc"
+
+	.include "data/maps/DebugMap_Arrival/scripts.inc"

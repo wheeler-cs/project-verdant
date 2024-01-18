@@ -113,6 +113,7 @@ static u8 GetLastAlphabetColumn(u8);
 static void ReduceToValidWordSelectColumn(void);
 static bool8 IsSelectedWordIndexInvalid(void);
 static int DidPlayerInputMysteryGiftPhrase(void);
+static int DidPlayerInputDebuggerPhrase(void);
 static u16 DidPlayerInputABerryMasterWifePhrase(void);
 static bool8 InitEasyChatScreenControl_(void);
 static void LoadEasyChatPalettes(void);
@@ -695,6 +696,13 @@ static const u16 sMysteryGiftPhrase[NUM_QUESTIONNAIRE_WORDS] = {
     EC_WORD_TOGETHER,
     EC_WORD_WITH,
     EC_WORD_ALL,
+};
+
+static const u16 sDebuggerPhrase[NUM_QUESTIONNAIRE_WORDS] = {
+    EC_WORD_RUBY,
+    EC_WORD_SAPPHIRE,
+    EC_WORD_EMERALD,
+    EC_WORD_I_CHOOSE_YOU,
 };
 
 static const u16 sBerryMasterWifePhrases[][2] = {
@@ -2972,6 +2980,8 @@ static void SetSpecialEasyChatResult(void)
     case EASY_CHAT_TYPE_QUESTIONNAIRE:
         if (DidPlayerInputMysteryGiftPhrase())
             gSpecialVar_0x8004 = 2;
+        else if (DidPlayerInputDebuggerPhrase())
+            gSpecialVar_0x8004 = 8;
         else
             gSpecialVar_0x8004 = 0;
         break;
@@ -2988,6 +2998,11 @@ static void SetSpecialEasyChatResult(void)
 static int DidPlayerInputMysteryGiftPhrase(void)
 {
     return !IsPhraseDifferentThanPlayerInput(sMysteryGiftPhrase, ARRAY_COUNT(sMysteryGiftPhrase));
+}
+
+static int DidPlayerInputDebuggerPhrase(void)
+{
+    return !IsPhraseDifferentThanPlayerInput(sDebuggerPhrase, ARRAY_COUNT(sDebuggerPhrase));
 }
 
 static u16 DidPlayerInputABerryMasterWifePhrase(void)

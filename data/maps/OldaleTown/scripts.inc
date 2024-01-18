@@ -214,6 +214,15 @@ OldaleTown_EventScript_BlockedPath::
 	releaseall
 	end
 
+OldaleTown_EventScript_DebugWarp::
+	checkitem ITEM_DEBUGGER
+	goto_if_eq VAR_RESULT, TRUE, OldaleTown_EventScript_DoDebugWarp
+	end
+
+OldaleTown_EventScript_DoDebugWarp::
+	warp MAP_DEBUG_MAP_ARRIVAL, 0, 0
+	end
+
 OldaleTown_EventScript_NotBlockingPath::
 	msgbox OldaleTown_Text_FinishedSketchingFootprints, MSGBOX_DEFAULT
 	release

@@ -9,6 +9,7 @@ EventScript_Questionnaire::
 	specialvar VAR_0x8008, GetMartEmployeeObjectEventId
 	goto_if_eq VAR_0x8004, 1, Questionnaire_EventScript_PlayerInputMysteryEventPhrase
 	goto_if_eq VAR_0x8004, 2, Questionnaire_EventScript_PlayerInputMysteryGiftPhrase
+	goto_if_eq VAR_0x8004, 8, Questionnaire_EventScript_PlayerInputDebuggerPhrase
 	goto_if_eq VAR_RESULT, 0, Questionnaire_EventScript_Release
 	goto_if_eq VAR_RESULT, 1, Questionnaire_EventScript_ThankYou
 	end
@@ -42,6 +43,11 @@ Questionnaire_EventScript_PlayerInputMysteryGiftPhrase::
 	msgbox Questionnaire_Text_YouKnowThoseWordsGift, MSGBOX_DEFAULT
 	setflag FLAG_SYS_MYSTERY_GIFT_ENABLE
 	msgbox Questionnaire_Text_YouCanAccessMysteryGift, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Questionnaire_EventScript_PlayerInputDebuggerPhrase::
+	giveitem ITEM_DEBUGGER
 	releaseall
 	end
 

@@ -9976,6 +9976,7 @@ static void Cmd_handleballthrow(void)
                     break;
                 default:
                     ballMultiplier = 10; // Handles Luxury, Premier, Heal, Cherish, Heavy*, Friend
+                    // Heaqvy ball doesn't modify the multiplier, but rather adds or subtracts a value to the odds themselves
             }
         }
         else
@@ -9987,7 +9988,7 @@ static void Cmd_handleballthrow(void)
 
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
             odds *= 2;
-        if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
+        else if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
             odds = (odds * 15) / 10;
 
         if (gLastUsedItem != ITEM_SAFARI_BALL)
@@ -10001,17 +10002,16 @@ static void Cmd_handleballthrow(void)
             {
                 if (gLastUsedItem == ITEM_HEAVY_BALL) // Heavy ball effects the odds, not the multiplier
                 {
+                    // NOTE: These weights aren't exactly like gen II, but they are similar enough I think it won't matter a great deal
                     opponent_weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), POKEDEX_INFO_WEIGHT);
                     if (opponent_weight < 226)
                         odds -= 20;
-                    else if (opponent_weight < 452)
-                        odds += 0;
-                    else if (opponent_weight < 677)
-                        odds += 20;
-                    else if (opponent_weight < 903)
-                        odds += 30;
-                    else
+                    else if (opponent_weight >= 903)
                         odds += 40;
+                    else if (opponent_weight >= 677)
+                        odds += 30;
+                    else if (opponent_weight >= 452)
+                        odds += 20;
                 }
                 if (gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL] < 255)
                     gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
