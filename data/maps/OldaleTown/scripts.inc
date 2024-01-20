@@ -215,12 +215,15 @@ OldaleTown_EventScript_BlockedPath::
 	end
 
 OldaleTown_EventScript_DebugWarp::
+	lockall
 	checkitem ITEM_DEBUGGER
 	goto_if_eq VAR_RESULT, TRUE, OldaleTown_EventScript_DoDebugWarp
+	releaseall
 	end
 
 OldaleTown_EventScript_DoDebugWarp::
-	warp MAP_DEBUG_MAP_ARRIVAL, 0, 0
+	warp MAP_DEBUG_MAP_ARRIVAL, 11, 11
+	releaseall
 	end
 
 OldaleTown_EventScript_NotBlockingPath::

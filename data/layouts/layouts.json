@@ -4430,6 +4430,16 @@
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/DebugMap_Arrival/border.bin",
       "blockdata_filepath": "data/layouts/DebugMap_Arrival/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEBUG_MAP_MART",
+      "name": "DebugMap_Mart_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/DebugMap_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/DebugMap_Mart/map.bin"
     }
   ]
 }

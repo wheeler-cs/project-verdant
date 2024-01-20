@@ -1,0 +1,26 @@
+mapscripts DebugMap_Mart_MapScripts {}
+
+script DebugMap_Mart_PokeballClerk
+{
+    lock
+    message(gText_HowMayIServeYou)
+    waitmessage
+    pokemart(DebugMap_Mart_PokeballShop)
+    release
+    end
+}
+
+mart DebugMap_Mart_PokeballShop
+{
+    ITEM_DUSK_BALL
+    ITEM_HEAL_BALL
+    ITEM_QUICK_BALL
+    ITEM_CHERISH_BALL
+    ITEM_FAST_BALL
+    ITEM_LEVEL_BALL
+    ITEM_LURE_BALL
+    ITEM_HEAVY_BALL
+    ITEM_LOVE_BALL
+    ITEM_FRIEND_BALL
+    ITEM_MOON_BALL
+}

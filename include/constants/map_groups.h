@@ -594,6 +594,7 @@
 
 // gMapGroup_Debug
 #define MAP_DEBUG_MAP_ARRIVAL (0 | (34 << 8))
+#define MAP_DEBUG_MAP_MART    (1 | (34 << 8))
 
 #define MAP_GROUPS_COUNT 35
 

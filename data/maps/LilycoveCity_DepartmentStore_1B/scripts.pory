@@ -57,7 +57,7 @@ script LilycoveCity_DepartmentStore_1B_EventScript_StoneShopClerk
     lock
     message(gText_HowMayIServeYou)
     waitmessage
-    pokemart(EvolutionShop)
+    pokemart(LilycoveCity_DepartmentStore_1B_EvolutionShop)
     release
     end
 }
@@ -71,7 +71,7 @@ script LilycoveCity_DepartmentStore_1B_EventScript_IndecisiveSailor
     end
 }
 
-mart EvolutionShop
+mart LilycoveCity_DepartmentStore_1B_EvolutionShop
 {
     ITEM_SUN_STONE
     ITEM_MOON_STONE

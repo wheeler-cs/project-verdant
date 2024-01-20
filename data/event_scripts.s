@@ -1060,3 +1060,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/LilycoveCity_DepartmentStore_1B/scripts.inc"
 
 	.include "data/maps/DebugMap_Arrival/scripts.inc"
+
+	.include "data/maps/DebugMap_Mart/scripts.inc"

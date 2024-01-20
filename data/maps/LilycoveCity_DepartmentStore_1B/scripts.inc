@@ -73,7 +73,7 @@ LilycoveCity_DepartmentStore_1B_EventScript_StoneShopClerk::
 # 59 "data/maps/LilycoveCity_DepartmentStore_1B/scripts.pory"
 	waitmessage
 # 60 "data/maps/LilycoveCity_DepartmentStore_1B/scripts.pory"
-	pokemart EvolutionShop
+	pokemart LilycoveCity_DepartmentStore_1B_EvolutionShop
 # 61 "data/maps/LilycoveCity_DepartmentStore_1B/scripts.pory"
 	release
 	end
@@ -93,7 +93,7 @@ LilycoveCity_DepartmentStore_1B_EventScript_IndecisiveSailor::
 
 	.align 2
 # 74 "data/maps/LilycoveCity_DepartmentStore_1B/scripts.pory"
-EvolutionShop:
+LilycoveCity_DepartmentStore_1B_EvolutionShop:
 # 76 "data/maps/LilycoveCity_DepartmentStore_1B/scripts.pory"
 	.2byte ITEM_SUN_STONE
 # 77 "data/maps/LilycoveCity_DepartmentStore_1B/scripts.pory"

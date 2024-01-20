@@ -624,6 +624,7 @@
     "Route124_DivingTreasureHuntersHouse"
   ],
   "gMapGroup_Debug": [
-    "DebugMap_Arrival"
+    "DebugMap_Arrival",
+    "DebugMap_Mart"
   ]
 }
