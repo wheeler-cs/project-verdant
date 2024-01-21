@@ -155,8 +155,8 @@
       "x": 2,
       "y": 4,
       "elevation": 0,
-      "var": "VAR_OLDALE_TOWN_STATE",
-      "var_value": "0",
+      "var": "VAR_ALLOW_DEBUGGING",
+      "var_value": "1",
       "script": "OldaleTown_EventScript_DebugWarp"
     }
   ],

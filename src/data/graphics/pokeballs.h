@@ -35,3 +35,6 @@ const u32 gBallGfx_Premier[] = INCBIN_U32("graphics/balls/premier.4bpp.lz");
 const u32 gBallPal_Premier[] = INCBIN_U32("graphics/balls/premier.gbapal.lz");
 
 const u32 gOpenPokeballGfx[] = INCBIN_U32("graphics/balls/open.4bpp.lz");
+
+const u32 gBallGfx_Dusk[] = INCBIN_U32("graphics/balls/dusk.4bpp.lz");
+const u32 gBallPal_Dusk[] = INCBIN_U32("graphics/balls/dusk.gbapal.lz");

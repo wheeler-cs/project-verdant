@@ -141,17 +141,19 @@ static const struct CaptureStar sCaptureStars[] =
 #define TAG_PARTICLES_TIMERBALL   55029
 #define TAG_PARTICLES_LUXURYBALL  55030
 #define TAG_PARTICLES_PREMIERBALL 55031
-#define TAG_PARTICLES_DUSKBALL    0xD716
-#define TAG_PARTICLES_HEALBALL    0xD717
-#define TAG_PARTICLES_QUICKBALL   0xD718
-#define TAG_PARTICLES_CHERISHBALL 0xD719
-#define TAG_PARTICLES_FASTBALL    0xD71a
-#define TAG_PARTICLES_LEVELBALL   0xD71b
-#define TAG_PARTICLES_LUREBALL    0xD71c
-#define TAG_PARTICLES_HEAVYBALL   0xD71d
-#define TAG_PARTICLES_LOVEBALL    0xD71e
-#define TAG_PARTICLES_FRIENDBALL  0xD71f
-#define TAG_PARTICLES_MOONBALL    0xD720
+// NOTE: These _cannot_ continue the above particle count; it will overwrite data for the health box that appears in
+//       battle. This is why there's a gap in the values above and the ones below.
+#define TAG_PARTICLES_DUSKBALL    0xd716
+#define TAG_PARTICLES_HEALBALL    0xd717
+#define TAG_PARTICLES_QUICKBALL   0xd718
+#define TAG_PARTICLES_CHERISHBALL 0xd719
+#define TAG_PARTICLES_FASTBALL    0xd71a
+#define TAG_PARTICLES_LEVELBALL   0xd71b
+#define TAG_PARTICLES_LUREBALL    0xd71c
+#define TAG_PARTICLES_HEAVYBALL   0xd71d
+#define TAG_PARTICLES_LOVEBALL    0xd71e
+#define TAG_PARTICLES_FRIENDBALL  0xd71f
+#define TAG_PARTICLES_MOONBALL    0xd720
 
 static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COUNT] =
 {
@@ -274,17 +276,17 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_LUXURY]  = 4,
     [BALL_PREMIER] = 4,
     // TODO: Adjust the number of particles
-    [BALL_DUSK]    = 5,
-    [BALL_HEAL]    = 5,
-    [BALL_QUICK]   = 5,
-    [BALL_CHERISH] = 5,
-    [BALL_FAST]    = 5,
-    [BALL_LEVEL]   = 5,
-    [BALL_LURE]    = 5,
-    [BALL_HEAVY]   = 5,
-    [BALL_LOVE]    = 5,
-    [BALL_FRIEND]  = 5,
-    [BALL_MOON]    = 5,
+    [BALL_DUSK]    = 2,
+    [BALL_HEAL]    = 2,
+    [BALL_QUICK]   = 2,
+    [BALL_CHERISH] = 2,
+    [BALL_FAST]    = 2,
+    [BALL_LEVEL]   = 2,
+    [BALL_LURE]    = 2,
+    [BALL_HEAVY]   = 2,
+    [BALL_LOVE]    = 2,
+    [BALL_FRIEND]  = 2,
+    [BALL_MOON]    = 2,
 };
 
 static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =

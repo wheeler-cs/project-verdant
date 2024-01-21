@@ -48,6 +48,7 @@ Questionnaire_EventScript_PlayerInputMysteryGiftPhrase::
 
 Questionnaire_EventScript_PlayerInputDebuggerPhrase::
 	giveitem ITEM_DEBUGGER
+	setvar VAR_ALLOW_DEBUGGING, 1
 	releaseall
 	end
 
