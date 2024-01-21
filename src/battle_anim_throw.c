@@ -169,7 +169,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COU
     [BALL_TIMER]   = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_PARTICLES_TIMERBALL},
     [BALL_LUXURY]  = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_PARTICLES_LUXURYBALL},
     [BALL_PREMIER] = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_PARTICLES_PREMIERBALL},
-    [BALL_DUSK]    = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_PARTICLES_DUSKBALL},
+    [BALL_DUSK]    = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_DUSKBALL},
     [BALL_HEAL]    = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_PARTICLES_HEALBALL},
     [BALL_QUICK]   = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_PARTICLES_QUICKBALL},
     [BALL_CHERISH] = {gBattleAnimSpriteGfx_Particles, 0x100, TAG_PARTICLES_CHERISHBALL},
@@ -196,7 +196,7 @@ static const struct CompressedSpritePalette sBallParticlePalettes[POKEBALL_COUNT
     [BALL_TIMER]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_TIMERBALL},
     [BALL_LUXURY]  = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LUXURYBALL},
     [BALL_PREMIER] = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_PREMIERBALL},
-    [BALL_DUSK]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_DUSKBALL},
+    [BALL_DUSK]    = {gBattleAnimSpritePal_Particles2, TAG_PARTICLES_DUSKBALL},
     [BALL_HEAL]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_HEALBALL},
     [BALL_QUICK]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_QUICKBALL},
     [BALL_CHERISH] = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_CHERISHBALL},
@@ -251,6 +251,12 @@ static const union AnimCmd sAnim_UltraRepeatTimerBall[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_DuskBall[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd *const sAnims_BallParticles[] =
 {
     sAnim_RegularBall,
@@ -259,36 +265,47 @@ static const union AnimCmd *const sAnims_BallParticles[] =
     sAnim_NestBall,
     sAnim_LuxuryPremierBall,
     sAnim_UltraRepeatTimerBall,
+    sAnim_DuskBall,
 };
 
+#define PARTICLES_REGULAR            0
+#define PARTICLES_MASTER             1
+#define PARTICLES_NET_DIVE           2
+#define PARTICLES_NEST               3
+#define PARTICLES_LUXURY_PREMIER     4
+#define PARTICLES_ULTRA_REPEAT_TIMER 5
+#define PARTICLES_DUSK               6
+
+// NOTE: This is the TYPE of animation that will be played when a ball is thrown, not particle count. See the union
+// directory above sAnims_BallParticles to see what an index relates to.
 static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
 {
-    [BALL_POKE]    = 0,
-    [BALL_GREAT]   = 0,
-    [BALL_SAFARI]  = 0,
-    [BALL_ULTRA]   = 5,
-    [BALL_MASTER]  = 1,
-    [BALL_NET]     = 2,
-    [BALL_DIVE]    = 2,
-    [BALL_NEST]    = 3,
-    [BALL_REPEAT]  = 5,
-    [BALL_TIMER]   = 5,
-    [BALL_LUXURY]  = 4,
-    [BALL_PREMIER] = 4,
-    // TODO: Adjust the number of particles
-    [BALL_DUSK]    = 2,
-    [BALL_HEAL]    = 2,
+    [BALL_POKE]    = PARTICLES_REGULAR,
+    [BALL_GREAT]   = PARTICLES_REGULAR,
+    [BALL_SAFARI]  = PARTICLES_REGULAR,
+    [BALL_ULTRA]   = PARTICLES_ULTRA_REPEAT_TIMER,
+    [BALL_MASTER]  = PARTICLES_MASTER,
+    [BALL_NET]     = PARTICLES_NET_DIVE,
+    [BALL_DIVE]    = PARTICLES_NET_DIVE,
+    [BALL_NEST]    = PARTICLES_NEST,
+    [BALL_REPEAT]  = PARTICLES_ULTRA_REPEAT_TIMER,
+    [BALL_TIMER]   = PARTICLES_ULTRA_REPEAT_TIMER,
+    [BALL_LUXURY]  = PARTICLES_LUXURY_PREMIER,
+    [BALL_PREMIER] = PARTICLES_LUXURY_PREMIER,
+    [BALL_DUSK]    = PARTICLES_DUSK,
+    [BALL_HEAL]    = PARTICLES_NEST,
     [BALL_QUICK]   = 2,
     [BALL_CHERISH] = 2,
     [BALL_FAST]    = 2,
     [BALL_LEVEL]   = 2,
     [BALL_LURE]    = 2,
     [BALL_HEAVY]   = 2,
-    [BALL_LOVE]    = 2,
-    [BALL_FRIEND]  = 2,
+    [BALL_LOVE]    = PARTICLES_NEST,
+    [BALL_FRIEND]  = PARTICLES_NEST,
     [BALL_MOON]    = 2,
 };
 
+// NOTE: This is the actual animation used that calculates the position of the particles.
 static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
 {
     [BALL_POKE]    = PokeBallOpenParticleAnimation,
@@ -304,7 +321,7 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_LUXURY]  = GreatBallOpenParticleAnimation,
     [BALL_PREMIER] = PremierBallOpenParticleAnimation,
     // TODO: Give each ball custom anims
-    [BALL_DUSK]    = DiveBallOpenParticleAnimation,
+    [BALL_DUSK]    = SafariBallOpenParticleAnimation,
     [BALL_HEAL]    = DiveBallOpenParticleAnimation,
     [BALL_QUICK]   = DiveBallOpenParticleAnimation,
     [BALL_CHERISH] = DiveBallOpenParticleAnimation,
@@ -544,7 +561,7 @@ const u16 gBallOpenFadeColors[] =
     [BALL_LUXURY]  = RGB(31, 17, 10),
     [BALL_PREMIER] = RGB(31, 9, 10),
     // TODO: Change the fade colors to appropriately match the ball
-    [BALL_DUSK]    = RGB(0, 0, 0),
+    [BALL_DUSK]    = RGB(5, 1, 5),
     [BALL_HEAL]    = RGB(0, 0, 0),
     [BALL_QUICK]   = RGB(0, 0, 0),
     [BALL_CHERISH] = RGB(0, 0, 0),
