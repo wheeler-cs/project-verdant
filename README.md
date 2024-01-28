@@ -8,7 +8,7 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 The ROM can be built and verified using the following hash:
 
-**verdant.gba** _v3.2.3_ `sha1: 81d54eff51d6b2a4d08566e7f016ca5485d006ca`
+**verdant.gba** _v3.2.3_ `sha1: 07a5dd7fb5a1433fbbffdb48bc6ff6b2e7c52455`
 
 ## Current Memory Usage
 
@@ -16,7 +16,7 @@ The ROM can be built and verified using the following hash:
 |-------------------|---------------|-----------------|------------|
 |     **EWRAM**     |   249,676 B   |     256 KiB     |   95.24%   |
 |     **IWRAM**     |    30,876 B   |      32 KiB     |   94.23%   |
-|      **ROM**      |  14,550,244 B |      32 MiB     |   43.36%   |
+|      **ROM**      |  14,552,092 B |      32 MiB     |   43.37%   |
 
 
 ## See also

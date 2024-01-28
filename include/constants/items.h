@@ -19,9 +19,9 @@
 #define ITEM_LUXURY_BALL  11
 #define ITEM_PREMIER_BALL 12
 // Gen IV
-#define ITEM_DUSK_BALL    13 // TODO
-#define ITEM_HEAL_BALL    14 // TODO
-#define ITEM_QUICK_BALL   15 // TODO
+#define ITEM_DUSK_BALL    13 // TEST
+#define ITEM_HEAL_BALL    14 // TEST
+#define ITEM_QUICK_BALL   15 // TEST
 #define ITEM_CHERISH_BALL 16 // TODO
 // Gen II
 #define ITEM_FAST_BALL    17 // TODO

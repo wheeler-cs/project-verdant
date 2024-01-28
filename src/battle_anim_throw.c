@@ -548,6 +548,7 @@ static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] 
 
 const u16 gBallOpenFadeColors[] =
 {
+    // Note: These are special 15-bit RGB colors, with each color getting 5 bits
     [BALL_POKE]    = RGB(31, 22, 30),
     [BALL_GREAT]   = RGB(16, 23, 30),
     [BALL_SAFARI]  = RGB(23, 30, 20),
@@ -562,8 +563,8 @@ const u16 gBallOpenFadeColors[] =
     [BALL_PREMIER] = RGB(31, 9, 10),
     // TODO: Change the fade colors to appropriately match the ball
     [BALL_DUSK]    = RGB(5, 1, 5),
-    [BALL_HEAL]    = RGB(0, 0, 0),
-    [BALL_QUICK]   = RGB(0, 0, 0),
+    [BALL_HEAL]    = RGB(31, 19, 31),
+    [BALL_QUICK]   = RGB(16, 31, 31),
     [BALL_CHERISH] = RGB(0, 0, 0),
     [BALL_FAST]    = RGB(0, 0, 0),
     [BALL_LEVEL]   = RGB(0, 0, 0),

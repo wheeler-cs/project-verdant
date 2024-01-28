@@ -38,3 +38,9 @@ const u32 gOpenPokeballGfx[] = INCBIN_U32("graphics/balls/open.4bpp.lz");
 
 const u32 gBallGfx_Dusk[] = INCBIN_U32("graphics/balls/dusk.4bpp.lz");
 const u32 gBallPal_Dusk[] = INCBIN_U32("graphics/balls/dusk.gbapal.lz");
+
+const u32 gBallGfx_Heal[] = INCBIN_U32("graphics/balls/heal.4bpp.lz");
+const u32 gBallPal_Heal[] = INCBIN_U32("graphics/balls/heal.gbapal.lz");
+
+const u32 gBallGfx_Quick[] = INCBIN_U32("graphics/balls/quick.4bpp.lz");
+const u32 gBallPal_Quick[] = INCBIN_U32("graphics/balls/quick.gbapal.lz");

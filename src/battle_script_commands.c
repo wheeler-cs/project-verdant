@@ -9870,6 +9870,7 @@ static void Cmd_handleballthrow(void)
     {
         u32 odds;
         u8 catchRate;
+        u16 max_hp;
 
         if (gLastUsedItem == ITEM_SAFARI_BALL)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
@@ -10025,6 +10026,14 @@ static void Cmd_handleballthrow(void)
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
+            if(gLastUsedItem == ITEM_HEAL_BALL) // Fully heal mon if a heal ball was used
+            {
+                max_hp = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MAX_HP);
+                odds = STATUS1_NONE; // Need a u32 for NULL status, just reuse odds since it's not needed at this point
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &max_hp);
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, &odds);
+            }
+
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             else
@@ -10049,6 +10058,14 @@ static void Cmd_handleballthrow(void)
             {
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
+
+                if(gLastUsedItem == ITEM_HEAL_BALL) // Fully heal mon if a heal ball was used
+                {
+                    max_hp = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MAX_HP);
+                    odds = STATUS1_NONE; // Need a u32 for NULL status, just reuse odds since it's not needed at this point
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &max_hp);
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, &odds);
+                }
 
                 if (CalculatePlayerPartyCount() == PARTY_SIZE)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;

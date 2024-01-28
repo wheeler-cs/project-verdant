@@ -85,8 +85,8 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_LUXURY]  = {gBallGfx_Luxury,  384, GFX_TAG_LUXURY_BALL},
     [BALL_PREMIER] = {gBallGfx_Premier, 384, GFX_TAG_PREMIER_BALL},
     [BALL_DUSK]    = {gBallGfx_Dusk,    384, GFX_TAG_DUSK_BALL},
-    [BALL_HEAL]    = {gBallGfx_Dive,    384, GFX_TAG_HEAL_BALL},
-    [BALL_QUICK]   = {gBallGfx_Dive,    384, GFX_TAG_QUICK_BALL},
+    [BALL_HEAL]    = {gBallGfx_Heal,    384, GFX_TAG_HEAL_BALL},
+    [BALL_QUICK]   = {gBallGfx_Quick,    384, GFX_TAG_QUICK_BALL},
     [BALL_CHERISH] = {gBallGfx_Dive,    384, GFX_TAG_CHERISH_BALL},
     [BALL_FAST]    = {gBallGfx_Dive,    384, GFX_TAG_FAST_BALL},
     [BALL_LEVEL]   = {gBallGfx_Dive,    384, GFX_TAG_LEVEL_BALL},
@@ -112,8 +112,8 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_LUXURY]  = {gBallPal_Luxury,  GFX_TAG_LUXURY_BALL},
     [BALL_PREMIER] = {gBallPal_Premier, GFX_TAG_PREMIER_BALL},
     [BALL_DUSK]    = {gBallPal_Dusk,    GFX_TAG_DUSK_BALL},
-    [BALL_HEAL]    = {gBallPal_Dive,    GFX_TAG_HEAL_BALL},
-    [BALL_QUICK]   = {gBallPal_Dive,    GFX_TAG_QUICK_BALL},
+    [BALL_HEAL]    = {gBallPal_Heal,    GFX_TAG_HEAL_BALL},
+    [BALL_QUICK]   = {gBallPal_Quick,   GFX_TAG_QUICK_BALL},
     [BALL_CHERISH] = {gBallPal_Dive,    GFX_TAG_CHERISH_BALL},
     [BALL_FAST]    = {gBallPal_Dive,    GFX_TAG_FAST_BALL},
     [BALL_LEVEL]   = {gBallPal_Dive,    GFX_TAG_LEVEL_BALL},
@@ -1463,10 +1463,13 @@ void LoadBallGfx(u8 ballId)
 
     switch (ballId)
     {
+    // Balls put here have custom lower halves in their throw animation
     case BALL_DIVE:
     case BALL_LUXURY:
     case BALL_PREMIER:
-    case BALL_DUSK: // Allows dusk ball to have a custom bottom when it opens to capture
+    case BALL_DUSK:
+    case BALL_HEAL:
+    case BALL_QUICK:
         break;
     default:
         var = GetSpriteTileStartByTag(gBallSpriteSheets[ballId].tag);

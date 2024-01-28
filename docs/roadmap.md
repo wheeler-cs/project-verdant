@@ -1,4 +1,4 @@
-# Current Project Version: 3.2.3 #
+# Current Project Version: 3.2.4 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
