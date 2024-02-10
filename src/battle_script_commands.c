@@ -846,7 +846,7 @@ static const u8 sBallCatchBonuses[] =
     [ITEM_ULTRA_BALL - ITEM_ULTRA_BALL]  = 20,
     [ITEM_GREAT_BALL - ITEM_ULTRA_BALL]  = 15,
     [ITEM_POKE_BALL - ITEM_ULTRA_BALL]   = 10,
-    [ITEM_SAFARI_BALL - ITEM_ULTRA_BALL] = 15
+    [ITEM_SAFARI_BALL - ITEM_ULTRA_BALL] = 15,
 };
 
 // In Battle Palace, moves are chosen based on the pokemons nature rather than by the player
@@ -9977,15 +9977,15 @@ static void Cmd_handleballthrow(void)
                     break;
                 default:
                     ballMultiplier = 10; // Handles Luxury, Premier, Heal, Cherish, Heavy*, Friend
-                    // Heaqvy ball doesn't modify the multiplier, but rather adds or subtracts a value to the odds themselves
+                    // Heavy ball doesn't modify the multiplier, but rather adds or subtracts a value to the odds themselves
             }
         }
         else
             ballMultiplier = sBallCatchBonuses[gLastUsedItem - ITEM_ULTRA_BALL];
 
-        odds = (catchRate * ballMultiplier / 10)
-            * (gBattleMons[gBattlerTarget].maxHP * 3 - gBattleMons[gBattlerTarget].hp * 2)
-            / (3 * gBattleMons[gBattlerTarget].maxHP);
+        odds = (catchRate * ballMultiplier / 10) *
+               (gBattleMons[gBattlerTarget].maxHP * 3 - gBattleMons[gBattlerTarget].hp * 2) /
+               (3 * gBattleMons[gBattlerTarget].maxHP);
 
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
             odds *= 2;
@@ -9994,7 +9994,7 @@ static void Cmd_handleballthrow(void)
 
         if (gLastUsedItem != ITEM_SAFARI_BALL)
         {
-            u16 opponent_weight = 0;
+            u32 opponent_weight = 0;
             if (gLastUsedItem == ITEM_MASTER_BALL)
             {
                 gBattleResults.usedMasterBall = TRUE;
@@ -10024,7 +10024,6 @@ static void Cmd_handleballthrow(void)
             BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
-            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
             if(gLastUsedItem == ITEM_HEAL_BALL) // Fully heal mon if a heal ball was used
             {
@@ -10033,6 +10032,8 @@ static void Cmd_handleballthrow(void)
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &max_hp);
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, &odds);
             }
+
+            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -10057,7 +10058,6 @@ static void Cmd_handleballthrow(void)
             if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above
             {
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
-                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
                 if(gLastUsedItem == ITEM_HEAL_BALL) // Fully heal mon if a heal ball was used
                 {
@@ -10066,6 +10066,8 @@ static void Cmd_handleballthrow(void)
                     SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &max_hp);
                     SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, &odds);
                 }
+
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
                 if (CalculatePlayerPartyCount() == PARTY_SIZE)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;

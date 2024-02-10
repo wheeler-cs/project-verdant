@@ -72,11 +72,11 @@ static u16 GetBattlerPokeballItemId(u8 battlerId);
 
 const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
 {
-    [BALL_POKE]    = {gBallGfx_Poke,    384, GFX_TAG_POKE_BALL},
-    [BALL_GREAT]   = {gBallGfx_Great,   384, GFX_TAG_GREAT_BALL},
-    [BALL_SAFARI]  = {gBallGfx_Safari,  384, GFX_TAG_SAFARI_BALL},
-    [BALL_ULTRA]   = {gBallGfx_Ultra,   384, GFX_TAG_ULTRA_BALL},
     [BALL_MASTER]  = {gBallGfx_Master,  384, GFX_TAG_MASTER_BALL},
+    [BALL_ULTRA]   = {gBallGfx_Ultra,   384, GFX_TAG_ULTRA_BALL},
+    [BALL_GREAT]   = {gBallGfx_Great,   384, GFX_TAG_GREAT_BALL},
+    [BALL_POKE]    = {gBallGfx_Poke,    384, GFX_TAG_POKE_BALL},
+    [BALL_SAFARI]  = {gBallGfx_Safari,  384, GFX_TAG_SAFARI_BALL},
     [BALL_NET]     = {gBallGfx_Net,     384, GFX_TAG_NET_BALL},
     [BALL_DIVE]    = {gBallGfx_Dive,    384, GFX_TAG_DIVE_BALL},
     [BALL_NEST]    = {gBallGfx_Nest,    384, GFX_TAG_NEST_BALL},
@@ -86,8 +86,8 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_PREMIER] = {gBallGfx_Premier, 384, GFX_TAG_PREMIER_BALL},
     [BALL_DUSK]    = {gBallGfx_Dusk,    384, GFX_TAG_DUSK_BALL},
     [BALL_HEAL]    = {gBallGfx_Heal,    384, GFX_TAG_HEAL_BALL},
-    [BALL_QUICK]   = {gBallGfx_Quick,    384, GFX_TAG_QUICK_BALL},
-    [BALL_CHERISH] = {gBallGfx_Dive,    384, GFX_TAG_CHERISH_BALL},
+    [BALL_QUICK]   = {gBallGfx_Quick,   384, GFX_TAG_QUICK_BALL},
+    [BALL_CHERISH] = {gBallGfx_Cherish, 384, GFX_TAG_CHERISH_BALL},
     [BALL_FAST]    = {gBallGfx_Dive,    384, GFX_TAG_FAST_BALL},
     [BALL_LEVEL]   = {gBallGfx_Dive,    384, GFX_TAG_LEVEL_BALL},
     [BALL_LURE]    = {gBallGfx_Dive,    384, GFX_TAG_LURE_BALL},
@@ -99,11 +99,11 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
 
 const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
 {
-    [BALL_POKE]    = {gBallPal_Poke,    GFX_TAG_POKE_BALL},
-    [BALL_GREAT]   = {gBallPal_Great,   GFX_TAG_GREAT_BALL},
-    [BALL_SAFARI]  = {gBallPal_Safari,  GFX_TAG_SAFARI_BALL},
-    [BALL_ULTRA]   = {gBallPal_Ultra,   GFX_TAG_ULTRA_BALL},
     [BALL_MASTER]  = {gBallPal_Master,  GFX_TAG_MASTER_BALL},
+    [BALL_ULTRA]   = {gBallPal_Ultra,   GFX_TAG_ULTRA_BALL},
+    [BALL_GREAT]   = {gBallPal_Great,   GFX_TAG_GREAT_BALL},
+    [BALL_POKE]    = {gBallPal_Poke,    GFX_TAG_POKE_BALL},
+    [BALL_SAFARI]  = {gBallPal_Safari,  GFX_TAG_SAFARI_BALL},
     [BALL_NET]     = {gBallPal_Net,     GFX_TAG_NET_BALL},
     [BALL_DIVE]    = {gBallPal_Dive,    GFX_TAG_DIVE_BALL},
     [BALL_NEST]    = {gBallPal_Nest,    GFX_TAG_NEST_BALL},
@@ -114,7 +114,7 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_DUSK]    = {gBallPal_Dusk,    GFX_TAG_DUSK_BALL},
     [BALL_HEAL]    = {gBallPal_Heal,    GFX_TAG_HEAL_BALL},
     [BALL_QUICK]   = {gBallPal_Quick,   GFX_TAG_QUICK_BALL},
-    [BALL_CHERISH] = {gBallPal_Dive,    GFX_TAG_CHERISH_BALL},
+    [BALL_CHERISH] = {gBallPal_Cherish, GFX_TAG_CHERISH_BALL},
     [BALL_FAST]    = {gBallPal_Dive,    GFX_TAG_FAST_BALL},
     [BALL_LEVEL]   = {gBallPal_Dive,    GFX_TAG_LEVEL_BALL},
     [BALL_LURE]    = {gBallPal_Dive,    GFX_TAG_LURE_BALL},
@@ -381,23 +381,23 @@ const struct SpriteTemplate gBallSpriteTemplates[POKEBALL_COUNT] =
     },
     [BALL_QUICK] =
     {
-        .tileTag = GFX_TAG_QUICK_BALL,
-        .paletteTag = GFX_TAG_QUICK_BALL,
-        .oam = &sBallOamData,
-        .anims = sBallAnimSequences,
-        .images = NULL,
+        .tileTag     = GFX_TAG_QUICK_BALL,
+        .paletteTag  = GFX_TAG_QUICK_BALL,
+        .oam         = &sBallOamData,
+        .anims       = sBallAnimSequences,
+        .images      = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_BallThrow,
+        .callback    = SpriteCB_BallThrow,
     },
     [BALL_CHERISH] =
     {
-        .tileTag = GFX_TAG_CHERISH_BALL,
-        .paletteTag = GFX_TAG_CHERISH_BALL,
-        .oam = &sBallOamData,
-        .anims = sBallAnimSequences,
-        .images = NULL,
+        .tileTag     = GFX_TAG_CHERISH_BALL,
+        .paletteTag  = GFX_TAG_CHERISH_BALL,
+        .oam         = &sBallOamData,
+        .anims       = sBallAnimSequences,
+        .images      = NULL,
         .affineAnims = sAffineAnim_BallRotate,
-        .callback = SpriteCB_BallThrow,
+        .callback    = SpriteCB_BallThrow,
     },
     [BALL_FAST] =
     {
@@ -1470,6 +1470,7 @@ void LoadBallGfx(u8 ballId)
     case BALL_DUSK:
     case BALL_HEAL:
     case BALL_QUICK:
+    case BALL_CHERISH:
         break;
     default:
         var = GetSpriteTileStartByTag(gBallSpriteSheets[ballId].tag);
