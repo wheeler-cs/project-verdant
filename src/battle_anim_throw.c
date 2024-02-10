@@ -922,7 +922,7 @@ void AnimTask_IsBallBlockedByTrainer(u8 taskId)
 
 u8 ItemIdToBallId(u16 ballItem)
 {
-    if((ballItem <= ITEM_MOON_BALL) && (ballItem != ITEM_NONE))
+    if((ballItem <= LAST_BALL) && (ballItem != ITEM_NONE))
         return(ballItem - 1);
     else
         return BALL_POKE;
