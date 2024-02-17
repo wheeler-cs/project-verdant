@@ -11494,69 +11494,69 @@
         },
         {
           "map": "MAP_DEBUG_MAP_ARRIVAL",
-          "base_label": "gDebugMap_Arrival",
+          "base_label": "gDebugMap_Arrival0",
           "land_mons": {
-            "encounter_rate": 50,
+            "encounter_rate": 10,
             "mons": [
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               },
               {
-                "min_level": 12,
-                "max_level": 12,
-                "species": "SPECIES_BULBASAUR"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHANSEY"
               }
             ]
           }
