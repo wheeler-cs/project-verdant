@@ -10,6 +10,11 @@ script DebugMap_Mart_PokeballClerk
     end
 }
 
+script DebugMap_Mart_MoneyGive
+{
+    addmoney(100000)
+}
+
 mart DebugMap_Mart_PokeballShop
 {
     ITEM_DUSK_BALL

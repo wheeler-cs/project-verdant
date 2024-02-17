@@ -22,7 +22,7 @@
 #define ITEM_DUSK_BALL    13 // TEST
 #define ITEM_HEAL_BALL    14 // TEST
 #define ITEM_QUICK_BALL   15 // TEST
-#define ITEM_CHERISH_BALL 16 // TODO
+#define ITEM_CHERISH_BALL 16 // TEST
 // Gen II
 #define ITEM_FAST_BALL    17 // TODO
 #define ITEM_LEVEL_BALL   18 // TODO
