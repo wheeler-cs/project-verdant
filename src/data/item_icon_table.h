@@ -19,6 +19,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_HEAL_BALL]    = {gItemIcon_HealBall,    gItemIconPalette_HealBall},
     [ITEM_QUICK_BALL]   = {gItemIcon_QuickBall,   gItemIconPalette_QuickBall},
     [ITEM_CHERISH_BALL] = {gItemIcon_CherishBall, gItemIconPalette_CherishBall},
+    [ITEM_FAST_BALL]    = {gItemIcon_FastBall ,gItemIconPalette_FastBall},
     //TODO: Add icons for the other balls
     // Medicine
     [ITEM_POTION] = {gItemIcon_Potion, gItemIconPalette_Potion},

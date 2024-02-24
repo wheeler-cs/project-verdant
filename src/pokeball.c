@@ -88,7 +88,7 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_HEAL]    = {gBallGfx_Heal,    384, GFX_TAG_HEAL_BALL},
     [BALL_QUICK]   = {gBallGfx_Quick,   384, GFX_TAG_QUICK_BALL},
     [BALL_CHERISH] = {gBallGfx_Cherish, 384, GFX_TAG_CHERISH_BALL},
-    [BALL_FAST]    = {gBallGfx_Dive,    384, GFX_TAG_FAST_BALL},
+    [BALL_FAST]    = {gBallGfx_Fast,    384, GFX_TAG_FAST_BALL},
     [BALL_LEVEL]   = {gBallGfx_Dive,    384, GFX_TAG_LEVEL_BALL},
     [BALL_LURE]    = {gBallGfx_Dive,    384, GFX_TAG_LURE_BALL},
     [BALL_HEAVY]   = {gBallGfx_Dive,    384, GFX_TAG_HEAVY_BALL},
@@ -115,7 +115,7 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_HEAL]    = {gBallPal_Heal,    GFX_TAG_HEAL_BALL},
     [BALL_QUICK]   = {gBallPal_Quick,   GFX_TAG_QUICK_BALL},
     [BALL_CHERISH] = {gBallPal_Cherish, GFX_TAG_CHERISH_BALL},
-    [BALL_FAST]    = {gBallPal_Dive,    GFX_TAG_FAST_BALL},
+    [BALL_FAST]    = {gBallPal_Fast,    GFX_TAG_FAST_BALL},
     [BALL_LEVEL]   = {gBallPal_Dive,    GFX_TAG_LEVEL_BALL},
     [BALL_LURE]    = {gBallPal_Dive,    GFX_TAG_LURE_BALL},
     [BALL_HEAVY]   = {gBallPal_Dive,    GFX_TAG_HEAVY_BALL},
@@ -1471,6 +1471,7 @@ void LoadBallGfx(u8 ballId)
     case BALL_HEAL:
     case BALL_QUICK:
     case BALL_CHERISH:
+    case BALL_FAST:
         break;
     default:
         var = GetSpriteTileStartByTag(gBallSpriteSheets[ballId].tag);

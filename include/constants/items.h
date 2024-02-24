@@ -24,7 +24,7 @@
 #define ITEM_QUICK_BALL   15 // TEST
 #define ITEM_CHERISH_BALL 16 // TEST
 // Gen II
-#define ITEM_FAST_BALL    17 // TODO
+#define ITEM_FAST_BALL    17 // TEST
 #define ITEM_LEVEL_BALL   18 // TODO
 #define ITEM_LURE_BALL    19 // TODO
 #define ITEM_HEAVY_BALL   20 // TODO

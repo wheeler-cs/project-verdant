@@ -45,3 +45,5 @@ const u32 gBallGfx_Quick[]   = INCBIN_U32("graphics/balls/quick.4bpp.lz");
 const u32 gBallPal_Quick[]   = INCBIN_U32("graphics/balls/quick.gbapal.lz");
 const u32 gBallGfx_Cherish[] = INCBIN_U32("graphics/balls/cherish.4bpp.lz");
 const u32 gBallPal_Cherish[] = INCBIN_U32("graphics/balls/cherish.gbapal.lz");
+const u32 gBallGfx_Fast[]    = INCBIN_U32("graphics/balls/fast.4bpp.lz");
+const u32 gBallPal_Fast[]    = INCBIN_U32("graphics/balls/fast.gbapal.lz");
