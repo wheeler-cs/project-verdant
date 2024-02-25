@@ -47,3 +47,9 @@ const u32 gBallGfx_Cherish[] = INCBIN_U32("graphics/balls/cherish.4bpp.lz");
 const u32 gBallPal_Cherish[] = INCBIN_U32("graphics/balls/cherish.gbapal.lz");
 const u32 gBallGfx_Fast[]    = INCBIN_U32("graphics/balls/fast.4bpp.lz");
 const u32 gBallPal_Fast[]    = INCBIN_U32("graphics/balls/fast.gbapal.lz");
+
+// Generation II Balls
+const u32 gBallGfx_Level[]   = INCBIN_U32("graphics/balls/level.4bpp.lz");
+const u32 gBallPal_Level[]   = INCBIN_U32("graphics/balls/level.gbapal.lz");
+const u32 gBallGfx_Lure[]    = INCBIN_U32("graphics/balls/lure.4bpp.lz");
+const u32 gBallPal_Lure[]    = INCBIN_U32("graphics/balls/lure.gbapal.lz");

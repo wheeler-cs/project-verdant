@@ -41,6 +41,10 @@ extern const u32 gBallGfx_Cherish[];
 extern const u32 gBallPal_Cherish[];
 extern const u32 gBallGfx_Fast[];
 extern const u32 gBallPal_Fast[];
+extern const u32 gBallGfx_Level[];
+extern const u32 gBallPal_Level[];
+extern const u32 gBallGfx_Lure[];
+extern const u32 gBallPal_Lure[];
 
 // Pokémon gfx
 extern const u32 gMonFrontPic_Bulbasaur[];
@@ -3405,6 +3409,11 @@ extern const u32 gItemIcon_CherishBall[];
 extern const u32 gItemIconPalette_CherishBall[];
 extern const u32 gItemIcon_FastBall[];
 extern const u32 gItemIconPalette_FastBall[];
+extern const u32 gItemIcon_LevelBall[];
+extern const u32 gItemIconPalette_LevelBall[];
+extern const u32 gItemIcon_LureBall[];
+extern const u32 gItemIconPalette_LureBall[];
+
 // Medicine
 extern const u32 gItemIcon_Potion[];
 extern const u32 gItemIconPalette_Potion[];
