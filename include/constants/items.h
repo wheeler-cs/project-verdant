@@ -26,8 +26,8 @@
 // Gen II
 #define ITEM_FAST_BALL    17 // TEST
 #define ITEM_LEVEL_BALL   18 // TEST
-#define ITEM_LURE_BALL    19 // TODO
-#define ITEM_HEAVY_BALL   20 // TODO
+#define ITEM_LURE_BALL    19 // TEST
+#define ITEM_HEAVY_BALL   20 // TEST
 #define ITEM_LOVE_BALL    21 // TODO
 #define ITEM_FRIEND_BALL  22 // TODO
 #define ITEM_MOON_BALL    23 // TODO
