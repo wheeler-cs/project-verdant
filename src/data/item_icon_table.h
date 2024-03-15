@@ -24,9 +24,9 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_LEVEL_BALL]   = {gItemIcon_LevelBall,   gItemIconPalette_LevelBall},
     [ITEM_LURE_BALL]    = {gItemIcon_LureBall,    gItemIconPalette_LureBall},
     [ITEM_HEAVY_BALL]   = {gItemIcon_HeavyBall,   gItemIconPalette_HeavyBall},
-    [ITEM_LOVE_BALL]    = {gItemIcon_GreatBall,   gItemIconPalette_MasterBall},
-    [ITEM_FRIEND_BALL]  = {gItemIcon_GreatBall,   gItemIconPalette_MasterBall},
-    [ITEM_MOON_BALL]    = {gItemIcon_GreatBall,   gItemIconPalette_MasterBall},
+    [ITEM_LOVE_BALL]    = {gItemIcon_LoveBall,    gItemIconPalette_LoveBall},
+    [ITEM_FRIEND_BALL]  = {gItemIcon_FriendBall,  gItemIconPalette_FriendBall},
+    [ITEM_MOON_BALL]    = {gItemIcon_MoonBall,    gItemIconPalette_MoonBall},
     // Medicine 
     [ITEM_POTION] = {gItemIcon_Potion, gItemIconPalette_Potion},
     [ITEM_ANTIDOTE] = {gItemIcon_Antidote, gItemIconPalette_Antidote},
