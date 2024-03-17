@@ -202,6 +202,13 @@ SlateportCity_EventScript_PokeballVendor::
 SlateportCity_EventScript_MeetPokeballVendor::
 	setflag FLAG_POKEBALL_VENDOR_MET
 	msgbox SlateportCity_Text_AhoyByTheLooksOfYourClothes, MSGBOX_DEFAULT
+	giveitem ITEM_FAST_BALL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	giveitem ITEM_LOVE_BALL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	giveitem ITEM_FRIEND_BALL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	msgbox SlateportCity_Text_TryEachOneOut, MSGBOX_DEFAULT
 	release
 	end
 
@@ -1460,15 +1467,21 @@ SlateportCity_Text_TakingBattleTentChallenge:
 	.string "Give it your best effort!$"
 
 SlateportCity_Text_AhoyByTheLooksOfYourClothes:
-	.string "Ahoy! By the looks of your clothes\n"
-	.string "you're a POKéMON trainer, no?\p"
-	.string "Listen, I get shipments of special\n"
-	.string "POKé BALLS from time to time.\l"
-	.string "They can't be found anywhere else in\l"
-	.string "HOENN, because I import them from a\l"	
-	.string "distant land!\p"
-	.string "You should stop by whenever you're in\n"
-	.string "town to see if I've got anything new!$"
+	.string "Ahoy!\p" 
+	.string "By the look of your clothes alone I can\n"
+	.string "tell you're a POKéMON trainer.\p"
+	.string "I used to be a sailor and trainer\n"
+	.string "myself, but now I spend my time here in\l"
+	.string "the market.\p"
+	.string "I sell specialized POKé BALLS I have\n"
+	.string "shipped from overseas, and boy do\l"
+	.string "people love them!\p"
+	.string "Here, I'll give you a free sample to try\n"
+	.string "before you buy more.$"
+
+SlateportCity_Text_TryEachOneOut:
+	.string "Try each one out to find which one\n"
+	.string "suits you best!$"
 
 SlateportCity_Text_SeeWhatIHaveInToday:
 	.string "Take a look and see what I've got in\n"
