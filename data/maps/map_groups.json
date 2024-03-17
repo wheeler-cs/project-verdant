@@ -625,6 +625,7 @@
   ],
   "gMapGroup_Debug": [
     "DebugMap_Arrival",
-    "DebugMap_Mart"
+    "DebugMap_Mart",
+    "DebugMap_WarpRoom"
   ]
 }

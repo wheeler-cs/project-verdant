@@ -1062,3 +1062,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/DebugMap_Arrival/scripts.inc"
 
 	.include "data/maps/DebugMap_Mart/scripts.inc"
+
+	.include "data/maps/DebugMap_WarpRoom/scripts.inc"

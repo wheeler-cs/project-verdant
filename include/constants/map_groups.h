@@ -593,8 +593,9 @@
 #define MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE (0 | (33 << 8))
 
 // gMapGroup_Debug
-#define MAP_DEBUG_MAP_ARRIVAL (0 | (34 << 8))
-#define MAP_DEBUG_MAP_MART    (1 | (34 << 8))
+#define MAP_DEBUG_MAP_ARRIVAL   (0 | (34 << 8))
+#define MAP_DEBUG_MAP_MART      (1 | (34 << 8))
+#define MAP_DEBUG_MAP_WARP_ROOM (2 | (34 << 8))
 
 #define MAP_GROUPS_COUNT 35
 
