@@ -186,6 +186,81 @@ SlateportCity_EventScript_MonHasEffortRibbon::
 	release
 	end
 
+SlateportCity_EventScript_PokeballVendor::
+	lock
+	faceplayer
+	goto_if_unset FLAG_POKEBALL_VENDOR_MET, SlateportCity_EventScript_MeetPokeballVendor
+	goto_if_set FLAG_BADGE08_GET, SlateportCity_EventScript_PokeballVendorThirdInventory
+	goto_if_set FLAG_BADGE06_GET, SlateportCity_EventScript_PokeballVendorSecondInventory
+	msgbox SlateportCity_Text_SeeWhatIHaveInToday, MSGBOX_DEFAULT
+	waitmessage
+	pokemart SlateportCity_Pokemart_FirstPokeballInventory
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_MeetPokeballVendor::
+	setflag FLAG_POKEBALL_VENDOR_MET
+	msgbox SlateportCity_Text_AhoyByTheLooksOfYourClothes, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+SlateportCity_Pokemart_FirstPokeballInventory:
+	.2byte ITEM_FAST_BALL
+	.2byte ITEM_LURE_BALL
+	.2byte ITEM_LOVE_BALL
+	.2byte ITEM_FRIEND_BALL
+	.2byte ITEM_MOON_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
+SlateportCity_EventScript_PokeballVendorSecondInventory::
+	msgbox SlateportCity_Text_WelcomeMyInventoryHasBallooned, MSGBOX_DEFAULT
+	waitmessage
+	pokemart SlateportCity_Pokemart_SecondPokeballInventory
+	msgbox SlateportCity_Text_IveGotPlentyMore, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+SlateportCity_Pokemart_SecondPokeballInventory:
+	.2byte ITEM_FAST_BALL
+	.2byte ITEM_LEVEL_BALL
+	.2byte ITEM_LURE_BALL
+	.2byte ITEM_HEAVY_BALL
+	.2byte ITEM_LOVE_BALL
+	.2byte ITEM_FRIEND_BALL
+	.2byte ITEM_MOON_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
+SlateportCity_EventScript_PokeballVendorThirdInventory::
+	msgbox SlateportCity_Text_IveGotPokeBallsFromJustAboutEverywhere, MSGBOX_DEFAULT
+	waitmessage
+	pokemart SlateportCity_Pokemart_ThirdPokeballInventory
+	msgbox SlateportCity_Text_IveGotPlentyMore, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+SlateportCity_Pokemart_ThirdPokeballInventory:
+	.2byte ITEM_FAST_BALL
+	.2byte ITEM_LEVEL_BALL
+	.2byte ITEM_LURE_BALL
+	.2byte ITEM_HEAVY_BALL
+	.2byte ITEM_LOVE_BALL
+	.2byte ITEM_FRIEND_BALL
+	.2byte ITEM_MOON_BALL
+	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_HEAL_BALL
+	.2byte ITEM_QUICK_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
 SlateportCity_EventScript_Cook::
 	lock
 	faceplayer
@@ -1383,3 +1458,30 @@ SlateportCity_Text_TakingBattleTentChallenge:
 	.string "After all, a tough TRAINER is\n"
 	.string "the perfect fit for the BATTLE TENT!\p"
 	.string "Give it your best effort!$"
+
+SlateportCity_Text_AhoyByTheLooksOfYourClothes:
+	.string "Ahoy! By the looks of your clothes\n"
+	.string "you're a POKéMON trainer, no?\p"
+	.string "Listen, I get shipments of special\n"
+	.string "POKé BALLS from time to time.\l"
+	.string "They can't be found anywhere else in\l"
+	.string "HOENN, because I import them from a\l"	
+	.string "distant land!\p"
+	.string "You should stop by whenever you're in\n"
+	.string "town to see if I've got anything new!$"
+
+SlateportCity_Text_SeeWhatIHaveInToday:
+	.string "Take a look and see what I've got in\n"
+	.string "today!$"
+
+SlateportCity_Text_WelcomeMyInventoryHasBallooned:
+	.string "Welcome! My inventory has ballooned\n"
+	.string "and I've hardly got space for it all!$"
+
+SlateportCity_Text_IveGotPokeBallsFromJustAboutEverywhere:
+	.string "Ive got POKé BALLS from just about\n"
+	.string "everywhere. Take a look!$"
+
+SlateportCity_Text_IveGotPlentyMore:
+	.string "I've got plenty more whenever you're\n"
+	.string "interested!$"
