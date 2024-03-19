@@ -19,18 +19,62 @@
 #define ITEM_LUXURY_BALL  11
 #define ITEM_PREMIER_BALL 12
 // Gen IV
-#define ITEM_DUSK_BALL    13 // TEST
-#define ITEM_HEAL_BALL    14 // TEST
-#define ITEM_QUICK_BALL   15 // TEST
-#define ITEM_CHERISH_BALL 16 // TEST
+#define ITEM_DUSK_BALL    13
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_HEAL_BALL    14
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_QUICK_BALL   15
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_CHERISH_BALL 16
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
 // Gen II
-#define ITEM_FAST_BALL    17 // TEST
-#define ITEM_LEVEL_BALL   18 // TEST
-#define ITEM_LURE_BALL    19 // TEST
-#define ITEM_HEAVY_BALL   20 // TEST
-#define ITEM_LOVE_BALL    21 // TEST
-#define ITEM_FRIEND_BALL  22 // TEST
-#define ITEM_MOON_BALL    23 // TEST
+#define ITEM_FAST_BALL    17
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_LEVEL_BALL   18
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_LURE_BALL    19
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_HEAVY_BALL   20
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_LOVE_BALL    21
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_FRIEND_BALL  22
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
+#define ITEM_MOON_BALL    23
+// TODO
+// TEST logic of ball
+// ADD particles for ball
+
 
 // Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient
 //       Several places expect the ball IDs to be first and contiguous (e.g. gBattlescriptsForBallThrow and MON_DATA_POKEBALL)
@@ -77,67 +121,67 @@
 #define ITEM_RED_SHARD     (LAST_BALL + 36)
 #define ITEM_BLUE_SHARD    (LAST_BALL + 37)
 #define ITEM_YELLOW_SHARD  (LAST_BALL + 38)
-#define ITEM_GREEN_SHARD   (LAST_BALL + 39) // 62, 0x3E
-#define ITEM_HP_UP 63
-#define ITEM_PROTEIN 64
-#define ITEM_IRON 65
-#define ITEM_CARBOS 66
-#define ITEM_CALCIUM 67
-#define ITEM_RARE_CANDY 68
-#define ITEM_PP_UP 69
-#define ITEM_ZINC 70
-#define ITEM_PP_MAX 71
-#define ITEM_048 72
-#define ITEM_GUARD_SPEC 73
-#define ITEM_DIRE_HIT 74
-#define ITEM_X_ATTACK 75
-#define ITEM_X_DEFEND 76
-#define ITEM_X_SPEED 77
-#define ITEM_X_ACCURACY 78
-#define ITEM_X_SPECIAL 79
-#define ITEM_POKE_DOLL 80
-#define ITEM_FLUFFY_TAIL 81
-#define ITEM_052 82
-#define ITEM_SUPER_REPEL 83
-#define ITEM_MAX_REPEL 84
-#define ITEM_ESCAPE_ROPE 85
-#define ITEM_REPEL 86
-#define ITEM_057 87
-#define ITEM_058 88
-#define ITEM_059 89
-#define ITEM_05A 90
-#define ITEM_05B 91
-#define ITEM_05C 92
-#define ITEM_SUN_STONE 93
-#define ITEM_MOON_STONE 94
-#define ITEM_FIRE_STONE 95
-#define ITEM_THUNDER_STONE 96
-#define ITEM_WATER_STONE 97
-#define ITEM_LEAF_STONE 98
-#define ITEM_063 99
-#define ITEM_064 100
-#define ITEM_065 101
-#define ITEM_066 102
+#define ITEM_GREEN_SHARD   (LAST_BALL + 39)
+#define ITEM_HP_UP         (LAST_BALL + 40)
+#define ITEM_PROTEIN       (LAST_BALL + 41)
+#define ITEM_IRON          (LAST_BALL + 42)
+#define ITEM_CARBOS        (LAST_BALL + 43)
+#define ITEM_CALCIUM       (LAST_BALL + 44)
+#define ITEM_RARE_CANDY    (LAST_BALL + 45)
+#define ITEM_PP_UP         (LAST_BALL + 46)
+#define ITEM_ZINC          (LAST_BALL + 47)
+#define ITEM_PP_MAX        (LAST_BALL + 48)
+#define ITEM_048           (LAST_BALL + 49) // UNUSED
+#define ITEM_GUARD_SPEC    (LAST_BALL + 50)
+#define ITEM_DIRE_HIT      (LAST_BALL + 51)
+#define ITEM_X_ATTACK      (LAST_BALL + 52)
+#define ITEM_X_DEFEND      (LAST_BALL + 53)
+#define ITEM_X_SPEED       (LAST_BALL + 54)
+#define ITEM_X_ACCURACY    (LAST_BALL + 55)
+#define ITEM_X_SPECIAL     (LAST_BALL + 56)
+#define ITEM_POKE_DOLL     (LAST_BALL + 57)
+#define ITEM_FLUFFY_TAIL   (LAST_BALL + 58)
+#define ITEM_052           (LAST_BALL + 59) // UNUSED
+#define ITEM_SUPER_REPEL   (LAST_BALL + 60)
+#define ITEM_MAX_REPEL     (LAST_BALL + 61)
+#define ITEM_ESCAPE_ROPE   (LAST_BALL + 62)
+#define ITEM_REPEL         (LAST_BALL + 63)
+#define ITEM_057           (LAST_BALL + 64) // UNUSED
+#define ITEM_058           (LAST_BALL + 65) // UNUSED
+#define ITEM_059           (LAST_BALL + 66) // UNUSED
+#define ITEM_05A           (LAST_BALL + 67) // UNUSED
+#define ITEM_05B           (LAST_BALL + 68) // UNUSED
+#define ITEM_05C           (LAST_BALL + 69) // UNUSED
+#define ITEM_SUN_STONE     (LAST_BALL + 70)
+#define ITEM_MOON_STONE    (LAST_BALL + 71)
+#define ITEM_FIRE_STONE    (LAST_BALL + 72)
+#define ITEM_THUNDER_STONE (LAST_BALL + 73)
+#define ITEM_WATER_STONE   (LAST_BALL + 74)
+#define ITEM_LEAF_STONE    (LAST_BALL + 75)
+#define ITEM_063           (LAST_BALL + 76) // UNUSED
+#define ITEM_064           (LAST_BALL + 77) // UNUSED
+#define ITEM_065           (LAST_BALL + 78) // UNUSED
+#define ITEM_066           (LAST_BALL + 79) // UNUSED
 
-// Unusable
+// Collectables
 #define ITEM_TINY_MUSHROOM 103
-#define ITEM_BIG_MUSHROOM 104
-#define ITEM_069 105
-#define ITEM_PEARL 106
-#define ITEM_BIG_PEARL 107
-#define ITEM_STARDUST 108
-#define ITEM_STAR_PIECE 109
-#define ITEM_NUGGET 110
-#define ITEM_HEART_SCALE 111
-#define ITEM_070 112
-#define ITEM_071 113
-#define ITEM_072 114
-#define ITEM_073 115
-#define ITEM_074 116
-#define ITEM_075 117
-#define ITEM_076 118
-#define ITEM_077 119
-#define ITEM_078 120
+#define ITEM_BIG_MUSHROOM  104
+#define ITEM_069           105 // UNUSED
+#define ITEM_PEARL         106
+#define ITEM_BIG_PEARL     107
+#define ITEM_STARDUST      108
+#define ITEM_STAR_PIECE    109
+#define ITEM_NUGGET        110
+#define ITEM_HEART_SCALE   111
+#define ITEM_070           112 // UNUSED
+#define ITEM_071           113 // UNUSED
+#define ITEM_072           114 // UNUSED
+#define ITEM_073           115 // UNUSED
+#define ITEM_074           116 // UNUSED
+#define ITEM_075           117 // UNUSED
+#define ITEM_076           118 // UNUSED
+#define ITEM_077           119 // UNUSED
+#define ITEM_078           120 // UNUSED
 
 // Mails
 #define ITEM_ORANGE_MAIL 121
