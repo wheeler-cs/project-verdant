@@ -28,9 +28,9 @@
 #define ITEM_LEVEL_BALL   18 // TEST
 #define ITEM_LURE_BALL    19 // TEST
 #define ITEM_HEAVY_BALL   20 // TEST
-#define ITEM_LOVE_BALL    21 // TODO
-#define ITEM_FRIEND_BALL  22 // TODO
-#define ITEM_MOON_BALL    23 // TODO
+#define ITEM_LOVE_BALL    21 // TEST
+#define ITEM_FRIEND_BALL  22 // TEST
+#define ITEM_MOON_BALL    23 // TEST
 
 // Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient
 //       Several places expect the ball IDs to be first and contiguous (e.g. gBattlescriptsForBallThrow and MON_DATA_POKEBALL)

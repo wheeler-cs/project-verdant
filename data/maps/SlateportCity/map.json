@@ -32,7 +32,7 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
-      "x": 21,
+      "x": 22,
       "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -58,12 +58,12 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
-      "x": 15,
-      "y": 11,
+      "x": 11,
+      "y": 18,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_RichBoy",
@@ -97,10 +97,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_COOK",
-      "x": 5,
-      "y": 43,
+      "x": 8,
+      "y": 50,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -110,10 +110,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
-      "x": 7,
-      "y": 35,
+      "x": 2,
+      "y": 38,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -123,12 +123,12 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
-      "x": 16,
-      "y": 40,
+      "x": 3,
+      "y": 43,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_Girl",
@@ -188,11 +188,11 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-      "x": 22,
-      "y": 45,
+      "x": 35,
+      "y": 53,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-      "movement_range_x": 1,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
@@ -201,8 +201,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
-      "x": 9,
-      "y": 50,
+      "x": 7,
+      "y": 36,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
       "movement_range_x": 0,
@@ -214,8 +214,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_3",
-      "x": 21,
-      "y": 41,
+      "x": 13,
+      "y": 40,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -240,12 +240,12 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
-      "x": 15,
-      "y": 31,
+      "x": 19,
+      "y": 45,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
       "movement_range_x": 0,
-      "movement_range_y": 0,
+      "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_Woman2",
@@ -279,10 +279,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
-      "x": 6,
-      "y": 38,
+      "x": 7,
+      "y": 53,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -292,7 +292,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
-      "x": 5,
+      "x": 6,
       "y": 51,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -305,8 +305,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_5",
-      "x": 19,
-      "y": 49,
+      "x": 10,
+      "y": 45,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -318,8 +318,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
-      "x": 4,
-      "y": 47,
+      "x": 10,
+      "y": 33,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -331,8 +331,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
-      "x": 11,
-      "y": 47,
+      "x": 5,
+      "y": 35,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -344,8 +344,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
-      "x": 5,
-      "y": 47,
+      "x": 9,
+      "y": 33,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -461,12 +461,12 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
-      "x": 11,
-      "y": 37,
+      "x": 13,
+      "y": 51,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 1,
-      "movement_range_y": 2,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SlateportCity_EventScript_BerryPowderClerk",
@@ -487,8 +487,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-      "x": 11,
-      "y": 43,
+      "x": 13,
+      "y": 35,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -501,7 +501,7 @@
   ],
   "warp_events": [
     {
-      "x": 19,
+      "x": 15,
       "y": 19,
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY_POKEMON_CENTER_1F",
@@ -509,7 +509,7 @@
     },
     {
       "x": 13,
-      "y": 26,
+      "y": 25,
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY_MART",
       "dest_warp_id": "0"
@@ -569,13 +569,6 @@
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY_HARBOR",
       "dest_warp_id": "2"
-    },
-    {
-      "x": 14,
-      "y": 19,
-      "elevation": 0,
-      "dest_map": "MAP_SLATEPORT_CITY_HOUSE",
-      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -600,7 +593,7 @@
     },
     {
       "type": "sign",
-      "x": 20,
+      "x": 16,
       "y": 19,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
@@ -608,7 +601,7 @@
     },
     {
       "type": "sign",
-      "x": 21,
+      "x": 17,
       "y": 19,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
@@ -617,7 +610,7 @@
     {
       "type": "sign",
       "x": 14,
-      "y": 26,
+      "y": 25,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "Common_EventScript_ShowPokemartSign"
@@ -633,15 +626,15 @@
     {
       "type": "sign",
       "x": 15,
-      "y": 26,
+      "y": 25,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "Common_EventScript_ShowPokemartSign"
     },
     {
       "type": "sign",
-      "x": 14,
-      "y": 51,
+      "x": 16,
+      "y": 42,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SlateportCity_EventScript_MarketSign"
@@ -656,8 +649,8 @@
     },
     {
       "type": "sign",
-      "x": 16,
-      "y": 22,
+      "x": 20,
+      "y": 21,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SlateportCity_EventScript_CitySign"
@@ -688,11 +681,27 @@
     },
     {
       "type": "sign",
-      "x": 10,
-      "y": 36,
+      "x": 11,
+      "y": 51,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "SlateportCity_EventScript_BerryCrushRankingsSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 33,
+      "y": 46,
+      "elevation": 0,
+      "item": "ITEM_BIG_PEARL",
+      "flag": "FLAG_HIDDEN_ITEM_SLATEPORT_CITY_BIG_PEARL"
+    },
+    {
+      "type": "hidden_item",
+      "x": 14,
+      "y": 32,
+      "elevation": 0,
+      "item": "ITEM_GREAT_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_SLATEPORT_CITY_GREAT_BALL"
     }
   ]
 }
