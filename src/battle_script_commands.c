@@ -9871,6 +9871,7 @@ static void Cmd_handleballthrow(void)
         u32 odds;
         u8 catchRate;
         u16 max_hp;
+        u8 player_mon_gender, opponent_mon_gender;
 
         if (gLastUsedItem == ITEM_SAFARI_BALL)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
@@ -9918,23 +9919,29 @@ static void Cmd_handleballthrow(void)
                     RtcCalcLocalTime();
                     // NOTE: Instead of dividing day and night into 0-12 and 12-24, put night as running from 8pm to 6am
                     if((GetCurrentMapType() == MAP_TYPE_UNDERGROUND) || (gLocalTime.hours >= 20) || (gLocalTime.hours < 6))
-                        ballMultiplier = 30;
+                        ballMultiplier = 35;
                     else
                         ballMultiplier = 10;
                     break;
-                case ITEM_QUICK_BALL:
+                case ITEM_QUICK_BALL: // Ball has x5 boost on first turn
                     if(gBattleResults.battleTurnCounter == 0)
                         ballMultiplier = 50;
                     else
                         ballMultiplier = 10;
                     break;
-                case ITEM_FAST_BALL:
+                case ITEM_FAST_BALL: // Ball has x4 boost against base speed greater than 100
                     if(gSpeciesInfo[gBattleMons[gBattlerTarget].species].baseSpeed >= 100)
                         ballMultiplier = 40;
                     else
                         ballMultiplier = 10;
                     break;
                 case ITEM_LEVEL_BALL:
+                    /* Ball has the following boosts:
+                     * x1 if target has level greater than or equal to player's battler
+                     * x2 if target has level smaller than player's battler
+                     * x4 if target has level at least 2 times smaller than player's battler
+                     * x8 if target has level at least 4 times smaller than player's battler
+                    */
                     if(gBattleMons[gActiveBattler].level <= gBattleMons[gBattlerTarget].level)
                         ballMultiplier = 10;
                     else if(gBattleMons[gActiveBattler].level > (gBattleMons[gBattlerTarget].level * 4))
@@ -9944,25 +9951,37 @@ static void Cmd_handleballthrow(void)
                     else
                         ballMultiplier = 20;
                     break;
-                case ITEM_LURE_BALL:
+                case ITEM_LURE_BALL: // Ball has x4 boost in fishing encounters
                 #ifdef CHAIN_FISHING
+                    // I'm just gonna assume this only works if the chain fishing has been enabled. I really don't know
+                    // where to begin with how checking if an encounter is a fishing encounter (it's probably easier
+                    // than I think, I just don't know _HOW_ to).
                     if(gIsFishingEncounter)
                         ballMultiplier = 40;
                     else
                 #endif
                         ballMultiplier = 10;
                     break;
-                case ITEM_LOVE_BALL:
+                case ITEM_LOVE_BALL: // Ball has x8 boost if active battlers have different genders
+                    // Get gender of player mon
                     species_player = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES);
                     personality_player = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_PERSONALITY);
+                    player_mon_gender = etGenderFromSpeciesAndPersonality(species_player, personality_player);
+                    // Get gender of opponent mon
                     species_opponent = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
                     personality_player = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
-                    if(GetGenderFromSpeciesAndPersonality(species_player, personality_player) == GetGenderFromSpeciesAndPersonality(species_opponent, personality_opponent))
+                    opponent_mon_gender = GetGenderFromSpeciesAndPersonality(species_opponent, personality_opponent);
+                    // Ball effect only triggers if both battlers have a gender AND do not have the same gender
+                    if((player_mon_gender != MON_GENDERLESS) &&
+                       (opponent_mon_gender != MON_GENDERLESS) &&
+                       (player_mon_gender != opponent_mon_gender))
+                    {
                         ballMultiplier = 80;
+                    }
                     else
                         ballMultiplier = 10;
                     break;
-                case ITEM_MOON_BALL:
+                case ITEM_MOON_BALL: // Ball has x4 boost if target evolves with a moon stone
                     species_opponent = gBattleMons[gBattlerTarget].species;
                     if ((species_opponent == SPECIES_NIDORINA) ||
                         (species_opponent == SPECIES_NIDORINO) ||
