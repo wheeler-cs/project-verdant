@@ -33,7 +33,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "x": 22,
-      "y": 11,
+      "y": 17,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -306,7 +306,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_5",
       "x": 10,
-      "y": 45,
+      "y": 46,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -501,14 +501,14 @@
   ],
   "warp_events": [
     {
-      "x": 15,
+      "x": 14,
       "y": 19,
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY_POKEMON_CENTER_1F",
       "dest_warp_id": "0"
     },
     {
-      "x": 13,
+      "x": 14,
       "y": 25,
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY_MART",
@@ -562,13 +562,6 @@
       "elevation": 0,
       "dest_map": "MAP_SLATEPORT_CITY_HARBOR",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 40,
-      "y": 7,
-      "elevation": 0,
-      "dest_map": "MAP_SLATEPORT_CITY_HARBOR",
-      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
@@ -593,6 +586,14 @@
     },
     {
       "type": "sign",
+      "x": 15,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Common_EventScript_ShowPokemonCenterSign"
+    },
+    {
+      "type": "sign",
       "x": 16,
       "y": 19,
       "elevation": 0,
@@ -601,15 +602,7 @@
     },
     {
       "type": "sign",
-      "x": 17,
-      "y": 19,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "Common_EventScript_ShowPokemonCenterSign"
-    },
-    {
-      "type": "sign",
-      "x": 14,
+      "x": 15,
       "y": 25,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
@@ -625,7 +618,7 @@
     },
     {
       "type": "sign",
-      "x": 15,
+      "x": 16,
       "y": 25,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
@@ -649,8 +642,8 @@
     },
     {
       "type": "sign",
-      "x": 20,
-      "y": 21,
+      "x": 21,
+      "y": 20,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SlateportCity_EventScript_CitySign"

@@ -9966,7 +9966,7 @@ static void Cmd_handleballthrow(void)
                     // Get gender of player mon
                     species_player = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES);
                     personality_player = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_PERSONALITY);
-                    player_mon_gender = etGenderFromSpeciesAndPersonality(species_player, personality_player);
+                    player_mon_gender = GetGenderFromSpeciesAndPersonality(species_player, personality_player);
                     // Get gender of opponent mon
                     species_opponent = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
                     personality_player = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
