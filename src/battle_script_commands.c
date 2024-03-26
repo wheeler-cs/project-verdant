@@ -10024,14 +10024,22 @@ static void Cmd_handleballthrow(void)
                 {
                     // NOTE: These weights aren't exactly like gen II, but they are similar enough I think it won't matter a great deal
                     opponent_weight = GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), POKEDEX_INFO_WEIGHT);
-                    if (opponent_weight < 226)
+                    /* Odds are affected using the following table:
+                     * 000 - 225: -20
+                     * 226 - 451: +-0
+                     * 452 - 675: +20
+                     * 676 - 902: +30
+                     * 903 - ...: +40
+                    */
+                    if ((opponent_weight < 226) && (odds > 19)) // Has error-checking to prevent underflow
                         odds -= 20;
-                    else if (opponent_weight >= 903)
+                    else if (opponent_weight > 902)
                         odds += 40;
-                    else if (opponent_weight >= 677)
+                    else if (opponent_weight > 676)
                         odds += 30;
-                    else if (opponent_weight >= 452)
+                    else if (opponent_weight > 451)
                         odds += 20;
+                    // None of these options being triggered means the target is in the range of 226 - 452 and gets no boost
                 }
                 if (gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL] < 255)
                     gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
