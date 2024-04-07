@@ -174,7 +174,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COU
     [BALL_HEAL]    = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_HEALBALL},
     [BALL_QUICK]   = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_QUICKBALL},
     [BALL_CHERISH] = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_CHERISHBALL},
-    [BALL_FAST]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_FASTBALL},
+    [BALL_FAST]    = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_FASTBALL},
     [BALL_LEVEL]   = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LUREBALL},
     [BALL_HEAVY]   = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_HEAVYBALL},
@@ -202,7 +202,7 @@ static const struct CompressedSpritePalette sBallParticlePalettes[POKEBALL_COUNT
     [BALL_HEAL]    = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_HEALBALL},
     [BALL_QUICK]   = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_QUICKBALL},
     [BALL_CHERISH] = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_CHERISHBALL},
-    [BALL_FAST]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_FASTBALL},
+    [BALL_FAST]    = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_FASTBALL},
     [BALL_LEVEL]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LUREBALL},
     [BALL_HEAVY]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_HEAVYBALL},
@@ -280,6 +280,15 @@ static const union AnimCmd sAnim_CherishBall[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_FastBall[] =
+{
+    ANIMCMD_FRAME(4, 15),
+    ANIMCMD_FRAME(4, 15, .hFlip = TRUE),
+    ANIMCMD_FRAME(4, 15, .hFlip = TRUE, .vFlip = TRUE),
+    ANIMCMD_FRAME(4, 15, .vFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd *const sAnims_BallParticles[] =
 {
     sAnim_RegularBall,
@@ -292,6 +301,7 @@ static const union AnimCmd *const sAnims_BallParticles[] =
     sAnim_HealBall,
     sAnim_QuickBall,
     sAnim_CherishBall,
+    sAnim_FastBall,
 };
 
 #define PARTICLES_REGULAR            0
@@ -304,6 +314,7 @@ static const union AnimCmd *const sAnims_BallParticles[] =
 #define PARTICLES_HEAL               7
 #define PARTICLES_QUICK              8
 #define PARTICLES_CHERISH            9
+#define PARTICLES_FAST               10
 
 // NOTE: This is the TYPE of animation that will be played when a ball is thrown, not particle count. See the union
 // directory above sAnims_BallParticles to see what an index relates to.
@@ -325,7 +336,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_HEAL]    = PARTICLES_HEAL,
     [BALL_QUICK]   = PARTICLES_QUICK,
     [BALL_CHERISH] = PARTICLES_CHERISH,
-    [BALL_FAST]    = PARTICLES_NET_DIVE,
+    [BALL_FAST]    = PARTICLES_FAST,
     [BALL_LEVEL]   = PARTICLES_NET_DIVE,
     [BALL_LURE]    = PARTICLES_NET_DIVE,
     [BALL_HEAVY]   = PARTICLES_NET_DIVE,
@@ -353,7 +364,7 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_HEAL]    = SafariBallOpenParticleAnimation,
     [BALL_QUICK]   = TimerBallOpenParticleAnimation,
     [BALL_CHERISH] = PokeBallOpenParticleAnimation,
-    [BALL_FAST]    = DiveBallOpenParticleAnimation,
+    [BALL_FAST]    = GreatBallOpenParticleAnimation,
     [BALL_LEVEL]   = DiveBallOpenParticleAnimation,
     [BALL_LURE]    = DiveBallOpenParticleAnimation,
     [BALL_HEAVY]   = DiveBallOpenParticleAnimation,
@@ -593,7 +604,7 @@ const u16 gBallOpenFadeColors[] =
     [BALL_HEAL]    = RGB(31, 24, 31),
     [BALL_QUICK]   = RGB(31, 31, 16),
     [BALL_CHERISH] = RGB(31, 8, 8),
-    [BALL_FAST]    = RGB(0, 0, 0),
+    [BALL_FAST]    = RGB(31, 26, 10),
     [BALL_LEVEL]   = RGB(0, 0, 0),
     [BALL_LURE]    = RGB(0, 0, 0),
     [BALL_HEAVY]   = RGB(0, 0, 0),

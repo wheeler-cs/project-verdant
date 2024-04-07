@@ -22,28 +22,23 @@
 #define ITEM_DUSK_BALL    13
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_HEAL_BALL    14
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_QUICK_BALL   15
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_CHERISH_BALL 16
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 // Gen II
 #define ITEM_FAST_BALL    17
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_LEVEL_BALL   18
 // TODO
