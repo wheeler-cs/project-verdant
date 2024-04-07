@@ -47,12 +47,10 @@
 #define ITEM_LURE_BALL    19
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_HEAVY_BALL   20
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_LOVE_BALL    21
 // TODO
@@ -61,7 +59,6 @@
 #define ITEM_FRIEND_BALL  22
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_MOON_BALL    23
 // TODO

@@ -175,7 +175,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COU
     [BALL_FAST]    = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_FASTBALL},
     [BALL_LEVEL]   = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LUREBALL},
-    [BALL_HEAVY]   = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_HEAVYBALL},
+    [BALL_HEAVY]   = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_HEAVYBALL},
     [BALL_LOVE]    = {gBattleAnimSpriteGfx_Flower,     0x100, TAG_PARTICLES_LOVEBALL},
     [BALL_FRIEND]  = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_FRIENDBALL},
     [BALL_MOON]    = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_MOONBALL},
@@ -203,7 +203,7 @@ static const struct CompressedSpritePalette sBallParticlePalettes[POKEBALL_COUNT
     [BALL_FAST]    = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_FASTBALL},
     [BALL_LEVEL]   = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LUREBALL},
-    [BALL_HEAVY]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_HEAVYBALL},
+    [BALL_HEAVY]   = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_HEAVYBALL},
     [BALL_LOVE]    = {gBattleAnimSpritePal_Flower,       TAG_PARTICLES_LOVEBALL},
     [BALL_FRIEND]  = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_FRIENDBALL},
     [BALL_MOON]    = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_MOONBALL},
@@ -278,13 +278,19 @@ static const union AnimCmd sAnim_CherishBall[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_FastBall[] =
+static const union AnimCmd sAnim_FastLevelBall[] =
 {
     ANIMCMD_FRAME(4, 15),
     ANIMCMD_FRAME(4, 15, .hFlip = TRUE),
     ANIMCMD_FRAME(4, 15, .hFlip = TRUE, .vFlip = TRUE),
     ANIMCMD_FRAME(4, 15, .vFlip = TRUE),
     ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd sAnim_HeavyBall[] =
+{
+    ANIMCMD_FRAME(6,1),
+    ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_LoveBall[] =
@@ -314,7 +320,8 @@ static const union AnimCmd *const sAnims_BallParticles[] =
     sAnim_HealBall,
     sAnim_QuickBall,
     sAnim_CherishBall,
-    sAnim_FastBall,
+    sAnim_FastLevelBall,
+    sAnim_HeavyBall,
     sAnim_LoveBall,
     sAnim_MoonBall,
 };
@@ -330,8 +337,9 @@ static const union AnimCmd *const sAnims_BallParticles[] =
 #define PARTICLES_QUICK              8
 #define PARTICLES_CHERISH            9
 #define PARTICLES_FAST_LEVEL         10
-#define PARTICLES_LOVE               11
-#define PARTICLES_MOON               12
+#define PARTICLES_HEAVY              11
+#define PARTICLES_LOVE               12
+#define PARTICLES_MOON               13
 
 // NOTE: This is the TYPE of animation that will be played when a ball is thrown, not particle count. See the union
 // directory above sAnims_BallParticles to see what an index relates to.
@@ -356,7 +364,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_FAST]    = PARTICLES_FAST_LEVEL,
     [BALL_LEVEL]   = PARTICLES_FAST_LEVEL,
     [BALL_LURE]    = PARTICLES_NET_DIVE,
-    [BALL_HEAVY]   = PARTICLES_NET_DIVE,
+    [BALL_HEAVY]   = PARTICLES_HEAVY,
     [BALL_LOVE]    = PARTICLES_LOVE,
     [BALL_FRIEND]  = PARTICLES_NEST,
     [BALL_MOON]    = PARTICLES_MOON,
@@ -383,10 +391,10 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_CHERISH] = PokeBallOpenParticleAnimation,
     [BALL_FAST]    = GreatBallOpenParticleAnimation,
     [BALL_LEVEL]   = PokeBallOpenParticleAnimation,
-    [BALL_LURE]    = DiveBallOpenParticleAnimation,
-    [BALL_HEAVY]   = DiveBallOpenParticleAnimation,
+    [BALL_LURE]    = PokeBallOpenParticleAnimation,
+    [BALL_HEAVY]   = RepeatBallOpenParticleAnimation,
     [BALL_LOVE]    = GreatBallOpenParticleAnimation,
-    [BALL_FRIEND]  = DiveBallOpenParticleAnimation,
+    [BALL_FRIEND]  = TimerBallOpenParticleAnimation,
     [BALL_MOON]    = SafariBallOpenParticleAnimation,
 };
 
