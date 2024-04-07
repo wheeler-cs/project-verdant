@@ -21,6 +21,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "constants/html.h"
 
 // iwram
 u32 gMonShrinkDuration;
@@ -612,12 +613,12 @@ const u16 gBallOpenFadeColors[] =
     [BALL_QUICK]   = RGB(31, 31, 16),
     [BALL_CHERISH] = RGB(31, 8, 8),
     [BALL_FAST]    = RGB(31, 26, 10),
-    [BALL_LEVEL]   = RGB(0, 0, 0), // TODO: Pick fade color
-    [BALL_LURE]    = RGB(0, 0, 0), // TODO: Pick fade color
-    [BALL_HEAVY]   = RGB(0, 0, 0), // TODO: Pick fade color
-    [BALL_LOVE]    = RGB(31, 25, 31),
-    [BALL_FRIEND]  = RGB(0, 0, 0), // TODO: Pick fade color
-    [BALL_MOON]    = RGB(0, 0, 0), // TODO: Pick fade color
+    [BALL_LEVEL]   = HTML(0xffff4d),
+    [BALL_LURE]    = HTML(0xe2003b),
+    [BALL_HEAVY]   = HTML(0x7868a9),
+    [BALL_LOVE]    = HTML(0xffccff),
+    [BALL_FRIEND]  = HTML(0x5e8f3d),
+    [BALL_MOON]    = HTML(0x666666),
 };
 
 const struct SpriteTemplate gPokeblockSpriteTemplate =
