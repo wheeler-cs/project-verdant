@@ -43,7 +43,6 @@
 #define ITEM_LEVEL_BALL   18
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_LURE_BALL    19
 // TODO
@@ -58,7 +57,6 @@
 #define ITEM_LOVE_BALL    21
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 #define ITEM_FRIEND_BALL  22
 // TODO
@@ -68,7 +66,6 @@
 #define ITEM_MOON_BALL    23
 // TODO
 // TEST logic of ball
-// ADD particles for ball
 
 
 // Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient

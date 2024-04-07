@@ -173,12 +173,12 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COU
     [BALL_QUICK]   = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_QUICKBALL},
     [BALL_CHERISH] = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_CHERISHBALL},
     [BALL_FAST]    = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_FASTBALL},
-    [BALL_LEVEL]   = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LEVELBALL},
+    [BALL_LEVEL]   = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LUREBALL},
     [BALL_HEAVY]   = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_HEAVYBALL},
-    [BALL_LOVE]    = {gBattleAnimSpriteGfx_Flower,  0x100, TAG_PARTICLES_LOVEBALL},
+    [BALL_LOVE]    = {gBattleAnimSpriteGfx_Flower,     0x100, TAG_PARTICLES_LOVEBALL},
     [BALL_FRIEND]  = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_FRIENDBALL},
-    [BALL_MOON]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_MOONBALL},
+    [BALL_MOON]    = {gBattleAnimSpriteGfx_Particles2, 0x100, TAG_PARTICLES_MOONBALL},
 };
 
 // The color palette that changes the color of a ball's thrown particles
@@ -201,12 +201,12 @@ static const struct CompressedSpritePalette sBallParticlePalettes[POKEBALL_COUNT
     [BALL_QUICK]   = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_QUICKBALL},
     [BALL_CHERISH] = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_CHERISHBALL},
     [BALL_FAST]    = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_FASTBALL},
-    [BALL_LEVEL]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LEVELBALL},
+    [BALL_LEVEL]   = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LUREBALL},
     [BALL_HEAVY]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_HEAVYBALL},
-    [BALL_LOVE]    = {gBattleAnimSpritePal_Flower, TAG_PARTICLES_LOVEBALL},
+    [BALL_LOVE]    = {gBattleAnimSpritePal_Flower,       TAG_PARTICLES_LOVEBALL},
     [BALL_FRIEND]  = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_FRIENDBALL},
-    [BALL_MOON]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_MOONBALL},
+    [BALL_MOON]    = {gBattleAnimSpritePal_Particles2,   TAG_PARTICLES_MOONBALL},
 };
 
 static const union AnimCmd sAnim_RegularBall[] =
@@ -296,6 +296,12 @@ static const union AnimCmd sAnim_LoveBall[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_MoonBall[] =
+{
+    ANIMCMD_FRAME(5, 1),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd *const sAnims_BallParticles[] =
 {
     sAnim_RegularBall,
@@ -310,6 +316,7 @@ static const union AnimCmd *const sAnims_BallParticles[] =
     sAnim_CherishBall,
     sAnim_FastBall,
     sAnim_LoveBall,
+    sAnim_MoonBall,
 };
 
 #define PARTICLES_REGULAR            0
@@ -322,8 +329,9 @@ static const union AnimCmd *const sAnims_BallParticles[] =
 #define PARTICLES_HEAL               7
 #define PARTICLES_QUICK              8
 #define PARTICLES_CHERISH            9
-#define PARTICLES_FAST               10
+#define PARTICLES_FAST_LEVEL         10
 #define PARTICLES_LOVE               11
+#define PARTICLES_MOON               12
 
 // NOTE: This is the TYPE of animation that will be played when a ball is thrown, not particle count. See the union
 // directory above sAnims_BallParticles to see what an index relates to.
@@ -345,13 +353,13 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_HEAL]    = PARTICLES_HEAL,
     [BALL_QUICK]   = PARTICLES_QUICK,
     [BALL_CHERISH] = PARTICLES_CHERISH,
-    [BALL_FAST]    = PARTICLES_FAST,
-    [BALL_LEVEL]   = PARTICLES_NET_DIVE,
+    [BALL_FAST]    = PARTICLES_FAST_LEVEL,
+    [BALL_LEVEL]   = PARTICLES_FAST_LEVEL,
     [BALL_LURE]    = PARTICLES_NET_DIVE,
     [BALL_HEAVY]   = PARTICLES_NET_DIVE,
     [BALL_LOVE]    = PARTICLES_LOVE,
     [BALL_FRIEND]  = PARTICLES_NEST,
-    [BALL_MOON]    = PARTICLES_NET_DIVE,
+    [BALL_MOON]    = PARTICLES_MOON,
 };
 
 // NOTE: This is the actual animation used that calculates the position of the particles.
@@ -374,12 +382,12 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_QUICK]   = TimerBallOpenParticleAnimation,
     [BALL_CHERISH] = PokeBallOpenParticleAnimation,
     [BALL_FAST]    = GreatBallOpenParticleAnimation,
-    [BALL_LEVEL]   = DiveBallOpenParticleAnimation,
+    [BALL_LEVEL]   = PokeBallOpenParticleAnimation,
     [BALL_LURE]    = DiveBallOpenParticleAnimation,
     [BALL_HEAVY]   = DiveBallOpenParticleAnimation,
     [BALL_LOVE]    = GreatBallOpenParticleAnimation,
     [BALL_FRIEND]  = DiveBallOpenParticleAnimation,
-    [BALL_MOON]    = DiveBallOpenParticleAnimation,
+    [BALL_MOON]    = SafariBallOpenParticleAnimation,
 };
 
 static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] =
