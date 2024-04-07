@@ -49,9 +49,6 @@ enum {
     SHINY_STAR_DIAGONAL,
 };
 
-#ifndef EMER_REDUCED
-static void AnimTask_UnusedLevelUpHealthBox_Step(u8);
-#endif
 static void AnimTask_FlashHealthboxOnLevelUp_Step(u8);
 static void AnimTask_ThrowBall_Step(u8);
 static void SpriteCB_Ball_Throw(struct Sprite *);
@@ -178,7 +175,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[POKEBALL_COU
     [BALL_LEVEL]   = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LUREBALL},
     [BALL_HEAVY]   = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_HEAVYBALL},
-    [BALL_LOVE]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_LOVEBALL},
+    [BALL_LOVE]    = {gBattleAnimSpriteGfx_Flower,  0x100, TAG_PARTICLES_LOVEBALL},
     [BALL_FRIEND]  = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_FRIENDBALL},
     [BALL_MOON]    = {gBattleAnimSpriteGfx_Particles,  0x100, TAG_PARTICLES_MOONBALL},
 };
@@ -206,7 +203,7 @@ static const struct CompressedSpritePalette sBallParticlePalettes[POKEBALL_COUNT
     [BALL_LEVEL]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LEVELBALL},
     [BALL_LURE]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LUREBALL},
     [BALL_HEAVY]   = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_HEAVYBALL},
-    [BALL_LOVE]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_LOVEBALL},
+    [BALL_LOVE]    = {gBattleAnimSpritePal_Flower, TAG_PARTICLES_LOVEBALL},
     [BALL_FRIEND]  = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_FRIENDBALL},
     [BALL_MOON]    = {gBattleAnimSpritePal_CircleImpact, TAG_PARTICLES_MOONBALL},
 };
@@ -289,6 +286,15 @@ static const union AnimCmd sAnim_FastBall[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_LoveBall[] =
+{
+    ANIMCMD_FRAME(4, 4),
+    ANIMCMD_FRAME(4, 4, .hFlip = TRUE),
+    ANIMCMD_FRAME(4, 4, .hFlip = TRUE, .vFlip = TRUE),
+    ANIMCMD_FRAME(4, 4, .vFlip = TRUE),
+    ANIMCMD_JUMP(0),
+};
+
 static const union AnimCmd *const sAnims_BallParticles[] =
 {
     sAnim_RegularBall,
@@ -302,6 +308,7 @@ static const union AnimCmd *const sAnims_BallParticles[] =
     sAnim_QuickBall,
     sAnim_CherishBall,
     sAnim_FastBall,
+    sAnim_LoveBall,
 };
 
 #define PARTICLES_REGULAR            0
@@ -315,6 +322,7 @@ static const union AnimCmd *const sAnims_BallParticles[] =
 #define PARTICLES_QUICK              8
 #define PARTICLES_CHERISH            9
 #define PARTICLES_FAST               10
+#define PARTICLES_LOVE               11
 
 // NOTE: This is the TYPE of animation that will be played when a ball is thrown, not particle count. See the union
 // directory above sAnims_BallParticles to see what an index relates to.
@@ -340,7 +348,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_LEVEL]   = PARTICLES_NET_DIVE,
     [BALL_LURE]    = PARTICLES_NET_DIVE,
     [BALL_HEAVY]   = PARTICLES_NET_DIVE,
-    [BALL_LOVE]    = PARTICLES_NEST,
+    [BALL_LOVE]    = PARTICLES_LOVE,
     [BALL_FRIEND]  = PARTICLES_NEST,
     [BALL_MOON]    = PARTICLES_NET_DIVE,
 };
@@ -368,7 +376,7 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_LEVEL]   = DiveBallOpenParticleAnimation,
     [BALL_LURE]    = DiveBallOpenParticleAnimation,
     [BALL_HEAVY]   = DiveBallOpenParticleAnimation,
-    [BALL_LOVE]    = DiveBallOpenParticleAnimation,
+    [BALL_LOVE]    = GreatBallOpenParticleAnimation,
     [BALL_FRIEND]  = DiveBallOpenParticleAnimation,
     [BALL_MOON]    = DiveBallOpenParticleAnimation,
 };
@@ -599,28 +607,17 @@ const u16 gBallOpenFadeColors[] =
     [BALL_TIMER]   = RGB(29, 30, 30),
     [BALL_LUXURY]  = RGB(31, 17, 10),
     [BALL_PREMIER] = RGB(31, 9, 10),
-    // TODO: Change the fade colors to appropriately match the ball
     [BALL_DUSK]    = RGB(10, 1, 10),
     [BALL_HEAL]    = RGB(31, 24, 31),
     [BALL_QUICK]   = RGB(31, 31, 16),
     [BALL_CHERISH] = RGB(31, 8, 8),
     [BALL_FAST]    = RGB(31, 26, 10),
-    [BALL_LEVEL]   = RGB(0, 0, 0),
-    [BALL_LURE]    = RGB(0, 0, 0),
-    [BALL_HEAVY]   = RGB(0, 0, 0),
-    [BALL_LOVE]    = RGB(0, 0, 0),
-    [BALL_FRIEND]  = RGB(0, 0, 0),
-    [BALL_MOON]    = RGB(0, 0, 0),
-
-    // Garbage data
-    RGB_BLACK,
-    RGB(1, 16, 0),
-    RGB(3, 0, 1),
-    RGB(1, 8, 0),
-    RGB(0, 8, 0),
-    RGB(3, 8, 1),
-    RGB(6, 8, 1),
-    RGB(4, 0, 0),
+    [BALL_LEVEL]   = RGB(0, 0, 0), // TODO: Pick fade color
+    [BALL_LURE]    = RGB(0, 0, 0), // TODO: Pick fade color
+    [BALL_HEAVY]   = RGB(0, 0, 0), // TODO: Pick fade color
+    [BALL_LOVE]    = RGB(31, 25, 31),
+    [BALL_FRIEND]  = RGB(0, 0, 0), // TODO: Pick fade color
+    [BALL_MOON]    = RGB(0, 0, 0), // TODO: Pick fade color
 };
 
 const struct SpriteTemplate gPokeblockSpriteTemplate =
@@ -644,135 +641,8 @@ static const union AnimCmd *const sAnims_SafariRock[] = {
     sAnim_SafariRock,
 };
 
-// Unused, leftover from FRLG
-#ifndef EMER_REDUCED
-static const struct SpriteTemplate sSafariRockSpriteTemplate =
-{
-    .tileTag = ANIM_TAG_ROCKS,
-    .paletteTag = ANIM_TAG_ROCKS,
-    .oam = &gOamData_AffineOff_ObjNormal_32x32,
-    .anims = sAnims_SafariRock,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_PokeBlock_Throw,
-};
-#endif
-
 extern const struct SpriteTemplate gWishStarSpriteTemplate;
 extern const struct SpriteTemplate gMiniTwinklingStarSpriteTemplate;
-
-// This is an unused function, but it seems likely that it was
-// intended to be an additional effect during the level-up animation.
-// It is an upward blue gradient effect on the mon's healthbox.
-#ifndef EMER_REDUCED
-void AnimTask_UnusedLevelUpHealthBox(u8 taskId)
-{
-    struct BattleAnimBgData animBgData;
-    u8 healthBoxSpriteId;
-    u8 battler;
-    u8 spriteId1, spriteId2, spriteId3, spriteId4;
-
-    battler = gBattleAnimAttacker;
-    gBattle_WIN0H = 0;
-    gBattle_WIN0V = 0;
-    SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ | WININ_WIN1_CLR);
-    SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR);
-    SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
-    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
-    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
-    SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 0);
-    SetAnimBgAttribute(1, BG_ANIM_SCREEN_SIZE, 0);
-    SetAnimBgAttribute(1, BG_ANIM_AREA_OVERFLOW_MODE, 1);
-    SetAnimBgAttribute(1, BG_ANIM_CHAR_BASE_BLOCK, 1);
-
-    healthBoxSpriteId = gHealthboxSpriteIds[battler];
-    spriteId1 = gSprites[healthBoxSpriteId].oam.affineParam;
-    spriteId2 = gSprites[healthBoxSpriteId].data[5];
-    spriteId3 = CreateInvisibleSpriteWithCallback(SpriteCallbackDummy);
-    spriteId4 = CreateInvisibleSpriteWithCallback(SpriteCallbackDummy);
-    gSprites[healthBoxSpriteId].oam.priority = 1;
-    gSprites[spriteId1].oam.priority = 1;
-    gSprites[spriteId2].oam.priority = 1;
-    gSprites[spriteId3] = gSprites[healthBoxSpriteId];
-    gSprites[spriteId4] = gSprites[spriteId1];
-    gSprites[spriteId3].oam.objMode = ST_OAM_OBJ_WINDOW;
-    gSprites[spriteId4].oam.objMode = ST_OAM_OBJ_WINDOW;
-    gSprites[spriteId3].callback = SpriteCallbackDummy;
-    gSprites[spriteId4].callback = SpriteCallbackDummy;
-
-    GetBattleAnimBg1Data(&animBgData);
-    AnimLoadCompressedBgTilemap(animBgData.bgId, UnusedLevelupAnimationTilemap);
-    AnimLoadCompressedBgGfx(animBgData.bgId, UnusedLevelupAnimationGfx, animBgData.tilesOffset);
-    LoadCompressedPalette(gCureBubblesPal, BG_PLTT_ID(animBgData.paletteId), PLTT_SIZE_4BPP);
-
-    gBattle_BG1_X = -gSprites[spriteId3].x + 32;
-    gBattle_BG1_Y = -gSprites[spriteId3].y - 32;
-    gTasks[taskId].data[1] = 640;
-    gTasks[taskId].data[0] = spriteId3;
-    gTasks[taskId].data[2] = spriteId4;
-    gTasks[taskId].func = AnimTask_UnusedLevelUpHealthBox_Step;
-}
-
-static void AnimTask_UnusedLevelUpHealthBox_Step(u8 taskId)
-{
-    u8 spriteId1, spriteId2;
-    u8 battler;
-
-    battler = gBattleAnimAttacker;
-    gTasks[taskId].data[13] += gTasks[taskId].data[1];
-    gBattle_BG1_Y += (u16)gTasks[taskId].data[13] >> 8;
-    gTasks[taskId].data[13] &= 0xFF;
-
-    switch (gTasks[taskId].data[15])
-    {
-    case 0:
-        if (gTasks[taskId].data[11]++ > 1)
-        {
-            gTasks[taskId].data[11] = 0;
-            gTasks[taskId].data[12]++;
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(gTasks[taskId].data[12], 16 - gTasks[taskId].data[12]));
-            if (gTasks[taskId].data[12] == 8)
-                gTasks[taskId].data[15]++;
-        }
-        break;
-    case 1:
-        if (++gTasks[taskId].data[10] == 30)
-            gTasks[taskId].data[15]++;
-        break;
-    case 2:
-        if (gTasks[taskId].data[11]++ > 1)
-        {
-            gTasks[taskId].data[11] = 0;
-            gTasks[taskId].data[12]--;
-            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(gTasks[taskId].data[12], 16 - gTasks[taskId].data[12]));
-            if (gTasks[taskId].data[12] == 0)
-            {
-                ResetBattleAnimBg(FALSE);
-                gBattle_WIN0H = 0;
-                gBattle_WIN0V = 0;
-                SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ | WININ_WIN1_CLR);
-                SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ | WINOUT_WIN01_CLR | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR);
-                if (!IsContest())
-                    SetAnimBgAttribute(1, BG_ANIM_CHAR_BASE_BLOCK, 0);
-
-                SetGpuReg(REG_OFFSET_DISPCNT, GetGpuReg(REG_OFFSET_DISPCNT) ^ DISPCNT_OBJWIN_ON);
-                SetGpuReg(REG_OFFSET_BLDCNT, 0);
-                SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 0));
-                DestroySprite(&gSprites[gTasks[taskId].data[0]]);
-                DestroySprite(&gSprites[gTasks[taskId].data[2]]);
-                SetAnimBgAttribute(1, BG_ANIM_AREA_OVERFLOW_MODE, 0);
-                spriteId1 = gSprites[gHealthboxSpriteIds[battler]].oam.affineParam;
-                spriteId2 = gSprites[gHealthboxSpriteIds[battler]].data[5];
-                gSprites[gHealthboxSpriteIds[battler]].oam.priority = 1;
-                gSprites[spriteId1].oam.priority = 1;
-                gSprites[spriteId2].oam.priority = 1;
-                DestroyAnimVisualTask(taskId);
-            }
-        }
-        break;
-    }
-}
-#endif
 
 static void LoadHealthboxPalsForLevelUp(u8 *paletteId1, u8 *paletteId2, u8 battler)
 {
