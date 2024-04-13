@@ -205,6 +205,7 @@
 #define METATILE_Fortree_WoodBridge1_Top                   0x297
 
 // gTileset_General
+#define METATILE_General_AlternateTallGrass    0x02A
 #define METATILE_General_BlueCaveIndent        0x1B0
 #define METATILE_General_BlueCaveOpen          0x1B1
 #define METATILE_General_CalmWater             0x170

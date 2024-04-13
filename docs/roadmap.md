@@ -126,9 +126,9 @@
 
 ## Version 4 - Feature Porting ##
 #### Porting of mechanics and items from other generations. ####
-- [~] Generation II Pokeballs
-- [~] Generation IV Pokeballs
-- [ ] Generation VI Shiny Charm
+- [X] Generation II Pokeballs
+- [X] Generation IV Pokeballs
+- [~] Generation VI Shiny Charm
 
 
 ## Version 5 - New Content ##

@@ -5,12 +5,14 @@
 #define TILE_FLAG_HAS_ENCOUNTERS (1 << 0)
 #define TILE_FLAG_SURFABLE       (1 << 1)
 #define TILE_FLAG_UNUSED         (1 << 2) // Roughly all of the traversable metatiles. Set but never read
+#define TILE_FLAG_ALT_ENCOUNTERS (1 << 3)
 
 static const u8 sTileBitAttributes[NUM_METATILE_BEHAVIORS] =
 {
     [MB_NORMAL]                          = TILE_FLAG_UNUSED,
     [MB_TALL_GRASS]                      = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_LONG_GRASS]                      = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
+    [MB_ALT_TALL_GRASS]                  = TILE_FLAG_ALT_ENCOUNTERS,
     [MB_UNUSED_05]                       = TILE_FLAG_HAS_ENCOUNTERS,
     [MB_DEEP_SAND]                       = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_SHORT_GRASS]                     = TILE_FLAG_UNUSED,
@@ -134,7 +136,7 @@ bool8 MetatileBehavior_IsATile(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsEncounterTile(u8 metatileBehavior)
 {
-    if ((sTileBitAttributes[metatileBehavior] & TILE_FLAG_HAS_ENCOUNTERS))
+    if ((sTileBitAttributes[metatileBehavior] & (TILE_FLAG_HAS_ENCOUNTERS | TILE_FLAG_ALT_ENCOUNTERS)))
         return TRUE;
     else
         return FALSE;
@@ -174,7 +176,9 @@ bool8 MetatileBehavior_IsJumpSouth(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsPokeGrass(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_LONG_GRASS)
+    if (metatileBehavior == MB_TALL_GRASS ||
+        metatileBehavior == MB_LONG_GRASS ||
+        metatileBehavior == MB_ALT_TALL_GRASS)
         return TRUE;
     else
         return FALSE;
@@ -367,16 +371,6 @@ bool8 MetatileBehavior_IsTrickHouseSlipperyFloor(u8 metatileBehavior)
     else
         return FALSE;
 }
-
-#ifndef EMER_REDUCED
-bool8 Unref_MetatileBehavior_IsUnused05(u8 metatileBehavior)
-{
-    if (metatileBehavior == MB_UNUSED_05)
-        return TRUE;
-    else
-        return FALSE;
-}
-#endif
 
 bool8 MetatileBehavior_IsWalkNorth(u8 metatileBehavior)
 {
@@ -741,6 +735,14 @@ bool8 MetatileBehavior_IsTallGrass(u8 metatileBehavior)
 bool8 MetatileBehavior_IsLongGrass(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_LONG_GRASS)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsAltTallGrass(u8 metatileBehavior)
+{
+    if(metatileBehavior == MB_ALT_TALL_GRASS)
         return TRUE;
     else
         return FALSE;
@@ -1278,6 +1280,7 @@ bool8 MetatileBehavior_IsCuttableGrass(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_TALL_GRASS
      || metatileBehavior == MB_LONG_GRASS
+     || metatileBehavior == MB_ALT_TALL_GRASS
      || metatileBehavior == MB_ASHGRASS
      || metatileBehavior == MB_LONG_GRASS_SOUTH_EDGE)
         return TRUE;
