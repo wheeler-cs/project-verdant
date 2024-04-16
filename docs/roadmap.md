@@ -124,17 +124,26 @@
   - Obtained using the easy chat system in any mart with the phrase `RUBY` `SAPPHIRE` `EMERALD` `I CHOOSE YOU`.
 
 
-## Version 4 - Feature Porting ##
+## Version 3 - Feature Porting ##
 #### Porting of mechanics and items from other generations. ####
 - [X] Generation II Pokeballs
+  - Added fast, level, lure, heavy, love, friend, and moon balls.
 - [X] Generation IV Pokeballs
+  - Added dusk, heal, quick, and chersih balls.
+- [X] Alternative Encounter Grass Tile
+  - Added new grass encounter tile.
+  - Grass tile has an entirely dependent encounter table from standard tall grass.
+  - Metatile uses the regular tall grass metatile, but mirrored verically.
+  - Introduced a new land encounter table that can be used for alternative tile sets.
 - [~] Generation VI Shiny Charm
+  - Sprite implemented in game.
+  - Logic implemented when chain fishing was implemented.
 
 
-## Version 5 - New Content ##
+## Version 4 - New Content ##
 #### Changes that add variety to gameplay and customization. ####
 - [ ] Additional Player Outfits
-- [ ] New Encounter Tiles
+- [~] New Encounter Tiles
 - [ ] Wild Boss Encounters
 
 
@@ -144,7 +153,7 @@ Each of the region dexes will be added over the course of the entire project, wi
 of them to be complete by.
 - [ ] Kanto Dex
 - [ ] Johto Dex
-- [ ] Hoenn Dex
+- [~] Hoenn Dex
 
 Refer to [`dex_completion.md`](./dex_completion.md) for a checklist of what is missing and what has been implemented.
 

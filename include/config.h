@@ -127,6 +127,9 @@
 #define PROJECT_VERDANT
 
 #ifdef PROJECT_VERDANT  // Begin Project Verdant
+    // Debugging
+    //#define PV_DEBUG
+
     // Allow for more trainer battles in the game
     #define TRAINER_EXPANSION
 

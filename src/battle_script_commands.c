@@ -57,6 +57,10 @@
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
+#ifdef PV_DEBUG
+EWRAM_DATA u32 gDebugVarBallOdds;
+#endif
+
 #define DEFENDER_IS_PROTECTED ((gProtectStructs[gBattlerTarget].protected) && (gBattleMoves[gCurrentMove].flags & FLAG_PROTECT_AFFECTED))
 
 #define LEVEL_UP_BANNER_START 416
@@ -10045,6 +10049,10 @@ static void Cmd_handleballthrow(void)
                     gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;
             }
         }
+
+        #ifdef PV_DEBUG
+        gDebugVarBallOdds = ballMultiplier;
+        #endif
 
         if (odds > 254) // mon caught
         {

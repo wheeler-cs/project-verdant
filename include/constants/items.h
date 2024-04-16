@@ -20,50 +20,17 @@
 #define ITEM_PREMIER_BALL 12
 // Gen IV
 #define ITEM_DUSK_BALL    13
-// TODO
-// TEST logic of ball
-
 #define ITEM_HEAL_BALL    14
-// TODO
-// TEST logic of ball
-
 #define ITEM_QUICK_BALL   15
-// TODO
-// TEST logic of ball
-
 #define ITEM_CHERISH_BALL 16
-// TODO
-// TEST logic of ball
-
 // Gen II
 #define ITEM_FAST_BALL    17
-// TODO
-// TEST logic of ball
-
 #define ITEM_LEVEL_BALL   18
-// TODO
-// TEST logic of ball
-
 #define ITEM_LURE_BALL    19
-// TODO
-// TEST logic of ball
-
 #define ITEM_HEAVY_BALL   20
-// TODO
-// TEST logic of ball
-
 #define ITEM_LOVE_BALL    21
-// TODO
-// TEST logic of ball
-
 #define ITEM_FRIEND_BALL  22
-// TODO
-// TEST logic of ball
-
 #define ITEM_MOON_BALL    23
-// TODO
-// TEST logic of ball
-
 
 // Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient
 //       Several places expect the ball IDs to be first and contiguous (e.g. gBattlescriptsForBallThrow and MON_DATA_POKEBALL)
