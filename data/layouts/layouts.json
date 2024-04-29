@@ -4450,6 +4450,16 @@
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/DebugMap_WarpRoom/border.bin",
       "blockdata_filepath": "data/layouts/DebugMap_WarpRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS_EXTENSION",
+      "name": "PetalburgWoodsExtension_Layout",
+      "width": 34,
+      "height": 44,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/PetalburgWoodsExtension/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoodsExtension/map.bin"
     }
   ]
 }
