@@ -2252,66 +2252,6 @@
       "blockdata_filepath": "data/layouts/ContestHall/map.bin"
     },
     {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL1",
-      "name": "UnusedContestHall1_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall1/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall1/map.bin"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL2",
-      "name": "UnusedContestHall2_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall2/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall2/map.bin"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL3",
-      "name": "UnusedContestHall3_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall3/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall3/map.bin"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL4",
-      "name": "UnusedContestHall4_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall4/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall4/map.bin"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL5",
-      "name": "UnusedContestHall5_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall5/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall5/map.bin"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL6",
-      "name": "UnusedContestHall6_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall6/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall6/map.bin"
-    },
-    {
       "id": "LAYOUT_CONTEST_HALL_BEAUTY",
       "name": "ContestHallBeauty_Layout",
       "width": 15,
@@ -2862,16 +2802,6 @@
       "blockdata_filepath": "data/layouts/VictoryRoad_B2F/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE104_PROTOTYPE",
-      "name": "Route104_Prototype_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
-      "border_filepath": "data/layouts/Route104_Prototype/border.bin",
-      "blockdata_filepath": "data/layouts/Route104_Prototype/map.bin"
-    },
-    {
       "id": "LAYOUT_GRANITE_CAVE_STEVENS_ROOM",
       "name": "GraniteCave_StevensRoom_Layout",
       "width": 15,
@@ -3050,16 +2980,6 @@
       "secondary_tileset": "gTileset_MossdeepGameCorner",
       "border_filepath": "data/layouts/MossdeepCity_GameCorner_1F/border.bin",
       "blockdata_filepath": "data/layouts/MossdeepCity_GameCorner_1F/map.bin"
-    },
-    {
-      "id": "LAYOUT_MOSSDEEP_CITY_GAME_CORNER_B1F",
-      "name": "MossdeepCity_GameCorner_B1F_Layout",
-      "width": 12,
-      "height": 9,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/MossdeepCity_GameCorner_B1F/border.bin",
-      "blockdata_filepath": "data/layouts/MossdeepCity_GameCorner_B1F/map.bin"
     },
     {
       "id": "LAYOUT_SOOTOPOLIS_CITY_HOUSE1",
