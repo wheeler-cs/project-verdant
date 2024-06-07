@@ -12,6 +12,7 @@ MossdeepCity_GameCorner_1F_OnFrame:
 	map_script_2 VAR_CABLE_CLUB_STATE, USING_MINIGAME, CableClub_EventScript_ExitMinigameRoom
 	.2byte 0
 
+#ifndef EMER_REDUCED
 @ Script is redundant, the label in the goto also does lock and faceplayer
 MossdeepCity_GameCorner_1F_EventScript_InfoMan::
 	lock
@@ -27,8 +28,10 @@ MossdeepCity_GameCorner_1F_EventScript_OldMan::
 	goto MossdeepCity_GameCorner_1F_EventScript_OldMan2
 	release
 	end
+#endif
 
 
+#ifndef EMER_REDUCED
 @ Everything below is leftover from RS
 @ The house that was here in RS was moved to Sootopolis and replaced by the Game Corner
 @ The text below is unused and duplicated in its replacement in Sootopolis City
@@ -85,3 +88,4 @@ RS_MysteryEventsHouse_Text_BattleLost:
 	.string "Ah, too bad for you!\p"
 	.string "But it was a good match.\n"
 	.string "I hope you can win next time.$"
+#endif
