@@ -575,8 +575,10 @@ static void BattleAI_DoAIProcessing(void)
     {
         switch (AI_THINKING_STRUCT->aiState)
         {
+            #ifndef EMER_REDUCED
             case AIState_DoNotProcess: // Needed to match.
                 break;
+            #endif
             case AIState_SettingUp:
                 gAIScriptPtr = gBattleAI_ScriptsTable[AI_THINKING_STRUCT->aiLogicId]; // set AI ptr to logic ID.
                 if (gBattleMons[sBattler_AI].pp[AI_THINKING_STRUCT->movesetIndex] == 0)

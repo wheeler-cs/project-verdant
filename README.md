@@ -12,7 +12,7 @@ Current memory usage:
 
 The current ROM that is built: 
 
-**pokeemerald.gba** `sha1: 6a95db23da6de846bcb6b1867d97755d2a5a70f8`
+**pokeemerald.gba** `sha1: 693fb610191a65cfa4165eb3c7f730cfd2694a2c`
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 

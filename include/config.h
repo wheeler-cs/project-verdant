@@ -61,4 +61,7 @@
 // Uncomment to implement quality of life improvements (vanilla compatible)
 #define EMER_QOL
 
+// Uncomment to implement agressive optimizations (WILL BREAK VANILLA COMPATIBILITY)
+//#define AGR_REDUCED
+
 #endif // GUARD_CONFIG_H
