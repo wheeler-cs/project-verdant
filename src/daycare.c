@@ -985,6 +985,7 @@ u8 GetDaycareState(void)
     return DAYCARE_NO_MONS;
 }
 
+#ifndef EMER_REDUCED
 static u8 UNUSED GetDaycarePokemonCount(void)
 {
     u8 ret = CountPokemonInDaycare(&gSaveBlock1Ptr->daycare);
@@ -993,6 +994,7 @@ static u8 UNUSED GetDaycarePokemonCount(void)
 
     return 0;
 }
+#endif
 
 // Determine if the two given egg group lists contain any of the
 // same egg groups.
@@ -1141,6 +1143,7 @@ static u8 *AppendMonGenderSymbol(u8 *name, struct BoxPokemon *boxMon)
     return AppendGenderSymbol(name, GetBoxMonGender(boxMon));
 }
 
+#ifndef EMER_REDUCED
 static void UNUSED GetDaycareLevelMenuText(struct DayCare *daycare, u8 *dest)
 {
     u8 monNames[DAYCARE_MON_COUNT][POKEMON_NAME_BUFFER_SIZE];
@@ -1176,6 +1179,7 @@ static void UNUSED GetDaycareLevelMenuLevelText(struct DayCare *daycare, u8 *des
         StringAppend(dest, gText_NewLine2);
     }
 }
+#endif
 
 static void DaycareAddTextPrinter(u8 windowId, const u8 *text, u32 x, u32 y)
 {

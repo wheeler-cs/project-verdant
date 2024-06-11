@@ -1666,7 +1666,11 @@ static void Task_StartActivity(u8 taskId)
     case ACTIVITY_ACCEPT | IN_UNION_ROOM:
         CleanupOverworldWindowsAndTilemaps();
         gMain.savedCallback = CB2_UnionRoomBattle;
+        #ifdef EMER_REDUCED
+        InitChooseHalfPartyForBattle();
+        #else
         InitChooseHalfPartyForBattle(3);
+        #endif
         break;
     case ACTIVITY_BATTLE_SINGLE:
         CleanupOverworldWindowsAndTilemaps();

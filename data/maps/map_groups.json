@@ -27,7 +27,6 @@
     "gMapGroup_Dungeons",
     "gMapGroup_IndoorDynamic",
     "gMapGroup_SpecialArea",
-    "gMapGroup_IndoorRoute104Prototype",
     "gMapGroup_IndoorRoute109",
     "gMapGroup_IndoorRoute110",
     "gMapGroup_IndoorRoute113",
@@ -231,7 +230,6 @@
     "LilycoveCity_ContestHall",
     "LilycoveCity_PokemonCenter_1F",
     "LilycoveCity_PokemonCenter_2F",
-    "LilycoveCity_UnusedMart",
     "LilycoveCity_PokemonTrainerFanClub",
     "LilycoveCity_Harbor",
     "LilycoveCity_MoveDeletersHouse",
@@ -260,8 +258,7 @@
     "MossdeepCity_House4",
     "MossdeepCity_SpaceCenter_1F",
     "MossdeepCity_SpaceCenter_2F",
-    "MossdeepCity_GameCorner_1F",
-    "MossdeepCity_GameCorner_B1F"
+    "MossdeepCity_GameCorner_1F"
   ],
   "gMapGroup_IndoorSootopolis": [
     "SootopolisCity_Gym_1F",
@@ -363,9 +360,6 @@
     "SeafloorCavern_Room9",
     "CaveOfOrigin_Entrance",
     "CaveOfOrigin_1F",
-    "CaveOfOrigin_UnusedRubySapphireMap1",
-    "CaveOfOrigin_UnusedRubySapphireMap2",
-    "CaveOfOrigin_UnusedRubySapphireMap3",
     "CaveOfOrigin_B1F",
     "VictoryRoad_1F",
     "VictoryRoad_B1F",
@@ -398,9 +392,6 @@
     "SealedChamber_OuterRoom",
     "SealedChamber_InnerRoom",
     "ScorchedSlab",
-    "AquaHideout_UnusedRubyMap1",
-    "AquaHideout_UnusedRubyMap2",
-    "AquaHideout_UnusedRubyMap3",
     "SkyPillar_Entrance",
     "SkyPillar_Outside",
     "SkyPillar_1F",
@@ -464,12 +455,6 @@
     "RecordCorner",
     "BattleColosseum_4P",
     "ContestHall",
-    "UnusedContestHall1",
-    "UnusedContestHall2",
-    "UnusedContestHall3",
-    "UnusedContestHall4",
-    "UnusedContestHall5",
-    "UnusedContestHall6",
     "ContestHallBeauty",
     "ContestHallTough",
     "ContestHallCool",
@@ -587,10 +572,6 @@
     "NavelRock_Down11",
     "NavelRock_Bottom",
     "TrainerHill_Elevator"
-  ],
-  "gMapGroup_IndoorRoute104Prototype": [
-    "Route104_Prototype",
-    "Route104_PrototypePrettyPetalFlowerShop"
   ],
   "gMapGroup_IndoorRoute109": [
     "Route109_SeashoreHouse"

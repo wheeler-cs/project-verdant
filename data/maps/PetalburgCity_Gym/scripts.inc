@@ -330,8 +330,10 @@ PetalburgCity_Gym_EventScript_NormanFaceDoorEast::
 	return
 
 PetalburgCity_Gym_EventScript_NormanPostBattle::
+#ifndef EMER_REDUCED
 	call PetalburgCity_Gym_EventScript_ShouldGiveEnigmaBerry
 	goto_if_eq VAR_RESULT, TRUE, PetalburgCity_Gym_EventScript_GiveEnigmaBerry
+#endif
 	goto_if_unset FLAG_RECEIVED_TM_FACADE, PetalburgCity_Gym_EventScript_GiveFacade2
 	goto_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_NoAmountOfTrainingIsEnough
 	msgbox PetalburgCity_Gym_Text_DadGoingToKeepTraining, MSGBOX_DEFAULT
@@ -348,6 +350,7 @@ PetalburgCity_Gym_EventScript_NormanRematch::
 	msgbox PetalburgCity_Gym_Text_NormanPostRematch, MSGBOX_AUTOCLOSE
 	end
 
+#ifndef EMER_REDUCED
 PetalburgCity_Gym_EventScript_ShouldGiveEnigmaBerry::
 	specialvar VAR_RESULT, IsEnigmaBerryValid
 	goto_if_eq VAR_RESULT, FALSE, PetalburgCity_Gym_EventScript_DontGiveEnigmaBerry
@@ -370,6 +373,7 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry::
 	setvar VAR_ENIGMA_BERRY_AVAILABLE, 0
 	release
 	end
+#endif
 
 PetalburgCity_Gym_EventScript_NormanBattle::
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
