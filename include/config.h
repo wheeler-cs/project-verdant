@@ -148,12 +148,6 @@
 #endif  // End Project Verdant
 
 
-
-
-// Enable debugging options in code
-//#define VERDANT_DEBUG
-
-
 // Uncomment to implement agressive optimizations (WILL BREAK VANILLA COMPATIBILITY)
 #define AGR_REDUCED
 
