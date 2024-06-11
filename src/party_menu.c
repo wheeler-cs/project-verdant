@@ -1332,8 +1332,12 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
                 TryGiveMailToSelectedMon(taskId);
             }
             break;
+        #ifdef EMER_REDUCED
+        case PARTY_ACTION_GIVE_ITEM:
+        #else
         case PARTY_ACTION_GIVE_ITEM:
         case PARTY_ACTION_GIVE_PC_ITEM:
+        #endif
             if (IsSelectedMonNotEgg((u8 *)slotPtr))
             {
                 PlaySE(SE_SELECT);
@@ -5521,10 +5525,14 @@ static void DisplayItemMustBeRemovedFirstMessage(u8 taskId)
 
 static void RemoveItemToGiveFromBag(u16 item)
 {
+    #ifdef EMER_REDUCED
+    RemoveBagItem(item, 1);
+    #else
     if (gPartyMenu.action == PARTY_ACTION_GIVE_PC_ITEM) // Unused, never occurs
         RemovePCItem(item, 1);
     else
         RemoveBagItem(item, 1);
+    #endif
 }
 
 // Returns FALSE if there was no space to return the item
@@ -5563,7 +5571,11 @@ static void TryGiveMailToSelectedMon(u8 taskId)
     gTasks[taskId].func = Task_UpdateHeldItemSpriteAndClosePartyMenu;
 }
 
+#ifdef EMER_REDUCED
+void InitChooseHalfPartyForBattle(void)
+#else
 void InitChooseHalfPartyForBattle(u8 unused)
+#endif
 {
     ClearSelectedPartyOrder();
     InitPartyMenu(PARTY_MENU_TYPE_CHOOSE_HALF, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_MON, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, gMain.savedCallback);

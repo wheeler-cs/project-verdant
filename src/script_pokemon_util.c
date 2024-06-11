@@ -167,7 +167,11 @@ void ChooseHalfPartyForBattle(void)
 {
     gMain.savedCallback = CB2_ReturnFromChooseHalfParty;
     VarSet(VAR_FRONTIER_FACILITY, FACILITY_MULTI_OR_EREADER);
+    #ifdef EMER_REDUCED
+    InitChooseHalfPartyForBattle();
+    #else
     InitChooseHalfPartyForBattle(0);
+    #endif
 }
 
 static void CB2_ReturnFromChooseHalfParty(void)
@@ -188,7 +192,11 @@ static void CB2_ReturnFromChooseHalfParty(void)
 void ChoosePartyForBattleFrontier(void)
 {
     gMain.savedCallback = CB2_ReturnFromChooseBattleFrontierParty;
+    #ifdef EMER_REDUCED
+    InitChooseHalfPartyForBattle();
+    #else
     InitChooseHalfPartyForBattle(gSpecialVar_0x8004 + 1);
+    #endif
 }
 
 static void CB2_ReturnFromChooseBattleFrontierParty(void)
