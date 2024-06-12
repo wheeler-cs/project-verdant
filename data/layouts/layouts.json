@@ -4130,6 +4130,16 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/PetalburgWoodsExtension/border.bin",
       "blockdata_filepath": "data/layouts/PetalburgWoodsExtension/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS_EXTENSION_MANSION",
+      "name": "PetalburgWoodsExtension_Mansion_Layout",
+      "width": 40,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/PetalburgWoodsExtension_Mansion/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoodsExtension_Mansion/map.bin"
     }
   ]
 }

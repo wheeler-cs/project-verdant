@@ -580,6 +580,9 @@
 #define MAP_DEBUG_MAP_MART      (1 | (33 << 8))
 #define MAP_DEBUG_MAP_WARP_ROOM (2 | (33 << 8))
 
-#define MAP_GROUPS_COUNT 34
+// gMapGroup_Interiors
+#define MAP_PETALBURG_WOODS_EXTENSION_MANSION (0 | (34 << 8))
+
+#define MAP_GROUPS_COUNT 35
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

@@ -68,6 +68,8 @@ EWRAM_DATA u8 gChainFishingStreak = 0;
 EWRAM_DATA bool8 gIsFishingEncounter = FALSE;
 #endif
 
+EWRAM_DATA bool8 gForceEnableEncounters = FALSE;
+
 #include "data/wild_encounters.h"
 
 static const struct WildPokemon sWildFeebas = {20, 25, SPECIES_FEEBAS};

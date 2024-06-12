@@ -1899,6 +1899,36 @@
                 "species": "SPECIES_SLAKOTH"
               }
             ]
+          },
+          "alt_land_mons": {
+            "encounter_rate": 50,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_SHROOMISH"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_SLAKOTH"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 6,
+                "max_level": 6,
+                "species": "SPECIES_CATERPIE"
+              }
+            ]
           }
         },
         {
@@ -11390,6 +11420,105 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_SEAKING"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_PETALBURG_WOODS_EXTENSION",
+          "base_label": "gPetalburgWoodsExtension0",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 11,
+                "species": "SPECIES_CASCOON"
+              },
+              {
+                "min_level": 10,
+                "max_level": 11,
+                "species": "SPECIES_SILCOON"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 12,
+                "max_level": 12,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 10,
+                "max_level": 10,
+                "species": "SPECIES_SHROOMISH"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_SLAKOTH"
+              },
+              {
+                "min_level": 12,
+                "max_level": 12,
+                "species": "SPECIES_SLAKOTH"
+              },
+              {
+                "min_level": 12,
+                "max_level": 12,
+                "species": "SPECIES_SHROOMISH"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_TAILLOW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_TAILLOW"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_BEAUTIFLY"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_DUSTOX"
+              }
+            ]
+          },
+          "alt_land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 12,
+                "max_level": 12,
+                "species": "SPECIES_POOCHYENA"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_SHROOMISH"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_SLAKOTH"
+              },
+              {
+                "min_level": 10,
+                "max_level": 10,
+                "species": "SPECIES_CATERPIE"
+              },
+              {
+                "min_level": 11,
+                "max_level": 11,
+                "species": "SPECIES_CATERPIE"
               }
             ]
           }

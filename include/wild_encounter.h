@@ -34,6 +34,11 @@ extern u8 gChainFishingStreak;
 extern bool8 gIsFishingEncounter;
 #endif
 
+// Variable forces all tiles on map to have chance of initiating an encounter
+extern bool8 gForceEnableEncounters;
+// NOTE: This global variable was implemented to allow for creating maps that have regular but also allow for encounters
+// to occur. Essentially, any tile the player steps on will have a chance of generating an encounter.
+
 void DisableWildEncounters(bool8 disabled);
 bool8 StandardWildEncounter(u16 currMetaTileBehavior, u16 previousMetaTileBehavior);
 bool8 SweetScentWildEncounter(void);

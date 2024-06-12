@@ -1056,3 +1056,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/DebugMap_WarpRoom/scripts.inc"
 
 	.include "data/maps/PetalburgWoodsExtension/scripts.inc"
+
+	.include "data/maps/PetalburgWoodsExtension_Mansion/scripts.inc"
