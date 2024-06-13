@@ -1,6 +1,7 @@
 #include "global.h"
 #include "metatile_behavior.h"
 #include "constants/metatile_behaviors.h"
+#include "wild_encounter.h"
 
 #define TILE_FLAG_HAS_ENCOUNTERS (1 << 0)
 #define TILE_FLAG_SURFABLE       (1 << 1)
@@ -138,8 +139,9 @@ bool8 MetatileBehavior_IsEncounterTile(u8 metatileBehavior)
 {
     if ((sTileBitAttributes[metatileBehavior] & (TILE_FLAG_HAS_ENCOUNTERS | TILE_FLAG_ALT_ENCOUNTERS)))
         return TRUE;
-    else
-        return FALSE;
+    return gForceEnableEncounters;
+    //else
+    //    return FALSE;
 }
 
 bool8 MetatileBehavior_IsJumpEast(u8 metatileBehavior)

@@ -1033,3 +1033,8 @@ static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
     if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) == ITEM_CLEANSE_TAG)
         *encRate = *encRate * 2 / 3;
 }
+
+void SetForceEnableEncounters(void)
+{
+    gForceEnableEncounters = gSpecialVar_0x8004;
+}

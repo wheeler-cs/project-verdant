@@ -545,4 +545,5 @@ gSpecials::
 	def_special GetSpAtkIV
 	def_special GetSpDefIV
 	def_special GetSeenPokedexFlag
-	def_special SetSeenPokedexFlag	
+	def_special SetSeenPokedexFlag
+	def_special SetForceEnableEncounters
