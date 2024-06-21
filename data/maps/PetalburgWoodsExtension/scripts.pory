@@ -1,1 +1,12 @@
-mapscripts PetalburgWoodsExtension_MapScripts {}
+mapscripts PetalburgWoodsExtension_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        // Must reset gForceEnableEncounters in case player leaves from mansion
+        setvar(VAR_0x8004, FALSE)
+        special(SetForceEnableEncounters)
+    }
+}
+
+script PetalburgWoodsExtension_MansionSign {
+    msgbox("PETALBURG MANSION\nNo trespassing!", MSGBOX_SIGN)
+    end
+}

@@ -1058,3 +1058,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/PetalburgWoodsExtension/scripts.inc"
 
 	.include "data/maps/PetalburgWoodsExtension_Mansion/scripts.inc"
+
+	.include "data/maps/PetalburgWoodsExtension_MansionB1/scripts.inc"

@@ -1956,7 +1956,7 @@
 
 	@ Gives a specific move in a given slot to an already generated Pokémon
 	.macro givemove moveid:req, position:req
-	setvar VAR_0x8004, moveid
-	setvar VAR_0x8005, position
+	setvar VAR_0x8004, \moveid
+	setvar VAR_0x8005, \position
 	special SetCustomMove
 	.endm

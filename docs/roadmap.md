@@ -1,4 +1,4 @@
-# Current Project Version: 3.2.6 #
+# Current Project Version: 4.2.0 #
 
 ## Version 1 - Mechanic Backporting ##
 #### Updating game mechanics to more closely match modern games. ####
@@ -124,26 +124,31 @@
   - Obtained using the easy chat system in any mart with the phrase `RUBY` `SAPPHIRE` `EMERALD` `I CHOOSE YOU`.
 
 
-## Version 3 - Feature Porting ##
+## Version 4 - Feature Porting ##
 #### Porting of mechanics and items from other generations. ####
+### 4.1 - New Pokeballs ###
 - [X] Generation II Pokeballs
   - Added fast, level, lure, heavy, love, friend, and moon balls.
 - [X] Generation IV Pokeballs
   - Added dusk, heal, quick, and chersih balls.
+
+### 4.2 - New Encounter Tiles ###
 - [X] Alternative Encounter Grass Tile
   - Added new grass encounter tile.
   - Grass tile has an entirely dependent encounter table from standard tall grass.
   - Metatile uses the regular tall grass metatile, but mirrored verically.
   - Introduced a new land encounter table that can be used for alternative tile sets.
-- [~] Generation VI Shiny Charm
+
+### 4.3 - Charms ###
+- [~] Shiny Charm
   - Sprite implemented in game.
   - Logic implemented when chain fishing was implemented.
+- [ ] Oval Charm
 
 
-## Version 4 - New Content ##
+## Version 5 - New Content ##
 #### Changes that add variety to gameplay and customization. ####
 - [ ] Additional Player Outfits
-- [~] New Encounter Tiles
 - [ ] Wild Boss Encounters
 
 

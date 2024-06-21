@@ -1,0 +1,103 @@
+const TIME_HOUR = VAR_0x8000
+const ENCOUNTER_MON = SPECIES_HAUNTER
+
+mapscripts PetalburgWoodsExtension_MansionB1_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        // In the event a save is loaded, make sure encounters will occur
+        setvar(VAR_0x8004, TRUE)
+        special(SetForceEnableEncounters)
+        gettime // Puts current hour into VAR_0x8000 (aka TIME_HOUR)
+        // Event is active if all of the following criteria are met:
+        //    1. The time is between 6pm and 6am.
+        //    2. The event has not already been completed.
+        //    3. Flannery has been defeated and the 4th gym badge obtained.
+        if(((var(TIME_HOUR) < 6) || (var(TIME_HOUR) > 18)) && !flag(FLAG_DEFEATED_HAUNTED_TV) && flag(FLAG_DEFEATED_LAVARIDGE_GYM)) {
+            setflag(FLAG_PETALBURG_MANSION_B1_STATE)
+        }
+        else {
+            clearflag(FLAG_PETALBURG_MANSION_B1_STATE)
+        }
+    }
+
+    MAP_SCRIPT_ON_LOAD {
+        // Set room appearance according to its state
+        if(flag(FLAG_PETALBURG_MANSION_B1_STATE)) {
+            setmetatile(8, 2, METATILE_Building_TV_On, TRUE)
+            setweather(WEATHER_SHADE)
+        }
+        else
+        {
+            setmetatile(8, 2, METATILE_Building_TV_Off, TRUE)
+            setweather(WEATHER_NONE)
+        }
+    }
+}
+
+
+script PetalburgWoodsExtension_MansionB1_HauntedTV {
+    // VAR_TEMP_0 acts as a check to see if the player has already done the encounter at least once
+    lockall
+    waitse
+    if(flag(FLAG_PETALBURG_MANSION_B1_STATE) == FALSE) {
+        // Encounter cannot be done
+        if(var(VAR_TEMP_0) == TRUE) {
+            bufferspeciesname(STR_VAR_1, ENCOUNTER_MON)
+            msgbox("{STR_VAR_1} seems to have left.", MSGBOX_DEFAULT)
+        }
+        else {
+            msgbox("It appears to be broken.", MSGBOX_DEFAULT)
+        }
+    }
+    else {
+        if(var(VAR_TEMP_0) == TRUE) {
+            bufferspeciesname(STR_VAR_1, ENCOUNTER_MON)
+            msgbox("{STR_VAR_1} eyes you from the TV.\nTry calling it?", MSGBOX_YESNO)
+        }
+        else {
+            msgbox("The TV feels like it's watching you.\nTry turning it off?", MSGBOX_YESNO)
+        }
+        // Player selected "Yes" on message box, start battle
+        if(var(VAR_RESULT) == YES)
+        {
+            // Pre-battle setup
+            playmoncry(ENCOUNTER_MON, CRY_MODE_ENCOUNTER)
+            delay(40)
+            waitmoncry
+            call(PetalburgWoodsExtension_MansionB1_SetupBossEncounter)
+            setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+            dowildbattle // Start the battle!
+            clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+            // After-battle events
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            switch(var(VAR_RESULT)) {
+                case B_OUTCOME_WON: // Player caught or defeated Pokemon, change flags
+                    setflag(FLAG_DEFEATED_HAUNTED_TV)
+                    clearflag(FLAG_PETALBURG_MANSION_B1_STATE)
+                // Player ran or teleported from battle, let them know the event is still active
+                case B_OUTCOME_RAN:
+                case B_OUTCOME_PLAYER_TELEPORTED:
+                    bufferspeciesname(STR_VAR_1, ENCOUNTER_MON)
+                    msgbox("{STR_VAR_1} returned to the TV.", MSGBOX_DEFAULT)
+            }
+            setvar(VAR_TEMP_0, TRUE) // Needed for alternate text dialog
+        }
+        // Player selected "No" on message box, don't do the battle
+        else {
+            msgbox("Decided to leave it alone.", MSGBOX_DEFAULT)
+        }
+    }
+    releaseall
+    end
+}
+
+
+script PetalburgWoodsExtension_MansionB1_SetupBossEncounter {
+    setshinybonus(35) // Make chance of a shiny approx. 1 in 100
+    createbossmon(ENCOUNTER_MON, 25, ITEM_SPELL_TAG)
+    // Has thunderbolt cause it was able to haunt the TV (DEEPEST LORE)
+    givemove(MOVE_THUNDERBOLT, 0) // TM Move
+    givemove(MOVE_SHADOW_BALL, 1) // TM Move
+    givemove(MOVE_TORMENT, 2)     // TM Move
+    givemove(MOVE_ASTONISH, 3)    // Egg Move
+    return
+}

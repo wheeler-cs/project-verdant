@@ -4137,9 +4137,19 @@
       "width": 40,
       "height": 20,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/PetalburgWoodsExtension_Mansion/border.bin",
       "blockdata_filepath": "data/layouts/PetalburgWoodsExtension_Mansion/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS_EXTENSION_MANSION_B1",
+      "name": "PetalburgWoodsExtension_MansionB1_Layout",
+      "width": 11,
+      "height": 15,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PetalburgWoodsExtension_MansionB1/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoodsExtension_MansionB1/map.bin"
     }
   ]
 }

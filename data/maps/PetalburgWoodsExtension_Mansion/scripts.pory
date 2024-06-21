@@ -1,5 +1,6 @@
 mapscripts PetalburgWoodsExtension_Mansion_MapScripts {
     MAP_SCRIPT_ON_LOAD {
+        // Force encounters to be possible on any tile
         setvar(VAR_0x8004, TRUE)
         special(SetForceEnableEncounters)
     }

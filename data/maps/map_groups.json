@@ -612,6 +612,7 @@
     "DebugMap_WarpRoom"
   ],
   "gMapGroup_Interiors": [
-    "PetalburgWoodsExtension_Mansion"
+    "PetalburgWoodsExtension_Mansion",
+    "PetalburgWoodsExtension_MansionB1"
   ]
 }
