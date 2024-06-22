@@ -576,9 +576,10 @@
 #define MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE (0 | (32 << 8))
 
 // gMapGroup_Debug
-#define MAP_DEBUG_MAP_ARRIVAL   (0 | (33 << 8))
-#define MAP_DEBUG_MAP_MART      (1 | (33 << 8))
-#define MAP_DEBUG_MAP_WARP_ROOM (2 | (33 << 8))
+#define MAP_DEBUG_MAP_ARRIVAL          (0 | (33 << 8))
+#define MAP_DEBUG_MAP_MART             (1 | (33 << 8))
+#define MAP_DEBUG_MAP_WARP_ROOM        (2 | (33 << 8))
+#define MAP_DEBUG_MAP_FLAG_TOGGLE_ROOM (3 | (33 << 8))
 
 // gMapGroup_Interiors
 #define MAP_PETALBURG_WOODS_EXTENSION_MANSION    (0 | (34 << 8))

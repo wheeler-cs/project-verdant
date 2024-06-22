@@ -1,0 +1,121 @@
+mapscripts DebugMap_FlagToggleRoom_MapScripts {}
+
+script DebugMap_FlagToggleRoom_RustboroGym {
+    lockall
+    if(flag(FLAG_DEFEATED_RUSTBORO_GYM)) {
+        clearflag(FLAG_DEFEATED_RUSTBORO_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_RUSTBORO_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}
+
+script DebugMap_FlagToggleRoom_DewfordGym {
+    lockall
+    if(flag(FLAG_DEFEATED_DEWFORD_GYM)) {
+        clearflag(FLAG_DEFEATED_DEWFORD_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_DEWFORD_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}
+
+script DebugMap_FlagToggleRoom_MauvilleGym {
+    lockall
+    if(flag(FLAG_DEFEATED_MAUVILLE_GYM)) {
+        clearflag(FLAG_DEFEATED_MAUVILLE_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_MAUVILLE_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}
+
+script DebugMap_FlagToggleRoom_LavaridgeGym {
+    lockall
+    if(flag(FLAG_DEFEATED_LAVARIDGE_GYM)) {
+        clearflag(FLAG_DEFEATED_LAVARIDGE_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_LAVARIDGE_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}
+
+script DebugMap_FlagToggleRoom_PetalburgGym {
+    lockall
+    if(flag(FLAG_DEFEATED_PETALBURG_GYM)) {
+        clearflag(FLAG_DEFEATED_PETALBURG_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_PETALBURG_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}
+
+script DebugMap_FlagToggleRoom_FortreeGym {
+    lockall
+    if(flag(FLAG_DEFEATED_FORTREE_GYM)) {
+        clearflag(FLAG_DEFEATED_FORTREE_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_FORTREE_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}
+
+script DebugMap_FlagToggleRoom_MossdeepGym {
+    lockall
+    if(flag(FLAG_DEFEATED_MOSSDEEP_GYM)) {
+        clearflag(FLAG_DEFEATED_MOSSDEEP_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_MOSSDEEP_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}
+
+script DebugMap_FlagToggleRoom_SootopolisGym {
+    lockall
+    if(flag(FLAG_DEFEATED_SOOTOPOLIS_GYM)) {
+        clearflag(FLAG_DEFEATED_SOOTOPOLIS_GYM)
+        msgbox("Gym flag cleared!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    else {
+        setflag(FLAG_DEFEATED_SOOTOPOLIS_GYM)
+        msgbox("Gym flag set!", MSGBOX_DEFAULT)
+        closemessage
+    }
+    releaseall
+}

@@ -37,6 +37,13 @@
       "elevation": 0,
       "dest_map": "MAP_DEBUG_MAP_WARP_ROOM",
       "dest_warp_id": "22"
+    },
+    {
+      "x": 3,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_DEBUG_MAP_FLAG_TOGGLE_ROOM",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

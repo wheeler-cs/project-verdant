@@ -4150,6 +4150,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/PetalburgWoodsExtension_MansionB1/border.bin",
       "blockdata_filepath": "data/layouts/PetalburgWoodsExtension_MansionB1/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEBUG_MAP_FLAG_TOGGLE_ROOM",
+      "name": "DebugMap_FlagToggleRoom_Layout",
+      "width": 24,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_LilycoveMuseum",
+      "border_filepath": "data/layouts/DebugMap_FlagToggleRoom/border.bin",
+      "blockdata_filepath": "data/layouts/DebugMap_FlagToggleRoom/map.bin"
     }
   ]
 }

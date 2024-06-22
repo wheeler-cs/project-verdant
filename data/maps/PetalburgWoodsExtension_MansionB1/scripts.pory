@@ -51,7 +51,7 @@ script PetalburgWoodsExtension_MansionB1_HauntedTV {
     else {
         if(var(VAR_TEMP_0) == TRUE) {
             bufferspeciesname(STR_VAR_1, ENCOUNTER_MON)
-            msgbox("{STR_VAR_1} eyes you from the TV.\nTry calling it?", MSGBOX_YESNO)
+            msgbox("{STR_VAR_1} glares at you from the TV.\nTry calling it?", MSGBOX_YESNO)
         }
         else {
             msgbox("The TV feels like it's watching you.\nTry turning it off?", MSGBOX_YESNO)
@@ -92,7 +92,7 @@ script PetalburgWoodsExtension_MansionB1_HauntedTV {
 
 
 script PetalburgWoodsExtension_MansionB1_SetupBossEncounter {
-    setshinybonus(35) // Make chance of a shiny approx. 1 in 100
+    setshinybonus(35) // Make chance of a shiny approx. 1 in 100 (assuming modified bass chance of 1 in 4096)
     createbossmon(ENCOUNTER_MON, 25, ITEM_SPELL_TAG)
     // Has thunderbolt cause it was able to haunt the TV (DEEPEST LORE)
     givemove(MOVE_THUNDERBOLT, 0) // TM Move

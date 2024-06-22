@@ -171,7 +171,7 @@ PetalburgWoodsExtension_MansionB1_HauntedTV_Text_1:
 
 PetalburgWoodsExtension_MansionB1_HauntedTV_Text_2:
 # 54 "data/maps/PetalburgWoodsExtension_MansionB1/scripts.pory"
-	.string "{STR_VAR_1} eyes you from the TV.\nTry calling it?$"
+	.string "{STR_VAR_1} glares at you from the TV.\nTry calling it?$"
 
 PetalburgWoodsExtension_MansionB1_HauntedTV_Text_3:
 # 57 "data/maps/PetalburgWoodsExtension_MansionB1/scripts.pory"
