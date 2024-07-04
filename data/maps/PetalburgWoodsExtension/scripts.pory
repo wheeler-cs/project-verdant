@@ -1,12 +1,116 @@
+// Constants
+const LOCALID_PANICKED_CHILD = 2
+
+
+// On-Load Scripts
 mapscripts PetalburgWoodsExtension_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         // Must reset gForceEnableEncounters in case player leaves from mansion
         setvar(VAR_0x8004, FALSE)
         special(SetForceEnableEncounters)
+        if(!flag(FLAG_STARTED_PETALBURG_MANSION_QUEST)) {
+            setvar(VAR_TEMP_0, 0)
+        }
+        else {
+            setvar(VAR_TEMP_0, 1)
+        }
+        setflag(FLAG_HIDE_MANSION_PANICKED_BOY)
     }
 }
 
+
+// Scripts
 script PetalburgWoodsExtension_MansionSign {
-    msgbox("PETALBURG MANSION\nNo trespassing!", MSGBOX_SIGN)
+    msgbox(PetalburgWoodsExtension_MansionSignMessage, MSGBOX_SIGN)
     end
+}
+
+script PetalburgWoodsExtension_ChildFromMansion {
+    setobjectxy(LOCALID_PANICKED_CHILD, 11, 9)
+    lock
+    delay(20)
+    // Open the door tile leading to the mansion
+    opendoor(11, 9)
+    waitdooranim
+    // Boy leaving the mansion
+    clearflag(FLAG_HIDE_MANSION_PANICKED_BOY)
+    applymovement(OBJ_EVENT_ID_PLAYER, PetalburgWoodsExtension_WalkDownTurnAround)
+    waitmovement(0)
+    applymovement(LOCALID_PANICKED_CHILD, PetalburgWoodsExtension_ChildFromMansionWalkDown)
+    waitmovement(0)
+    closedoor(11, 9)
+    waitdooranim
+    // Child explains what happened, starting the quest
+    msgbox(PetalburgWoodsExtension_PanickedChildText01, MSGBOX_DEFAULT)
+    closemessage
+    applymovement(LOCALID_PANICKED_CHILD, PetalburgWoodsExtension_ChildFaceUp)
+    waitmovement(0)
+    delay(40)
+    applymovement(LOCALID_PANICKED_CHILD, PetalburgWoodsExtension_ChildFaceDown)
+    waitmovement(0)
+    msgbox(PetalburgWoodsExtension_PanickedChildText02, MSGBOX_DEFAULT)
+    closemessage
+    applymovement(LOCALID_PANICKED_CHILD, PetalburgWoodsExtension_ChildMoveRightLookLeft)
+    waitmovement(0)
+    // Set flag so boy doesn't appear again
+    setflag(FLAG_STARTED_PETALBURG_MANSION_QUEST)
+    setvar(VAR_TEMP_0, 1)
+    release
+    end
+}
+
+
+// Movement
+movement PetalburgWoodsExtension_ChildFromMansionWalkDown {
+    delay_16
+    delay_8
+    walk_fast_down
+}
+
+movement PetalburgWoodsExtension_ChildFaceUp {
+    face_up
+}
+
+movement PetalburgWoodsExtension_ChildFaceDown {
+    face_down
+}
+
+movement PetalburgWoodsExtension_ChildMoveRightLookLeft {
+    walk_right
+    face_left
+}
+
+movement PetalburgWoodsExtension_WalkDownTurnAround {
+    walk_down
+    face_up
+}
+
+
+// Text
+text PetalburgWoodsExtension_MansionSignMessage {
+    "PETALBURG MANSION\n"
+    "No trespassing!$"
+}
+
+text PetalburgWoodsExtension_PanickedChildText01 {
+    "Oh, I'm sorry!\n"
+    "I didn't mean to run into you like that.\p"
+    "My friend and I were dared by the older\n"
+    "kids at school to come here to the old\l"
+    "mansion.\p"
+    "If we can get something to prove we\n"
+    "actually went, they said they'd stop\l"
+    "picking on everyone.$"
+}
+
+text PetalburgWoodsExtension_PanickedChildText02 {
+    "The problem is we split up and I was\n"
+    "never able to find him after that.\p"
+    "I was gonna go look for him…\n"
+    "But then I heard a strange noise and\l"
+    "ran out as fast as I could!\p"
+    "Please, you have to go in and find him.\p"
+    "If our parents knew we came here\n"
+    "instead of going to school, we'd be in\l"
+    "big trouble!$"
 }

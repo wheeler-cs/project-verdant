@@ -1,0 +1,148 @@
+// Constants
+const LOCALID_LOST_BOY = 2
+
+
+// On-Load Scripts
+mapscripts PetalburgWoodsExtension_MansionF2_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        // Make sure enabled encounter persist through saves
+        setvar(VAR_0x8004, TRUE)
+        special(SetForceEnableEncounters)
+    }
+}
+
+
+// Scripts
+script PetalburgWoodsExtension_MansionF2_OpenBook {
+    lockall
+    msgbox(PetalburgWoodsExtension_MansionF2_BookText, MSGBOX_DEFAULT)
+    releaseall
+    end
+}
+
+script PetalburgWoodsExtension_MansionF2_LostBoy {
+    lock
+    // Boy thinks player is a ghost
+    faceplayer
+    msgbox(PetalburgWoodsExtension_MansionF2_LostBoyText01, MSGBOX_DEFAULT)
+    waitmessage
+    closemessage
+    applymovement(LOCALID_LOST_BOY, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_LOST_BOY, Common_Movement_Delay48)
+    waitmovement(0)
+    // Boy explains what happened
+    msgbox(PetalburgWoodsExtension_MansionF2_LostBoyText02, MSGBOX_DEFAULT)
+    msgbox(PetalburgWoodsExtension_MansionF2_LostBoyText03, MSGBOX_DEFAULT)
+    msgbox(PetalburgWoodsExtension_MansionF2_LostBoyText04, MSGBOX_DEFAULT)
+    waitmessage
+    giveitem(ITEM_BIG_PEARL) // Quest reward
+    // Was unable to give player item due to full bag
+    if(var(VAR_RESULT) == FALSE) {
+        msgbox(PetalburgWoodsExtension_MansionF2_LostBoyTextBagFull, MSGBOX_DEFAULT)
+    }
+    // Boy says "goodbye" and leaves map
+    msgbox(PetalburgWoodsExtension_MansionF2_LostBoyText05, MSGBOX_DEFAULT)
+    waitmessage
+    closemessage
+    getplayerxy(VAR_0x8007, VAR_0x8008)
+    if(var(VAR_0x8008) == 5) { // Player is west of boy, move out of way
+        applymovement(OBJ_EVENT_ID_PLAYER, PetalburgWoodsExtension_MansionF2_PlayerMovesOutOfWay)
+        waitmovement(0)
+    }
+    // Moves boy's sprite just enough on screen so it can be hidden
+    applymovement(LOCALID_LOST_BOY, PetalburgWoodsExtension_MansionF2_ChildLeavesMap)
+    waitmovement(0)
+    removeobject(LOCALID_LOST_BOY)
+    // Complete quest
+    setflag(FLAG_COMPLETED_PETALBURG_MANSION_QUEST)
+    release
+    end
+}
+
+
+// Movement
+movement PetalburgWoodsExtension_MansionF2_PlayerMovesOutOfWay {
+    walk_up
+    face_down
+}
+
+movement PetalburgWoodsExtension_MansionF2_ChildLeavesMap {
+    walk_left * 3
+    walk_down * 4
+    walk_right
+    walk_down * 4
+}
+
+
+// Text
+text PetalburgWoodsExtension_MansionF2_BookText {
+    "It a journal."
+
+    "\p… … … … … …"
+
+    "\pStrange things have been happening"
+    "\never since I brought home that TV."
+
+    "\pThings go missing and eerie sounds can"
+    "\nbe heard all throughout the night."
+
+    "\pNow I often see apparitions in the"
+    "\ncorner of my eye!"
+
+    "\pI fear my family will have to flee if"
+    "\nsomething can't be done."
+}
+
+text PetalburgWoodsExtension_MansionF2_LostBoyText01 {
+    "Waaah! Go away you creepy GHOST!"
+}
+
+text PetalburgWoodsExtension_MansionF2_LostBoyText02 {
+    "Wait a minute…"
+    "\nYou're not a GHOST Pokémon!"
+
+    "\pThank goodness too."
+    "\nMy Pokémon are pretty tired from"
+    "\lgetting me here to the mansion."
+}
+
+text PetalburgWoodsExtension_MansionF2_LostBoyText03 {
+    "I came with my friend to look around"
+    "\nthis dusty old house and find"
+    "\lsomething we could show at school."
+
+    "\pI was up here rummaging around in an old"
+    "\ndresser when I got spooked by one of"
+    "\lthe GHOST Pokémon."
+
+    "\pThe only thing I could think to do was"
+    "\nduck behind this table and wait until"
+    "\lsomebody came looking for me."
+}
+
+text PetalburgWoodsExtension_MansionF2_LostBoyText04 {
+    "I'm glad you came around. I was"
+    "\nbeginning to worry nobody was coming."
+
+    "\pI think I can make it out on my own now"
+    "\nthat I've had a chance to rest."
+
+    "\pOh! Before I go…"
+    "\nTake this as thanks for saving me.$"
+
+    "\pI found it under the table while I was"
+    "\nhiding."
+}
+
+text PetalburgWoodsExtension_MansionF2_LostBoyText05 {
+    "I found it while I was hiding."
+    "\nIt should be worth quite a bit."
+}
+
+text PetalburgWoodsExtension_MansionF2_LostBoyTextBagFull {
+    "Oh? It won't fit in your bag?"
+
+    "\pI'll hold on to it then."
+    "\nMaybe it'll bring me good luck!"
+}

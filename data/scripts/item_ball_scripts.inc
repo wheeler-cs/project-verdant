@@ -657,3 +657,11 @@ MagmaHideout_4F_EventScript_ItemMaxRevive::
 MagmaHideout_3F_3R_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
 	end
+
+PetalburgWoods_Mansion_EventScript_ItemEther::
+	finditem ITEM_ETHER
+	end
+
+PetalburgWoods_Mansion_EventScript_ItemGreatBall::
+	finditem ITEM_GREAT_BALL
+	end

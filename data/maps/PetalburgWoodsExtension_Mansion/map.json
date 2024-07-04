@@ -56,7 +56,7 @@
       "x": 23,
       "y": 2,
       "elevation": 0,
-      "dest_map": "MAP_PETALBURG_WOODS_EXTENSION_MANSION",
+      "dest_map": "MAP_PETALBURG_WOODS_EXTENSION_MANSION_F2",
       "dest_warp_id": "0"
     }
   ],
@@ -64,6 +64,13 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 35,
+      "y": 14,
+      "elevation": 0,
+      "item": "ITEM_NONE",
+      "flag": "FLAG_TEMP_1"
+    }
   ]
 }

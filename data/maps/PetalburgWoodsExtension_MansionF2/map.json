@@ -1,0 +1,74 @@
+{
+  "id": "MAP_PETALBURG_WOODS_EXTENSION_MANSION_F2",
+  "name": "PetalburgWoodsExtension_MansionF2",
+  "layout": "LAYOUT_PETALBURG_WOODS_EXTENSION_MANSION_F2",
+  "music": "MUS_RG_MT_MOON",
+  "region_map_section": "MAPSEC_PETALBURG_WOODS",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PetalburgWoods_Mansion_EventScript_ItemEther",
+      "flag": "FLAG_ITEM_PETALBURG_WOODS_MANSION_ETHER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "x": 13,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PetalburgWoodsExtension_MansionF2_LostBoy",
+      "flag": "FLAG_COMPLETED_PETALBURG_MANSION_QUEST"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 23,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_PETALBURG_WOODS_EXTENSION_MANSION",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "PetalburgWoodsExtension_MansionF2_OpenBook"
+    },
+    {
+      "type": "hidden_item",
+      "x": 24,
+      "y": 14,
+      "elevation": 0,
+      "item": "ITEM_GREAT_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_PETALBURG_WOODS_MANSION_GREAT_BALL"
+    }
+  ]
+}

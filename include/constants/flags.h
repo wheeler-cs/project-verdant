@@ -42,12 +42,14 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_DEFEATED_HAUNTED_TV           0x20 // Unused Flag
-#define FLAG_PETALBURG_MANSION_B1_STATE    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
+// === Petalburg Mansion Flags =========================================================================================
+#define FLAG_DEFEATED_HAUNTED_TV                0x20 // Tracks if the haunted TV event is completed
+#define FLAG_PETALBURG_MANSION_B1_STATE         0x21 // Assists in handling basement state  for haunted TV event
+#define FLAG_HIDE_MANSION_PANICKED_BOY          0x22 // Controls if the kid for the start of the quest is visible
+#define FLAG_STARTED_PETALBURG_MANSION_QUEST    0x23 // Handles cutscene for start of quest in Petalburg Mansion
+#define FLAG_COMPLETED_PETALBURG_MANSION_QUEST  0x25 // End of quest to find lost boy; also hides NPC when set
+
+
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag
@@ -97,8 +99,8 @@
 #define FLAG_RESCUED_BIRCH                       0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS           0x53
 
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
-#define FLAG_UNUSED_0x055                    0x55  // Unused Flag
+#define FLAG_UNUSED_0x54 // Unused
+#define FLAG_UNUSED_0x55 // Unused
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
 #define FLAG_MET_RIVAL_MOM                   0x57
@@ -651,10 +653,10 @@
 #define FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH           (FLAG_HIDDEN_ITEMS_START + 0x6D)
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
-#define FLAG_HIDDEN_ITEM_SLATEPORT_CITY_BIG_PEARL            (FLAG_HIDDEN_ITEMS_START + 0x70)
-#define FLAG_HIDDEN_ITEM_SLATEPORT_CITY_GREAT_BALL           (FLAG_HIDDEN_ITEMS_START + 0x71)
+#define FLAG_HIDDEN_ITEM_SLATEPORT_CITY_BIG_PEARL            (FLAG_HIDDEN_ITEMS_START + 0x70) // 0x264
+#define FLAG_HIDDEN_ITEM_SLATEPORT_CITY_GREAT_BALL           (FLAG_HIDDEN_ITEMS_START + 0x71) // 0x265
+#define FLAG_HIDDEN_ITEM_PETALBURG_WOODS_MANSION_GREAT_BALL  (FLAG_HIDDEN_ITEMS_START + 0x72) // 0x266
 
-#define FLAG_UNUSED_0x266  0x266 // Unused Flag
 #define FLAG_UNUSED_0x267  0x267 // Unused Flag
 #define FLAG_UNUSED_0x268  0x268 // Unused Flag
 #define FLAG_UNUSED_0x269  0x269 // Unused Flag
@@ -1217,9 +1219,9 @@
 #define FLAG_ITEM_MAGMA_HIDEOUT_4F_MAX_REVIVE                       0x490
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
+#define FLAG_ITEM_PETALBURG_WOODS_MANSION_ETHER                     0x493
+#define FLAG_ITEM_PETALBURG_WOODS_MANSION_GREAT_BALL                0x494
 
-#define FLAG_UNUSED_0x493                                           0x493 // Unused Flag
-#define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
 #define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
 #define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
