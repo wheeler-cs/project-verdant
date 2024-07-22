@@ -10,11 +10,11 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 | **Memory Region** | **Used Size** | **Region Size** | **% Used** |
 |-|-|-|-|
-| EWRAM | 249660 B | 256 KB | 95.24% |
-| IWRAM | 30876 B | 32 KB | 94.23% |
+| EWRAM | 249000 B | 256 KB | 94.99% |
+| IWRAM | 30988 B | 32 KB | 94.57% |
 | ROM | 14556156 B | 32 MB | 43.38% |
 
-**verdant.gba** _v4.2.0_  - `sha1: fa1cb0ee2768f77f165e0cca38a7d2aa05c7f3bc`
+**verdant.gba** _v4.2.0_  - `sha1: 7d66e65ad46eef1f165eff9b4a4b293c982032d5`
 
 ## See Also
 [Emerald Reduced](https://github.com/wheeler-cs/emerald-reduced): Upstream for project verdant that attempts to reduce the codebase size of the orignal game.
