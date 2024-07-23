@@ -9,6 +9,8 @@
 #    unzip
 # If these are not installed on your system, they should be easily obtainable from your package manager.
 
+# TODO: Make this handle ARM architecture, as Poryscript only has x86 builds...
+
 # Make the Poryscript tooling directory if it doesn't exist
 if [ ! -d "tools/poryscript" ]; then
     mkdir "tools/poryscript"
